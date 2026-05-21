@@ -60,6 +60,7 @@ def run_reviewer(state: TestForgeState) -> None:
                 "output_dir": state.output_dir,
                 "app_url": state.app_url,
                 "roles": [r["name"] for r in state.credentials.get("roles", [])],
+                "test_plan": state.test_plan,
             }
         )
 

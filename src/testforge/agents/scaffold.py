@@ -37,6 +37,7 @@ def scaffold_output(state: TestForgeState) -> None:
         "tests/ui/roles",
         "tests/e2e",
         "fixtures",
+        "reports",
     ]
 
     for d in dirs:

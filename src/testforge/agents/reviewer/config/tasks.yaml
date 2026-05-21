@@ -6,6 +6,14 @@ review_tests:
     APP URL: {app_url}
     ROLES: {roles}
 
+    TEST PLAN CONTEXT (use this to understand test intent when diagnosing failures):
+    {test_plan}
+
+    Use the test plan to determine whether a failure is expected behaviour or a genuine
+    bug. For example: if a Scenario says "analyst is denied project creation" and the
+    test gets a 403, that is a PASS — the 403 is the correct response. Never categorise
+    an expected negative outcome as a failure.
+
     STEPS:
     1. Use the run_tests tool with output_dir={output_dir}
        - This first runs tsc --noEmit (compilation gate)

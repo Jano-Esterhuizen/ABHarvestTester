@@ -1,6 +1,7 @@
 """QA Analyst — adversarial test planner."""
 
 import logging
+from pathlib import Path
 
 from crewai import Agent, Task, Crew
 from crewai.project import CrewBase, agent, task, crew
@@ -53,3 +54,9 @@ def run_qa_analyst(state: TestForgeState) -> None:
     )
 
     state.test_plan = str(result)
+
+    # Write test plan to disk — visibility, persistence, and human review opportunity
+    plan_path = Path(state.output_dir) / "test-plan.md"
+    plan_path.parent.mkdir(parents=True, exist_ok=True)
+    plan_path.write_text(state.test_plan, encoding="utf-8")
+    logger.info(f"Test plan written to: {plan_path}")

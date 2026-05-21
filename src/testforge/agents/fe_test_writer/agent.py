@@ -6,7 +6,7 @@ from crewai import Agent, Task, Crew
 from crewai.project import CrewBase, agent, task, crew
 
 from testforge.state import TestForgeState
-from testforge.tools.file_tools import file_write_tool
+from testforge.tools.file_tools import file_read_tool, file_write_tool
 from testforge.tools.playwright_mcp import create_playwright_mcp
 from testforge.llm import get_llm
 
@@ -25,7 +25,7 @@ class FETestWriterCrew:
     def fe_test_writer(self) -> Agent:
         return Agent(
             config=self.agents_config["fe_test_writer"],
-            tools=[file_write_tool] + self._playwright_tools,
+            tools=[file_read_tool, file_write_tool] + self._playwright_tools,
             llm=get_llm(),
             verbose=True,
         )

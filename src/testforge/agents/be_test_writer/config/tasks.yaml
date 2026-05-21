@@ -6,25 +6,55 @@ write_be_tests:
     APP URL: {app_url}
     AVAILABLE ROLES: {roles}
 
+    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    STEP 0 — READ THE TEST PLAN BEFORE WRITING ANYTHING
+    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    Use file_read_tool to read: {output_dir}/test-plan.md
+
+    This is your PRIMARY source of truth. You MUST implement every Scenario
+    tagged @api from that file. Do not invent test cases. Do not skip any @api Scenario.
+    If the file does not exist, fall back to the API spec and test plan below.
+
+    How to read Gherkin Scenarios and convert them to Playwright API tests:
+    - Feature: [Name]    → one .spec.ts file: [name].api.spec.ts
+    - Scenario: [title]  → one test('[title]', ...) block
+    - @P0                → allure.severity('critical')
+    - @P1                → allure.severity('normal')
+    - @P2 / @P3          → allure.severity('minor')
+    - @[role]            → run this test authenticated as that role
+    - Given (auth/setup) → test.beforeAll() or Arrange section of the test
+    - When (action)      → the request.get/post/put/delete call
+    - Then (assertion)   → expect(response.status()).toBe(...)
+    - And (assertion)    → additional expect() or expect.soft() calls
+
+    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    FALLBACK INPUTS (use only if test-plan.md cannot be read)
+    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
     API SPECIFICATION:
     {api_spec}
 
-    TEST PLAN (BE section — follow this precisely):
+    TEST PLAN:
     {test_plan}
 
     CREDENTIALS:
     {credentials}
     {feedback}
 
-    FILE NAMING & STRUCTURE:
+    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    FILE NAMING AND STRUCTURE
+    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
     - Output to: {output_dir}/tests/api/
     - File naming: [resource].api.spec.ts (e.g., users.api.spec.ts)
-    - Role-based files: tests/api/roles/ (e.g., user-permissions.spec.ts)
-    - One spec file per logical domain/resource group
+    - Role-based permission files: tests/api/roles/ (e.g., director-permissions.spec.ts)
+    - One spec file per Feature block in the test plan
 
-    EVERY SPEC FILE MUST INCLUDE:
+    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    EVERY SPEC FILE MUST INCLUDE
+    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
     1. Comment block at top listing all required env vars
     2. Allure annotations on every test: epic, feature, story, severity
+       (derive severity from the @P tag on the Scenario)
     3. test.beforeAll() for auth setup (derive token and baseURL)
     4. test.afterAll() for cleanup ONLY if tests created data via API
     5. AAA pattern (Arrange-Act-Assert) in every test
@@ -37,9 +67,8 @@ write_be_tests:
     Store token/session in beforeAll, reuse across tests via shared variable.
 
     ASSERTION STRATEGY:
-    - Use expect() for critical assertions (status codes, auth failures, data integrity)
-    - Use expect.soft() for non-critical assertions (response shape, optional fields)
-      so all checks run even on partial failure
+    - Then step → expect() for critical assertions (status codes, auth failures)
+    - And step  → expect.soft() for non-critical assertions (response shape, optional fields)
     - Always assert: status code, response body schema, key field values
     - For error responses: assert status code AND error message shape
 
@@ -54,53 +83,124 @@ write_be_tests:
     8. Do NOT generate MCP tool calls — MCP is for agent discovery only, not in test code
     9. Cleanup in afterAll: only delete data YOUR tests created (never existing data)
 
-    EXAMPLE STRUCTURE:
+    EXAMPLE — converting a Gherkin Scenario to a Playwright test:
+
+    Gherkin:
+      @P0 @api @director
+      Scenario: director can create a project with valid data
+        Given a director user is authenticated with a valid token
+        When they send POST to /api/projects with a valid name and description
+        Then the response status should be 201
+        And the response body should contain an id field
+
+    Becomes:
     ```typescript
-    // Required env vars: BASE_URL, ADMIN_EMAIL, ADMIN_PASSWORD
+    // Required env vars: BASE_URL, DIRECTOR_EMAIL, DIRECTOR_PASSWORD
     import { test, expect } from '@playwright/test';
     import { allure } from 'allure-playwright';
 
-    test.describe('Users — CRUD Operations', () => {
+    test.describe('Projects — CRUD Operations', () => {
       let baseURL: string;
-      let adminToken: string;
-      let createdUserId: string;
+      let directorToken: string;
+      let createdProjectId: string;
 
       test.beforeAll(async ({ request }) => {
         baseURL = process.env.BASE_URL!;
         const loginRes = await request.post(`${baseURL}/auth/login`, {
-          data: { email: process.env.ADMIN_EMAIL, password: process.env.ADMIN_PASSWORD }
+          data: {
+            email: process.env.DIRECTOR_EMAIL,
+            password: process.env.DIRECTOR_PASSWORD,
+          },
         });
-        adminToken = (await loginRes.json()).token;
+        expect(loginRes.status()).toBe(200);
+        directorToken = (await loginRes.json()).token;
       });
 
       test.afterAll(async ({ request }) => {
-        if (createdUserId) {
-          await request.delete(`${baseURL}/users/${createdUserId}`, {
-            headers: { Authorization: `Bearer ${adminToken}` }
+        if (createdProjectId) {
+          await request.delete(`${baseURL}/api/projects/${createdProjectId}`, {
+            headers: { Authorization: `Bearer ${directorToken}` },
           });
         }
       });
 
-      test('POST /users creates user with valid data', async ({ request }) => {
-        await allure.epic('User Management');
-        await allure.feature('Users');
-        await allure.story('Create User');
+      test('director can create a project with valid data', async ({ request }) => {
+        await allure.epic('Project Management');
+        await allure.feature('Projects');
+        await allure.story('Create Project');
         await allure.severity('critical');
 
-        const response = await request.post(`${baseURL}/users`, {
-          headers: { Authorization: `Bearer ${adminToken}` },
-          data: { name: 'Test User', email: `test-${Date.now()}@example.com` }
+        // Arrange
+        const payload = { name: `Test Project ${Date.now()}`, description: 'Automated test' };
+
+        // Act
+        const response = await request.post(`${baseURL}/api/projects`, {
+          headers: { Authorization: `Bearer ${directorToken}` },
+          data: payload,
         });
+
+        // Assert — Then step
         expect(response.status()).toBe(201);
+        // Assert — And step
         const body = await response.json();
         expect.soft(body).toHaveProperty('id');
-        expect.soft(body.name).toBe('Test User');
-        createdUserId = body.id;
+        createdProjectId = body.id;
       });
     });
     ```
+
+    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    FINAL STEP — WRITE COVERAGE REPORT
+    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    After ALL test files have been written, use file_write_tool to write a coverage
+    report to: {output_dir}/reports/be-test-coverage.md
+
+    The report MUST use this exact structure:
+
+    # BE Test Coverage Report
+
+    **Generated by:** BE Test Writer
+    **Source:** test-plan.md — Section 2 (@api scenarios)
+    **Output directory:** {output_dir}/tests/api/
+
+    ## Summary
+
+    | Total @api Scenarios | Implemented | Skipped |
+    |----------------------|-------------|---------|
+    | <count>              | <count>     | <count> |
+
+    ## Scenario Coverage
+
+    ### Feature: [Feature Name from test-plan.md]
+
+    | Scenario | Priority | Role | Status | File |
+    |----------|----------|------|--------|------|
+    | [title]  | P0       | director | ✅ Implemented | tests/api/[file].spec.ts |
+    | [title]  | P1       | pm       | ✅ Implemented | tests/api/[file].spec.ts |
+    | [title]  | P0       | analyst  | ❌ Skipped — [reason] | — |
+
+    [Repeat table for each Feature]
+
+    ## Skipped Scenarios
+
+    Any @api scenarios NOT implemented, with a brief reason for each.
+
+    ## Notes
+
+    Observations about the API spec, missing endpoints, or ambiguities encountered.
+
+    ---
+    STATUS VALUES:
+    - ✅ Implemented — scenario fully written as a Playwright test
+    - ⚠️ Partial     — written but some assertions could not be completed (explain why)
+    - ❌ Skipped     — not written (always give a reason)
+
   expected_output: >
-    Multiple .spec.ts files written to the output directory covering all API endpoints
-    with Allure annotations, role-based access testing, expect.soft() for non-critical
-    assertions, env var documentation, proper auth setup, and cleanup.
+    Multiple .spec.ts files written to {output_dir}/tests/api/ — one per Feature block
+    from test-plan.md. Each file implements every @api Scenario from that Feature,
+    with Allure annotations (severity from @P tag), role-based access testing,
+    expect.soft() for non-critical assertions, env var documentation at the top,
+    proper auth setup in beforeAll, and cleanup in afterAll.
+    PLUS a coverage report at {output_dir}/reports/be-test-coverage.md listing every
+    @api Scenario from the test plan with its implementation status and file location.
   agent: be_test_writer

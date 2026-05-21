@@ -6,7 +6,7 @@ from crewai import Agent, Task, Crew
 from crewai.project import CrewBase, agent, task, crew
 
 from testforge.state import TestForgeState
-from testforge.tools.file_tools import file_write_tool
+from testforge.tools.file_tools import file_read_tool, file_write_tool
 from testforge.llm import get_llm
 
 logger = logging.getLogger("testforge")
@@ -23,7 +23,7 @@ class BETestWriterCrew:
     def be_test_writer(self) -> Agent:
         return Agent(
             config=self.agents_config["be_test_writer"],
-            tools=[file_write_tool],
+            tools=[file_read_tool, file_write_tool],
             llm=get_llm(),
             verbose=True,
         )

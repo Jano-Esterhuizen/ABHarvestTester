@@ -118,4 +118,21 @@ def file_write_tool(file_path: str, content: str) -> str:
     path = Path(file_path)
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(content, encoding="utf-8")
-    return f"Written: {file_path} ({len(content)} chars)"
+
+    # Real-time terminal progress — visible as each file is written
+    line_count = content.count("\n") + 1
+    rel = path.name
+    ext = path.suffix
+
+    if ext == ".ts":
+        icon = "🧪"
+    elif ext == ".md":
+        icon = "📋"
+    elif ext == ".json":
+        icon = "📦"
+    else:
+        icon = "📄"
+
+    print(f"\n  {icon}  Written: {file_path}  ({line_count} lines)", flush=True)
+
+    return f"Written: {file_path} ({line_count} lines, {len(content)} chars)"
