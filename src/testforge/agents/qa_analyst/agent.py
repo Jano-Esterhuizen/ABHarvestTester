@@ -43,13 +43,16 @@ class QAAnalystCrew:
 
 def run_qa_analyst(state: TestForgeState) -> None:
     """Execute the QA Analyst crew and update state."""
+    # Truncate inputs to fit within 8000 token budget
+    context_summary = state.context_document[:3000]
+    api_summary = state.api_spec[:3000]
+
     crew = QAAnalystCrew()
     result = crew.crew().kickoff(
         inputs={
-            "context_document": state.context_document,
-            "api_spec": state.api_spec,
-            "roles": [r["name"] for r in state.credentials.get("roles", [])],
-            "credentials_summary": str(state.credentials.get("roles", [])),
+            "context_summary": context_summary,
+            "api_summary": api_summary,
+            "roles": ", ".join(r["name"] for r in state.credentials.get("roles", [])),
         }
     )
 

@@ -1,13 +1,13 @@
 """FE Test Writer — generates frontend UI test files."""
 
 import logging
+import os
+import re
 
 from crewai import Agent, Task, Crew
 from crewai.project import CrewBase, agent, task, crew
 
 from testforge.state import TestForgeState
-from testforge.tools.file_tools import file_read_tool, file_write_tool
-from testforge.tools.playwright_mcp import create_playwright_mcp
 from testforge.llm import get_llm
 
 logger = logging.getLogger("testforge")
@@ -19,13 +19,12 @@ class FETestWriterCrew:
 
     agents_config = "config/agents.yaml"
     tasks_config = "config/tasks.yaml"
-    _playwright_tools: list = []
 
     @agent
     def fe_test_writer(self) -> Agent:
         return Agent(
             config=self.agents_config["fe_test_writer"],
-            tools=[file_read_tool, file_write_tool] + self._playwright_tools,
+            tools=[],
             llm=get_llm(),
             verbose=True,
         )
@@ -43,39 +42,96 @@ class FETestWriterCrew:
         )
 
 
+def _split_ui_routes(context_document: str) -> list[tuple[str, str]]:
+    """Extract UI route sections from context document."""
+    chunks = []
+    in_ui_section = False
+    current_lines = []
+    current_name = "pages"
+
+    for line in context_document.split("\n"):
+        if "UI Routes" in line or "Pages" in line:
+            in_ui_section = True
+            continue
+        if in_ui_section:
+            if line.startswith("## ") and "UI" not in line and "Page" not in line:
+                break
+            if line.startswith("- /") or line.startswith("  /"):
+                if current_lines and len("\n".join(current_lines)) > 500:
+                    chunks.append((current_name, "\n".join(current_lines)))
+                    current_lines = []
+                route = line.strip("- ").split(" ")[0]
+                current_name = route.strip("/").replace("/", "-") or "home"
+            current_lines.append(line)
+
+    if current_lines:
+        chunks.append((current_name, "\n".join(current_lines)))
+
+    # Fallback: just pass the whole context truncated
+    if not chunks:
+        chunks = [("pages", context_document[:2500])]
+
+    return chunks
+
+
 def run_fe_writer(state: TestForgeState) -> None:
-    """Execute the FE Test Writer crew and update state."""
+    """Execute the FE Test Writer crew per page chunk and write files."""
     feedback_context = ""
     if state.feedback:
         fe_feedback = [f for f in state.feedback if "ui" in f.get("test_file", "")]
         if fe_feedback:
-            feedback_context = "\n\nFEEDBACK FROM REVIEWER (fix these):\n"
+            feedback_context = "\nFEEDBACK:\n"
             for fb in fe_feedback:
-                feedback_context += f"- {fb['test_file']}: {fb['issue']}\n  Fix: {fb['fix_suggestion']}\n"
+                feedback_context += f"- {fb['test_file']}: {fb['fix_suggestion']}\n"
 
-    # Start Playwright MCP server for UI exploration
-    pw_mcp = create_playwright_mcp(state.app_url)
-    try:
-        pw_mcp.start()
-        pw_tools = pw_mcp.tools
-        logger.info(f"Playwright MCP started — {len(pw_tools)} tools available for FE Writer")
+    roles = ", ".join(r["name"] for r in state.credentials.get("roles", []))
+    creds_summary = "; ".join(
+        f"{r['name']}:{r.get('username', r.get('email', ''))}" for r in state.credentials.get("roles", [])
+    )
+
+    chunks = _split_ui_routes(state.context_document)
+
+    output_dir = os.path.join(state.output_dir, "tests", "ui")
+    pom_dir = os.path.join(state.output_dir, "tests", "ui", "pages")
+    os.makedirs(output_dir, exist_ok=True)
+    os.makedirs(pom_dir, exist_ok=True)
+
+    for page_name, ui_chunk in chunks:
+        plan_chunk = state.test_plan[:2000] if state.test_plan else "No test plan"
+
+        logger.info(f"Generating FE tests for page: {page_name}")
 
         crew = FETestWriterCrew()
-        crew._playwright_tools = pw_tools
         result = crew.crew().kickoff(
             inputs={
-                "output_dir": state.output_dir,
-                "context_document": state.context_document,
-                "test_plan": state.test_plan,
-                "roles": [r["name"] for r in state.credentials.get("roles", [])],
-                "credentials": state.credentials,
+                "ui_chunk": ui_chunk[:2500],
+                "plan_chunk": plan_chunk,
+                "roles": roles,
+                "credentials": creds_summary,
                 "feedback": feedback_context,
                 "app_url": state.app_url,
             }
         )
 
-        if result:
-            state.fe_tests.append({"content": str(result), "status": "generated"})
-    finally:
-        pw_mcp.stop()
+        code = str(result)
+
+        # Split POM and spec if file break marker present
+        parts = code.split("// --- FILE BREAK ---")
+        if len(parts) == 2:
+            pom_code, spec_code = parts
+            slug = re.sub(r"[^a-z0-9]", "-", page_name.lower()).strip("-")
+            pom_path = os.path.join(pom_dir, f"{slug}.page.ts")
+            spec_path = os.path.join(output_dir, f"{slug}.ui.spec.ts")
+            with open(pom_path, "w", encoding="utf-8") as f:
+                f.write(pom_code.strip())
+            with open(spec_path, "w", encoding="utf-8") as f:
+                f.write(spec_code.strip())
+        else:
+            slug = re.sub(r"[^a-z0-9]", "-", page_name.lower()).strip("-")
+            spec_path = os.path.join(output_dir, f"{slug}.ui.spec.ts")
+            with open(spec_path, "w", encoding="utf-8") as f:
+                f.write(code)
+
+        state.fe_tests.append({"file": spec_path, "page": page_name, "status": "generated"})
+        logger.info(f"Wrote FE test: {spec_path}")
         logger.info("Playwright MCP stopped for FE Writer")

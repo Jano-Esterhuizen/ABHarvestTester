@@ -1,216 +1,27 @@
 write_fe_tests:
   description: >
-    Generate frontend UI test files and POM structure for the target application.
+    Write Playwright UI tests (.spec.ts) for these pages.
 
-    OUTPUT DIRECTORY: {output_dir}
     APP URL: {app_url}
-    AVAILABLE ROLES: {roles}
+    ROLES: {roles}
+    CREDENTIALS: {credentials}
 
-    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-    STEP 0 — READ THE TEST PLAN BEFORE WRITING ANYTHING
-    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-    Use file_read_tool to read: {output_dir}/test-plan.md
+    PAGES TO TEST:
+    {ui_chunk}
 
-    This is your PRIMARY source of truth. You MUST implement every Scenario
-    tagged @ui from that file. Do not invent test cases. Do not skip any @ui Scenario.
-    If the file does not exist, fall back to the application context and test plan below.
-
-    How to read Gherkin Scenarios and convert them to Playwright UI tests:
-    - Feature: [Name]    → one set of POM files + one .spec.ts: [name].ui.spec.ts
-    - Scenario: [title]  → one test('[title]', ...) block
-    - @P0                → allure.severity('critical')
-    - @P1                → allure.severity('normal')
-    - @P2 / @P3          → allure.severity('minor')
-    - @[role]            → authenticated page fixture using that role's credentials
-    - Given (on page)    → page.goto('/path') or use authenticatedPage fixture
-    - When (interaction) → Model method call (click, fill, select — via the Model layer)
-    - Then (assertion)   → expect(locator).toBeVisible() / toHaveText() / toBeHidden()
-    - And (assertion)    → additional expect.soft() checks on page state
-
-    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-    FALLBACK INPUTS (use only if test-plan.md cannot be read)
-    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
-    APPLICATION CONTEXT:
-    {context_document}
-
-    TEST PLAN:
-    {test_plan}
-
-    CREDENTIALS:
-    {credentials}
+    TEST PLAN (relevant section):
+    {plan_chunk}
     {feedback}
 
-    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-    FILE STRUCTURE — Generate for each Feature block
-    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    Rules:
+    - Use Page Object Model: one POM class per page, tests import POM
+    - Locators: prefer data-testid, then role, then text content
+    - Wait for network idle or specific element before asserting
+    - Test with each specified role (login in beforeAll)
+    - Verify page content, navigation, form validation, error states
+    - Output TWO files: the POM class and the test spec
 
-    Four files per Feature (Three-Tier POM):
-
-    1. ui/pages/[feature]/[feature].page.ts — Pure selectors only (no logic, no methods)
-       ```typescript
-       export const featurePage = {
-         heading: 'heading',              // role name for getByRole
-         submitButton: 'Submit',          // name for getByRole('button', { name })
-         emailInput: 'Email',             // label for getByLabel
-         dataGrid: 'user-table',          // testid for getByTestId
-       } as const;
-       ```
-
-    2. ui/objects/[feature]/[feature].object.ts — Locator accessors only (no assertions, no waits)
-       ```typescript
-       import { Page, Locator } from '@playwright/test';
-       import { featurePage } from '../../pages/feature/feature.page';
-       export class FeatureObject {
-         constructor(private page: Page) {}
-         getHeading(): Locator {
-           return this.page.getByRole('heading', { name: featurePage.heading });
-         }
-         getSubmitButton(): Locator {
-           return this.page.getByRole('button', { name: featurePage.submitButton });
-         }
-       }
-       ```
-
-    3. ui/models/[feature]/[feature].model.ts — All business logic and workflows
-       ```typescript
-       import { Page, expect } from '@playwright/test';
-       import { FeatureObject } from '../../objects/feature/feature.object';
-       export class FeatureModel {
-         private obj: FeatureObject;
-         constructor(private page: Page) { this.obj = new FeatureObject(page); }
-         async submitForm(email: string) {
-           await this.obj.getEmailInput().fill(email);
-           await this.obj.getSubmitButton().click();
-           await this.page.waitForResponse(
-             resp => resp.url().includes('/api/') && resp.status() === 200
-           );
-         }
-       }
-       ```
-
-    4. tests/ui/[feature]/[feature].ui.spec.ts — Tests using Models only
-       ```typescript
-       import { test, expect } from '@playwright/test';
-       import { allure } from 'allure-playwright';
-       import { FeatureModel } from '../../../ui/models/feature/feature.model';
-
-       test.describe('Feature — [Scenario group title]', () => {
-         test('[Scenario title from Gherkin]', async ({ page }) => {
-           await allure.epic('Feature');
-           await allure.feature('Form Submission');
-           await allure.severity('critical');  // derived from @P tag
-           const feature = new FeatureModel(page);
-           await page.goto('/feature');
-           await feature.submitForm('test@example.com');
-           await expect(page.getByText('Success')).toBeVisible();
-         });
-       });
-       ```
-
-    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-    SELECTOR STRATEGY (priority order — never deviate)
-    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-    1. getByRole()    — buttons, headings, links, textboxes (always preferred)
-    2. getByLabel()   — form inputs associated with a visible label
-    3. getByTestId()  — data-testid attributes when role/label unavailable
-    4. getByText()    — visible text (last resort, only for non-interactive elements)
-    NEVER USE: CSS class selectors (.btn-primary), XPath, nth-child, or auto-generated IDs.
-
-    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-    POM LAYER RULES
-    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-    - Pages:   NO methods, NO logic, NO imports — only exported const with selector strings
-    - Objects: NO assertions, NO waits — only return Locator instances
-    - Models:  ALL business logic lives here — waits, multi-step actions, workflows
-    - Tests:   Import and use Models ONLY — never import Pages or Objects directly
-
-    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-    STABILITY RULES
-    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-    - NO hard waits — page.waitForTimeout() is FORBIDDEN
-    - Use: waitForResponse(), waitForSelector(), expect().toBeVisible({ timeout })
-    - baseURL comes from playwright.config.ts — use page.goto('/relative-path')
-    - All tests must be parallelisable — no cross-file shared state
-    - Use storageState for authenticated sessions — don't login inside every test
-
-    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-    CI/CD RULES
-    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-    - Tests must work headless
-    - Include Allure annotations (epic, feature, severity) on every test
-    - Derive severity from the @P tag on the Gherkin Scenario
-    - Test role-based access: what each role can AND cannot see or do
-    - Screenshot and trace on failure is handled by playwright.config.ts — do not add per-test
-
-    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-    CROSS-TEAM COMPATIBILITY
-    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-    - If POM files already exist in the output directory: extend them, never overwrite
-    - Match existing naming conventions and import patterns in any existing files
-    - Respect existing folder hierarchy
-
-    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-    FINAL STEP — WRITE COVERAGE REPORT
-    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-    After ALL test files and POM files have been written, use file_write_tool to write
-    a coverage report to: {output_dir}/reports/fe-test-coverage.md
-
-    The report MUST use this exact structure:
-
-    # FE Test Coverage Report
-
-    **Generated by:** FE Test Writer
-    **Source:** test-plan.md — Section 3 (@ui scenarios)
-    **Output directory:** {output_dir}/tests/ui/ and {output_dir}/ui/
-
-    ## Summary
-
-    | Total @ui Scenarios | Implemented | Skipped |
-    |---------------------|-------------|---------|
-    | <count>             | <count>     | <count> |
-
-    ## Scenario Coverage
-
-    ### Feature: [Feature Name from test-plan.md]
-
-    | Scenario | Priority | Role | Status | Test File | POM Files Created |
-    |----------|----------|------|--------|-----------|-------------------|
-    | [title]  | P0       | director | ✅ Implemented | tests/ui/[feature].ui.spec.ts | ui/pages/[f].page.ts, ui/objects/[f].object.ts, ui/models/[f].model.ts |
-    | [title]  | P1       | pm       | ✅ Implemented | tests/ui/[feature].ui.spec.ts | (reused existing POM) |
-    | [title]  | P0       | analyst  | ❌ Skipped — [reason] | — | — |
-
-    [Repeat table for each Feature]
-
-    ## POM Files Created
-
-    List every new POM file written during this run:
-    - ui/pages/[feature]/[feature].page.ts
-    - ui/objects/[feature]/[feature].object.ts
-    - ui/models/[feature]/[feature].model.ts
-
-    ## Skipped Scenarios
-
-    Any @ui scenarios NOT implemented, with a brief reason for each.
-
-    ## Selector Notes
-
-    Any selectors that could not be resolved via getByRole/getByLabel and required
-    a fallback strategy — document what was used and why.
-
-    ---
-    STATUS VALUES:
-    - ✅ Implemented — scenario fully written with POM and spec file
-    - ⚠️ Partial     — written but selector or assertion is uncertain (explain why)
-    - ❌ Skipped     — not written (always give a reason)
-
+    Output ONLY TypeScript code (POM then spec), separated by // --- FILE BREAK ---
   expected_output: >
-    Multiple file sets written to {output_dir} — one per Feature block tagged @ui in
-    test-plan.md. Each set contains: a page selectors file, an object accessor file,
-    a model file with business logic, and a .spec.ts test file implementing every @ui
-    Scenario. All tests include Allure annotations with severity derived from @P tags,
-    stable role-based selectors, no hard waits, and CI-friendly configuration.
-    PLUS a coverage report at {output_dir}/reports/fe-test-coverage.md listing every
-    @ui Scenario from the test plan with its implementation status, file locations,
-    and POM files created.
+    TypeScript POM class and test spec file.
   agent: fe_test_writer
