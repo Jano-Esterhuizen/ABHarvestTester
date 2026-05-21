@@ -6,6 +6,7 @@ from crewai import Agent, Task, Crew
 from crewai.project import CrewBase, agent, task, crew
 
 from testforge.state import TestForgeState
+from testforge.llm import get_llm
 
 logger = logging.getLogger("testforge")
 
@@ -22,7 +23,7 @@ class QAAnalystCrew:
         return Agent(
             config=self.agents_config["qa_analyst"],
             tools=[],
-            llm="openai/gpt-4.1",
+            llm=get_llm(),
             verbose=True,
         )
 
@@ -39,7 +40,7 @@ class QAAnalystCrew:
         )
 
 
-def run_qa_analyst(state: TestForgeState) -> TestForgeState:
+def run_qa_analyst(state: TestForgeState) -> None:
     """Execute the QA Analyst crew and update state."""
     crew = QAAnalystCrew()
     result = crew.crew().kickoff(
@@ -52,4 +53,3 @@ def run_qa_analyst(state: TestForgeState) -> TestForgeState:
     )
 
     state.test_plan = str(result)
-    return state

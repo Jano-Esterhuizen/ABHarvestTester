@@ -2,6 +2,7 @@
 
 import logging
 from pathlib import Path
+from typing import ClassVar
 
 from crewai.flow.flow import Flow, listen, start, router
 
@@ -53,7 +54,7 @@ def discover_mcp_server(config: TestForgeConfig) -> dict | None:
     return None
 
 
-class TestForgeFlow(Flow):
+class TestForgeFlow(Flow[TestForgeState]):
     """Orchestrator: deterministic Python flow that coordinates all agents.
 
     Sequence:
@@ -61,28 +62,32 @@ class TestForgeFlow(Flow):
     → plan_tests → write_tests → review_tests → (retry | complete)
     """
 
-    def __init__(self, config: TestForgeConfig):
-        super().__init__()
-        self._config = config
-        self.state = TestForgeState(
-            repo_path=config.repo_path,
-            app_url=config.app_url,
-            credentials=config.credentials,
-            output_dir=config.output_dir,
-            force=config.force,
-            mcp_server_config=config.mcp_server_config,
-        )
+    _config: ClassVar[TestForgeConfig]
+
+    @classmethod
+    def create(cls, config: TestForgeConfig) -> "TestForgeFlow":
+        """Factory method to create a flow with config and initial state."""
+        cls._config = config
+        flow = cls()
+        return flow
 
     @start()
     def load_config(self):
         """Load config and detect output mode."""
         logger.info("Loading configuration...")
+        config = self._config
+        self.state.repo_path = config.repo_path
+        self.state.app_url = config.app_url
+        self.state.credentials = config.credentials
+        self.state.output_dir = config.output_dir
+        self.state.force = config.force
+        self.state.mcp_server_config = config.mcp_server_config
+
         self.state.incremental = detect_existing_framework(self.state.output_dir)
         if self.state.incremental:
             logger.info("Existing framework detected — incremental mode")
         else:
             logger.info("No existing framework — full scaffold mode")
-        return self.state
 
     @listen(load_config)
     def read_repository(self):
@@ -90,9 +95,8 @@ class TestForgeFlow(Flow):
         logger.info("Agent: Repo Reader — analyzing repository...")
         from testforge.agents.repo_reader.agent import run_repo_reader
 
-        self.state = run_repo_reader(self.state)
+        run_repo_reader(self.state)
         logger.info(f"Context document: {len(self.state.context_document)} chars")
-        return self.state
 
     @listen(read_repository)
     def extract_api_spec(self):
@@ -111,9 +115,8 @@ class TestForgeFlow(Flow):
 
         from testforge.agents.scraper.agent import run_scraper
 
-        self.state = run_scraper(self.state)
+        run_scraper(self.state)
         logger.info(f"API spec source: {self.state.api_spec_source}")
-        return self.state
 
     @listen(extract_api_spec)
     def scaffold_framework(self):
@@ -125,7 +128,6 @@ class TestForgeFlow(Flow):
             scaffold_output(self.state)
         else:
             logger.info("Framework exists — skipping scaffold")
-        return self.state
 
     @listen(scaffold_framework)
     def plan_tests(self):
@@ -133,9 +135,8 @@ class TestForgeFlow(Flow):
         logger.info("Agent: QA Analyst — planning test scenarios...")
         from testforge.agents.qa_analyst.agent import run_qa_analyst
 
-        self.state = run_qa_analyst(self.state)
+        run_qa_analyst(self.state)
         logger.info(f"Test plan: {len(self.state.test_plan)} chars")
-        return self.state
 
     @listen(plan_tests)
     def write_tests(self):
@@ -146,13 +147,12 @@ class TestForgeFlow(Flow):
         from testforge.agents.e2e_test_writer.agent import run_e2e_writer
 
         # TODO: Run concurrently with asyncio or threading
-        self.state = run_be_writer(self.state)
-        self.state = run_fe_writer(self.state)
-        self.state = run_e2e_writer(self.state)
+        run_be_writer(self.state)
+        run_fe_writer(self.state)
+        run_e2e_writer(self.state)
 
         total = len(self.state.be_tests) + len(self.state.fe_tests) + len(self.state.e2e_tests)
         logger.info(f"Generated {total} test files")
-        return self.state
 
     @router(write_tests)
     def review_tests(self):
@@ -160,7 +160,7 @@ class TestForgeFlow(Flow):
         logger.info(f"Agent: Reviewer — iteration {self.state.iteration + 1}/{self.state.max_iterations}...")
         from testforge.agents.reviewer.agent import run_reviewer
 
-        self.state = run_reviewer(self.state)
+        run_reviewer(self.state)
 
         if self.state.all_passing:
             logger.info("All tests passing!")
@@ -184,10 +184,9 @@ class TestForgeFlow(Flow):
         from testforge.agents.e2e_test_writer.agent import run_e2e_writer
 
         # Re-run writers with feedback context
-        self.state = run_be_writer(self.state)
-        self.state = run_fe_writer(self.state)
-        self.state = run_e2e_writer(self.state)
-        return self.state
+        run_be_writer(self.state)
+        run_fe_writer(self.state)
+        run_e2e_writer(self.state)
 
     @listen("complete")
     def deliver_results(self):
@@ -202,4 +201,3 @@ class TestForgeFlow(Flow):
         logger.info(f"  Iterations used: {self.state.iteration + 1}")
         logger.info(f"  API spec source: {self.state.api_spec_source}")
         logger.info("=" * 40)
-        return self.state

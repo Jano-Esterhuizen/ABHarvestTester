@@ -8,6 +8,7 @@ from crewai.project import CrewBase, agent, task, crew
 from testforge.state import TestForgeState
 from testforge.tools.file_tools import file_read_tool
 from testforge.tools.mcp_client import create_dev_mcp
+from testforge.llm import get_llm
 
 logger = logging.getLogger("testforge")
 
@@ -28,7 +29,7 @@ class ScraperCrew:
         return Agent(
             config=self.agents_config["scraper"],
             tools=[file_read_tool] + self._mcp_tools,
-            llm="openai/gpt-4.1",
+            llm=get_llm(),
             verbose=True,
         )
 
@@ -45,7 +46,7 @@ class ScraperCrew:
         )
 
 
-def run_scraper(state: TestForgeState) -> TestForgeState:
+def run_scraper(state: TestForgeState) -> None:
     """Execute the Scraper crew and update state."""
     mcp_tools = []
     dev_mcp = None
@@ -80,5 +81,3 @@ def run_scraper(state: TestForgeState) -> TestForgeState:
         if dev_mcp:
             dev_mcp.stop()
             logger.info("Dev MCP server stopped for Scraper")
-
-    return state

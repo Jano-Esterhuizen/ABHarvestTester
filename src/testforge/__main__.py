@@ -6,8 +6,13 @@ import os
 import sys
 from pathlib import Path
 
+from dotenv import load_dotenv
+
 from testforge.config import TestForgeConfig, validate_config
 from testforge.flow import TestForgeFlow
+
+# Load .env file from project root
+load_dotenv()
 
 
 @click.command()
@@ -76,7 +81,7 @@ def cli(repo: str, url: str, creds: str, output: str, mcp_config: str | None, fo
     )
 
     # Run the flow
-    flow = TestForgeFlow(config=config)
+    flow = TestForgeFlow.create(config=config)
     flow.kickoff()
 
     click.echo("\n✓ TestForge complete. Output at: " + config.output_dir)

@@ -8,6 +8,7 @@ from crewai.project import CrewBase, agent, task, crew
 
 from testforge.state import TestForgeState
 from testforge.tools.file_tools import file_read_tool, directory_list_tool
+from testforge.llm import get_llm
 
 logger = logging.getLogger("testforge")
 
@@ -26,7 +27,7 @@ class RepoReaderCrew:
         return Agent(
             config=self.agents_config["repo_reader"],
             tools=[file_read_tool, directory_list_tool],
-            llm="openai/gpt-4.1",
+            llm=get_llm(),
             verbose=True,
         )
 
@@ -43,7 +44,7 @@ class RepoReaderCrew:
         )
 
 
-def run_repo_reader(state: TestForgeState) -> TestForgeState:
+def run_repo_reader(state: TestForgeState) -> None:
     """Execute the Repo Reader crew and update state."""
     crew = RepoReaderCrew()
     result = crew.crew().kickoff(
@@ -66,5 +67,3 @@ def run_repo_reader(state: TestForgeState) -> TestForgeState:
             )
     except ImportError:
         logger.warning("tiktoken not available — skipping budget check")
-
-    return state

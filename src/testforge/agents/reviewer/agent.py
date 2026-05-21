@@ -9,6 +9,7 @@ from testforge.state import TestForgeState
 from testforge.tools.file_tools import file_read_tool
 from testforge.tools.test_runner import test_runner_tool
 from testforge.tools.playwright_mcp import create_playwright_mcp
+from testforge.llm import get_llm
 
 logger = logging.getLogger("testforge")
 
@@ -29,7 +30,7 @@ class ReviewerCrew:
         return Agent(
             config=self.agents_config["reviewer"],
             tools=[test_runner_tool, file_read_tool] + self._playwright_tools,
-            llm="openai/gpt-4o-mini",
+            llm=get_llm("gpt-4o-mini"),
             verbose=True,
         )
 
@@ -46,7 +47,7 @@ class ReviewerCrew:
         )
 
 
-def run_reviewer(state: TestForgeState) -> TestForgeState:
+def run_reviewer(state: TestForgeState) -> None:
     """Execute the Reviewer crew and update state."""
     # Start Playwright MCP for optional manual verification (screenshot, inspect)
     pw_mcp = create_playwright_mcp(state.app_url)
@@ -71,8 +72,6 @@ def run_reviewer(state: TestForgeState) -> TestForgeState:
     finally:
         pw_mcp.stop()
         logger.info("Playwright MCP stopped for Reviewer")
-
-    return state
 
 
 def _parse_results(output: str) -> list[dict]:

@@ -7,6 +7,7 @@ from crewai.project import CrewBase, agent, task, crew
 
 from testforge.state import TestForgeState
 from testforge.tools.file_tools import file_write_tool
+from testforge.llm import get_llm
 
 logger = logging.getLogger("testforge")
 
@@ -23,7 +24,7 @@ class BETestWriterCrew:
         return Agent(
             config=self.agents_config["be_test_writer"],
             tools=[file_write_tool],
-            llm="openai/gpt-4.1",
+            llm=get_llm(),
             verbose=True,
         )
 
@@ -40,7 +41,7 @@ class BETestWriterCrew:
         )
 
 
-def run_be_writer(state: TestForgeState) -> TestForgeState:
+def run_be_writer(state: TestForgeState) -> None:
     """Execute the BE Test Writer crew and update state."""
     # Extract BE-specific section from test plan
     feedback_context = ""
@@ -67,5 +68,3 @@ def run_be_writer(state: TestForgeState) -> TestForgeState:
     # Track generated files
     if result:
         state.be_tests.append({"content": str(result), "status": "generated"})
-
-    return state

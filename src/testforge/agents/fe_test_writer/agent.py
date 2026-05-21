@@ -8,6 +8,7 @@ from crewai.project import CrewBase, agent, task, crew
 from testforge.state import TestForgeState
 from testforge.tools.file_tools import file_write_tool
 from testforge.tools.playwright_mcp import create_playwright_mcp
+from testforge.llm import get_llm
 
 logger = logging.getLogger("testforge")
 
@@ -28,7 +29,7 @@ class FETestWriterCrew:
         return Agent(
             config=self.agents_config["fe_test_writer"],
             tools=[file_write_tool] + self._playwright_tools,
-            llm="openai/gpt-4.1",
+            llm=get_llm(),
             verbose=True,
         )
 
@@ -45,7 +46,7 @@ class FETestWriterCrew:
         )
 
 
-def run_fe_writer(state: TestForgeState) -> TestForgeState:
+def run_fe_writer(state: TestForgeState) -> None:
     """Execute the FE Test Writer crew and update state."""
     feedback_context = ""
     if state.feedback:
@@ -80,5 +81,3 @@ def run_fe_writer(state: TestForgeState) -> TestForgeState:
     finally:
         pw_mcp.stop()
         logger.info("Playwright MCP stopped for FE Writer")
-
-    return state
