@@ -1,0 +1,10 @@
+Metadata-Version: 2.4
+Name: testforge
+Version: 0.1.0
+Summary: Multi-agent AI test orchestration system that generates Playwright test suites
+Requires-Python: >=3.11
+Requires-Dist: crewai[tools]>=0.121.0
+Requires-Dist: openai>=1.82.0
+Requires-Dist: pyyaml>=6.0
+Requires-Dist: click>=8.1.0
+Requires-Dist: tiktoken>=0.7.0

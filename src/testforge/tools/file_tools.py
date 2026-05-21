@@ -1,0 +1,88 @@
+"""File system tools for reading target repos and writing test output."""
+
+import os
+from pathlib import Path
+from crewai.tools import tool
+
+
+@tool("read_file")
+def file_read_tool(file_path: str) -> str:
+    """Read the contents of a file from the target repository.
+
+    Args:
+        file_path: Absolute or relative path to the file to read.
+
+    Returns:
+        The file contents as a string.
+    """
+    path = Path(file_path)
+    if not path.exists():
+        return f"ERROR: File not found: {file_path}"
+    if not path.is_file():
+        return f"ERROR: Not a file: {file_path}"
+    try:
+        return path.read_text(encoding="utf-8")
+    except UnicodeDecodeError:
+        return f"ERROR: Cannot read binary file: {file_path}"
+
+
+@tool("list_directory")
+def directory_list_tool(directory_path: str, max_depth: int = 3) -> str:
+    """List directory contents recursively up to a specified depth.
+
+    Args:
+        directory_path: Path to the directory to list.
+        max_depth: Maximum recursion depth (default 3).
+
+    Returns:
+        A tree-style listing of files and folders.
+    """
+    path = Path(directory_path)
+    if not path.exists():
+        return f"ERROR: Directory not found: {directory_path}"
+    if not path.is_dir():
+        return f"ERROR: Not a directory: {directory_path}"
+
+    lines = []
+    _walk_dir(path, lines, prefix="", depth=0, max_depth=max_depth)
+    return "\n".join(lines)
+
+
+def _walk_dir(path: Path, lines: list, prefix: str, depth: int, max_depth: int):
+    """Recursive directory walker."""
+    if depth >= max_depth:
+        return
+
+    # Skip common non-essential directories
+    skip_dirs = {
+        "node_modules", ".git", "__pycache__", ".next", "dist",
+        "build", ".venv", "venv", "coverage", ".nyc_output",
+    }
+
+    entries = sorted(path.iterdir(), key=lambda e: (not e.is_dir(), e.name.lower()))
+    dirs = [e for e in entries if e.is_dir() and e.name not in skip_dirs]
+    files = [e for e in entries if e.is_file()]
+
+    for d in dirs:
+        lines.append(f"{prefix}{d.name}/")
+        _walk_dir(d, lines, prefix=prefix + "  ", depth=depth + 1, max_depth=max_depth)
+
+    for f in files:
+        lines.append(f"{prefix}{f.name}")
+
+
+@tool("write_file")
+def file_write_tool(file_path: str, content: str) -> str:
+    """Write content to a file, creating directories as needed.
+
+    Args:
+        file_path: Absolute path where the file should be written.
+        content: The content to write.
+
+    Returns:
+        Confirmation message.
+    """
+    path = Path(file_path)
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(content, encoding="utf-8")
+    return f"Written: {file_path} ({len(content)} chars)"

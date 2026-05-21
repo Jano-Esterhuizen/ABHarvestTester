@@ -1,0 +1,65 @@
+extract_api_spec:
+  description: >
+    Produce a complete API contract for the target application.
+
+    Source mode: {api_spec_source}
+    Repository: {repo_path}
+    MCP config: {mcp_server_config}
+
+    Context from Repo Reader:
+    {context_document}
+
+    PIPELINE:
+
+    1. SOURCE DISCOVERY — Detect what's available:
+       - Check for MCP descriptors (mcp.json, .mcp/, @mcp.tool, @modelcontextprotocol/sdk)
+       - Check for Swagger/OpenAPI (openapi.yaml/json, swagger.yaml/json, /api-docs paths)
+       - Check framework-generated docs (FastAPI, NestJS @ApiTags, Springdoc, drf-yasg)
+       - Determine strategy: mcp_only | swagger_only | mcp_and_swagger_merged | crawl_only | mixed
+
+    2. PARSE DOCUMENTED SOURCES — If MCP/Swagger found:
+       - Extract all endpoints with schemas, examples, auth schemes
+       - Build per-endpoint records with provenance (which source each field came from)
+
+    3. CRAWL & VERIFY — For undocumented or verification:
+       - Start from context-document §4.1 (Backend HTTP Routes inventory)
+       - For each endpoint: read handler → extract method, path, auth, roles, request/response schemas
+       - Follow handler into service layer for side effects
+       - Detect endpoints the Repo Reader may have missed
+
+    4. MERGE & RECONCILE — Combine all sources:
+       - Code wins for: auth, required fields, response shape, roles
+       - Docs win for: descriptions, examples
+       - Record all conflicts in Discrepancies section
+
+    5. SYNTHESISE — Produce api-contract.md with this structure:
+       For each endpoint (grouped by resource):
+       - Summary + Purpose (detailed)
+       - Source file:line + Source type (mcp | swagger | crawl | merged)
+       - Auth required + Roles allowed + Rate limit + Idempotent
+       - Path parameters (table)
+       - Query parameters (table)
+       - Headers (non-auth)
+       - Request body (content-type, schema, example)
+       - Responses table (status | meaning | body schema | example)
+       - Side effects (DB writes, events, external calls)
+       - Notes for testers (quirks, ordering deps, setup requirements)
+       - Confidence (schema confidence + behaviour confidence + rationale)
+
+    REQUIRED GLOBAL SECTIONS:
+    - ## Overview (what this API is, base URLs, versioning, auth model)
+    - ## Global Conventions (Base URLs, Authentication, Error Envelope, Pagination, Content Types)
+    - ## Endpoints (grouped by resource, each with full sub-schema)
+    - ## Endpoints Not Characterised (discovered but not fully specified, with reasons)
+    - ## Discrepancies & Open Questions (conflicts between sources)
+
+    RULES:
+    - Every endpoint from context-document §4.1 MUST appear (full spec or in "Not Characterised")
+    - Never invent endpoints, fields, or examples — mark gaps as "Not detected"
+    - Never silently drop endpoints — list them under "Not Characterised" with reason
+    - Never make network calls without confirmation
+    - Every endpoint includes confidence rating (high | medium | low)
+  expected_output: >
+    A complete api-contract.md with global conventions, all endpoints fully specified
+    (or explicitly listed as not characterised), discrepancies documented, and confidence ratings.
+  agent: scraper

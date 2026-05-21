@@ -1,0 +1,83 @@
+plan_tests:
+  description: >
+    Create a comprehensive, prioritised test plan for the target application.
+
+    Application Context:
+    {context_document}
+
+    API Specification:
+    {api_spec}
+
+    Available Roles: {roles}
+    Credentials: {credentials_summary}
+
+    ANALYSIS STEPS:
+    1. Inventory the surface area: count endpoints, pages, roles, data models
+    2. Risk assessment: map §10 hints to P0/P1, auth=P0, CRUD=P1, read-only=P2
+    3. Coverage matrix: endpoints × roles × input states (valid, invalid, missing, edge)
+    4. Budget allocation: ~40% API / ~35% UI / ~25% E2E
+    5. Deduplication: don't test the same thing at multiple layers
+
+    OUTPUT FORMAT (you MUST follow this structure):
+
+    ---
+    total_test_cases: <integer>
+    coverage_summary:
+      api_tests: <integer>
+      ui_tests: <integer>
+      e2e_tests: <integer>
+    ---
+
+    # Test Plan
+
+    ## 1. Test Strategy Overview
+    ### Scope (in/out), Coverage Goals, Priority Framework
+
+    ## 2. API Test Cases (for BE Test Writer)
+
+    ### 2.1 Authentication
+    | ID | Test Case | Method | Endpoint | Role | Priority | Assertions |
+    |----|-----------|--------|----------|------|----------|------------|
+
+    ### 2.2 [Resource] CRUD
+    | ID | Test Case | Method | Endpoint | Role | Priority | Assertions |
+    |----|-----------|--------|----------|------|----------|------------|
+
+    [Repeat per resource group]
+
+    ## 3. UI Test Cases (for FE Test Writer)
+
+    ### 3.1 Page: [Name]
+    | ID | Test Case | Role | Priority | Actions | Assertions |
+    |----|-----------|------|----------|---------|------------|
+
+    [Repeat per page]
+
+    ## 4. E2E Journey Test Cases (for E2E Test Writer)
+
+    ### 4.1 Journey: [Workflow Name]
+    | ID | Test Case | Roles Involved | Priority | Steps | Assertions |
+    |----|-----------|---------------|----------|-------|------------|
+
+    ## 5. Negative & Security Test Cases
+    ### 5.1 Permission Boundaries (horizontal + vertical privilege escalation)
+    ### 5.2 Input Validation (SQL injection, XSS, oversized payloads)
+
+    ## 6. Test Data Requirements
+    ### Pre-existing data, data created during tests, isolation strategy
+
+    RULES:
+    - Every test case has: ID, description, layer (API/UI/E2E), role, priority, specific assertions
+    - P0: Auth boundaries, data corruption, security — MUST have
+    - P1: Core CRUD, business logic — MUST have
+    - P2: Pagination, filtering, edge cases — SHOULD have
+    - P3: Non-critical, cosmetic — NICE to have
+    - Assertions must be SPECIFIC: "Assert response contains `id` field of type UUID" not "Assert response is correct"
+    - Edge cases must be SPECIFIC: "empty string in name field" not "edge cases"
+    - Every role appears in at least one positive and one negative test
+    - No test depends on another test having run first
+    - Think adversarially: what would a pentester try? What would a confused user do?
+  expected_output: >
+    A structured test plan with numbered IDs, grouped by layer (API/UI/E2E),
+    prioritised P0-P3, with specific assertions and comprehensive role coverage.
+  agent: qa_analyst

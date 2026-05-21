@@ -1,0 +1,62 @@
+write_e2e_tests:
+  description: >
+    Generate end-to-end user journey test files for the target application.
+
+    OUTPUT DIRECTORY: {output_dir}
+    APP URL: {app_url}
+    AVAILABLE ROLES: {roles}
+
+    APPLICATION CONTEXT:
+    {context_document}
+
+    API SPECIFICATION (for data setup):
+    {api_spec}
+
+    TEST PLAN (E2E section — follow this precisely):
+    {test_plan}
+
+    CREDENTIALS:
+    {credentials}
+    {feedback}
+
+    Write files to {output_dir}/tests/e2e/ using the write_file tool.
+
+    Each journey test should:
+    1. Arrange: Create necessary data via API (request context)
+    2. Act: Navigate through a complete multi-page user workflow
+    3. Assert: Verify the outcome at each significant step
+    4. Cleanup: Delete created data (afterEach hook)
+
+    STRUCTURE:
+    ```typescript
+    import { test, expect } from '@playwright/test';
+    import { LoginModel } from '../../ui/models/login/login.model';
+    import { getAccountByRole } from '../../data/credentials/accounts';
+
+    test.describe('Journey: [workflow name]', () => {
+      test('[role] completes [business workflow]', async ({ page, request }) => {
+        // Arrange — create data via API
+        const account = getAccountByRole('user');
+
+        // Act — multi-page flow
+        const loginModel = new LoginModel(page);
+        await loginModel.signIn(account.username, account.password);
+        // ... navigate, interact, create, verify across pages
+
+        // Assert — verify end state
+        await expect(page.locator('.success-message')).toBeVisible();
+      });
+    });
+    ```
+
+    RULES:
+    - One file per business workflow: [workflow].e2e.spec.ts
+    - Each test simulates a complete real-world user scenario
+    - Use Models for page interactions (import from ../../ui/models/)
+    - Use request API for data setup/teardown (self-sufficient tests)
+    - Test the happy path AND at least one failure/edge case per journey
+    - Test with the most relevant role(s) for that workflow
+  expected_output: >
+    Multiple .e2e.spec.ts files written to tests/e2e/ covering complete
+    user journey workflows across the application.
+  agent: e2e_test_writer

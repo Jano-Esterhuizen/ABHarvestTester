@@ -1,0 +1,5 @@
+crewai[tools]>=0.121.0
+openai>=1.82.0
+pyyaml>=6.0
+click>=8.1.0
+tiktoken>=0.7.0

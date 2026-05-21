@@ -18,51 +18,57 @@ TestForge is a multi-agent AI system that autonomously generates and executes te
 ### High-Level Architecture
 
 ```
-┌─────────────────────────────────────────────────────────────────┐
-│                        TestForge System                          │
-├─────────────────────────────────────────────────────────────────┤
-│                                                                  │
-│  ┌──────────┐    ┌─────────────┐    ┌──────────────────────┐   │
-│  │  CONFIG   │───▶│ ORCHESTRATOR │───▶│   SHARED STATE       │   │
-│  │           │    │   (ORC)      │    │   (Graph State)      │   │
-│  │• repo_path│    └──────┬───────┘    └──────────────────────┘   │
-│  │• app_url  │           │                                       │
-│  │• creds.json│          ▼                                       │
-│  └──────────┘    ┌───────────────┐                               │
-│                  │  REPO READER   │                               │
-│                  │  (Discovery)   │                               │
-│                  └───────┬────────┘                               │
-│                          │ context_doc                            │
-│                          ▼                                        │
-│                  ┌───────────────┐                               │
-│                  │   SCRAPER     │                               │
-│                  │  (API Extract)│                               │
-│                  └───────┬────────┘                               │
-│                          │ api_spec                               │
-│                          ▼                                        │
-│               ┌──────────┴──────────┐                            │
-│               │                     │                            │
-│               ▼                     ▼                            │
-│      ┌──────────────┐     ┌──────────────┐                      │
-│      │ BE TEST      │     │ FE TEST      │                      │
-│      │ WRITER       │     │ WRITER       │                      │
-│      └──────┬───────┘     └──────┬───────┘                      │
-│             │                     │                              │
-│             └──────────┬──────────┘                              │
-│                        ▼                                         │
-│               ┌──────────────┐                                   │
-│               │   REVIEWER   │──── feedback ────┐               │
-│               │  (Run+Fix)   │                  │               │
-│               └──────┬───────┘                  │               │
-│                      │                          ▼               │
-│                      │              ┌──────────────────┐        │
-│                      │              │ WRITER (retry)    │        │
-│                      │              └──────────────────┘        │
-│                      ▼                                          │
-│              ┌───────────────┐                                   │
-│              │  OUTPUT: .spec.ts files                           │
-│              └───────────────┘                                   │
-└─────────────────────────────────────────────────────────────────┘
+┌──────────────────────────────────────────────────────────────────────┐
+│                         TestForge System                              │
+├──────────────────────────────────────────────────────────────────────┤
+│                                                                       │
+│  ┌──────────┐    ┌─────────────┐    ┌──────────────────────┐        │
+│  │  CONFIG   │───▶│ ORCHESTRATOR │───▶│   SHARED STATE       │        │
+│  │           │    │  (Flow/Py)   │    │   (Dataclass)        │        │
+│  │• repo_path│    └──────┬───────┘    └──────────────────────┘        │
+│  │• app_url  │           │                                            │
+│  │• creds    │           ▼                                            │
+│  │• mcp-cfg? │   ┌───────────────┐                                    │
+│  └──────────┘    │  REPO READER   │                                    │
+│                  │  (Discovery)   │                                    │
+│                  └───────┬────────┘                                    │
+│                          │ context_doc                                 │
+│                          ▼                                             │
+│                  ┌───────────────┐                                    │
+│                  │   SCRAPER     │◀── optional: MCP server / Swagger  │
+│                  │  (API Spec)   │                                    │
+│                  └───────┬────────┘                                    │
+│                          │ api_spec (canonical source of truth)        │
+│                          ▼                                             │
+│                  ┌───────────────┐                                    │
+│                  │  QA ANALYST   │                                    │
+│                  │  (Test Plan)  │                                    │
+│                  └───────┬────────┘                                    │
+│                          │ test_plan                                   │
+│                          ▼                                             │
+│         ┌────────────────┼────────────────┐                           │
+│         │                │                │                           │
+│         ▼                ▼                ▼                           │
+│  ┌────────────┐   ┌────────────┐   ┌────────────┐                    │
+│  │ BE TEST    │   │ FE TEST    │   │ E2E TEST   │                    │
+│  │ WRITER     │   │ WRITER     │   │ WRITER     │                    │
+│  └─────┬──────┘   └─────┬──────┘   └─────┬──────┘                    │
+│        │                 │                │                           │
+│        └─────────────────┼────────────────┘                           │
+│                          ▼                                             │
+│                  ┌───────────────┐                                    │
+│                  │   REVIEWER    │──── feedback ────┐                │
+│                  │  (Run+Fix)    │                  │                │
+│                  └───────┬───────┘                  │                │
+│                          │                          ▼                │
+│                          │              ┌──────────────────┐         │
+│                          │              │ WRITER (retry)    │         │
+│                          │              └──────────────────┘         │
+│                          ▼                                            │
+│                  ┌───────────────┐                                    │
+│                  │  OUTPUT: .spec.ts files                            │
+│                  └───────────────┘                                    │
+└──────────────────────────────────────────────────────────────────────┘
 ```
 
 ### Agent Responsibilities
@@ -623,6 +629,17 @@ class TestForgeFlow(Flow):
         return self.state
     
     @listen(extract_api_spec)
+    def scaffold_framework(self):
+        """Create framework structure if needed (skipped in incremental mode)"""
+        if not self.state.incremental:
+            # Write playwright.config.ts, package.json, tsconfig.json
+            # Create core/, utils/, fixtures/ from templates
+            pass
+        else:
+            logger.info("Framework exists — incremental mode, skipping scaffold")
+        return self.state
+    
+    @listen(scaffold_framework)
     def plan_tests(self):
         """QA Analyst: produce structured test plan with scenarios + edge cases"""
         # Run qa_analyst crew — outputs test_plan to state
@@ -796,6 +813,67 @@ def write_tests(self):
 **Implementation:** The `read_repository` step in the Flow validates output length. If the context document exceeds 4000 tokens, it re-prompts the Repo Reader with: "Your output exceeds the budget. Summarize: remove file listings, collapse similar routes, use bullet points not prose."
 
 **Token counting:** Use `tiktoken` (cl100k_base encoding) for accurate measurement before injecting into downstream prompts.
+
+### 4.6 QA Analyst Test Plan Output Template
+
+The QA Analyst MUST produce output in this structured format so the Writers can parse it predictably:
+
+```markdown
+# Test Plan: [Application Name]
+
+## API Tests (BE Writer)
+
+### [Feature/Resource]
+| Scenario | Method | Endpoint | Roles | Type | Priority |
+|----------|--------|----------|-------|------|----------|
+| [description] | GET/POST/etc. | /api/... | user,admin | happy/negative/boundary | P1/P2/P3 |
+
+#### Edge Cases
+- [specific edge case: empty body, null field, expired token, etc.]
+- [boundary: max length, zero value, special characters]
+
+### [Next Feature/Resource]
+...
+
+## UI Tests (FE Writer)
+
+### [Page/Feature]
+| Scenario | Page | Role | Type | Priority |
+|----------|------|------|------|----------|
+| [description] | /path | user,admin | happy/negative/access | P1/P2/P3 |
+
+#### Edge Cases
+- [specific UI edge case: empty state, long text overflow, rapid clicks]
+
+### [Next Page/Feature]
+...
+
+## E2E Tests (E2E Writer)
+
+### [User Journey Name]
+| Step | Action | Expected | Roles |
+|------|--------|----------|-------|
+| 1 | [action] | [expected result] | user |
+| 2 | [action] | [expected result] | user |
+
+#### Failure Paths
+- [what happens if step N fails mid-journey]
+- [what if session expires during workflow]
+
+### [Next Journey]
+...
+
+## Cross-Cutting Concerns
+- Permission boundaries: [specific gaps to test between roles]
+- Data dependencies: [what data each test needs, and how to create it]
+- Race conditions: [concurrent operations that could conflict]
+```
+
+**Rules for the QA Analyst:**
+- Group scenarios by Writer responsibility (BE / FE / E2E sections)
+- Include priority (P1 = must test, P2 = should test, P3 = nice to have)
+- Edge cases must be *specific* — not generic ("test invalid input") but concrete ("empty string in name field", "999999999 as quantity")
+- Each scenario should map to exactly one test function in the output
 
 ---
 
@@ -1066,7 +1144,8 @@ testforge/
 │       │   ├── __init__.py
 │       │   ├── file_tools.py      # Read/write/list files
 │       │   ├── test_runner.py     # Execute playwright tests
-│       │   └── playwright_mcp.py  # MCP client wrapper
+│       │   ├── playwright_mcp.py  # Playwright MCP client (FE exploration)
+│       │   └── mcp_client.py     # Dev-provided MCP server client (Swagger pull)
 │       │
 │       └── templates/
 │           ├── playwright.config.template.ts
@@ -1308,13 +1387,17 @@ If precondition tests fail → Reviewer logs "DATA PRECONDITION FAILED" and does
 ## 11. Data Flow Diagram
 
 ```
-CONFIG ──▶ ORC ──▶ REPO READER ──▶ SCRAPER ──▶ WRITERS ──▶ REVIEWER ──▶ OUTPUT
-                       │                │           │            │
-                       ▼                ▼           ▼            ▼
-                  context.md      api-spec.md   *.spec.ts   results.json
-                  (roles,         (endpoints,   (tests per   (pass/fail,
-                   stack,          schemas,      role per     feedback)
-                   domain)         auth reqs)    endpoint)
+CONFIG ──▶ ORC ──▶ REPO READER ──▶ SCRAPER ──▶ QA ANALYST ──▶ WRITERS ──▶ REVIEWER ──▶ OUTPUT
+                       │                │            │             │            │
+                       ▼                ▼            ▼             ▼            ▼
+                  context.md      api-spec.md   test-plan.md   *.spec.ts   results.json
+                  (roles,         (endpoints,   (scenarios,    (tests per   (pass/fail,
+                   stack,          schemas,      edge cases,    role per     feedback)
+                   domain)         auth reqs)    boundaries)    endpoint)
+                                       ▲
+                                       │
+                              MCP server (if available)
+                              OR code extraction (fallback)
 ```
 
 ---
@@ -1342,8 +1425,8 @@ The architecture directly supports the demo flow:
 | ADR-001 | Agent framework | CrewAI (speed to prototype) | Accepted |
 | ADR-002 | LLM Provider | GitHub Models API (models.github.ai) — single token, multiple models. NOTE: Anthropic/Claude NOT available on this platform. | Accepted |
 | ADR-003 | Primary LLM | OpenAI GPT-4.1 via GitHub Models (best code gen + instruction following available) | Accepted |
-| ADR-004 | Routing LLM | GPT-4o-mini for Reviewer only. Orchestrator is pure Python (no LLM). | Accepted |
-| ADR-004 | Test framework output | Playwright (TypeScript) | Accepted |
+| ADR-004a | Routing LLM | GPT-4o-mini for Reviewer only. Orchestrator is pure Python (no LLM). | Accepted |
+| ADR-004b | Test framework output | Playwright (TypeScript) | Accepted |
 | ADR-005 | Browser control | Playwright MCP server | Accepted |
 | ADR-006 | Configuration model | CLI args + JSON creds file | Accepted |
 | ADR-007 | State management | In-process shared state (dataclass) | Accepted |

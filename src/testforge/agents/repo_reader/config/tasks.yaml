@@ -1,0 +1,51 @@
+analyze_repository:
+  description: >
+    Analyze the repository at {repo_path} and produce a structured context document.
+    The application has these user roles: {roles}.
+
+    You MUST follow this hybrid pipeline:
+
+    PASS 1 — HEURISTIC SCAN (use directory_list and file_read tools):
+    1. Walk the file tree (excluding node_modules, .git, dist, build, vendor, __pycache__)
+    2. Detect tech stack from marker files (package.json, pyproject.toml, Gemfile, go.mod, etc.)
+    3. Classify files into tiers:
+       - Tier 1: Routes, controllers, models, auth middleware, config, schema
+       - Tier 2: Services, utilities referenced by Tier 1
+       - Tier 3: Generated, lockfiles, build outputs (SKIP)
+       - Tier 4: README, docs, CHANGELOG (read in full)
+
+    PASS 2 — TARGETED READS:
+    4. Read Tier 1 files in full. Extract: routes, models, auth checks, role references
+    5. Read Tier 4 documentation for domain context
+
+    PASS 3 — SYNTHESIS:
+    6. Produce context-document.md with ALL 12 required sections (below)
+    7. Every section MUST appear, even if marked "Not detected" or "Not applicable"
+
+    REQUIRED SECTIONS (strict schema — downstream agents parse by heading):
+    ## 1. Tech Stack
+    ## 2. Repository Structure
+    ## 3. Entry Points
+    ## 4. Routes & Endpoints
+    ### 4.1 Backend HTTP Routes (table: Method | Path | Source File | Handler | Auth Required | Roles)
+    ### 4.2 Frontend Routes (table: Path | Source File | Component | Auth Required | Roles)
+    ## 5. Data Models (one subsection per model with fields and relationships)
+    ## 6. Authentication & Authorization
+    ### 6.1 Roles & Permissions (table: Role | Granted permissions | Restricted from)
+    ### 6.2 Permission Enforcement Points
+    ## 7. Business Domain Glossary
+    ## 8. Module Dependency Map
+    ## 9. Existing Test Suite
+    ## 10. Risk & Test Priority Hints
+    ## 11. Environment & Configuration
+    ## 12. Open Questions / Confidence Notes
+
+    RULES:
+    - Unknown values: mark "Not detected" — never invent data
+    - Tables MUST have the column headers specified above
+    - Keep total output under 3000 words (this is the distilled version)
+    - Be honest about confidence — §12 tells downstream agents what to trust
+  expected_output: >
+    A structured markdown context document with all 12 required sections,
+    following the TestForge schema precisely. Every section present, unknowns marked explicitly.
+  agent: repo_reader

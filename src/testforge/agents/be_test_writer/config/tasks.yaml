@@ -1,0 +1,106 @@
+write_be_tests:
+  description: >
+    Generate backend API test files (.spec.ts) for the target application.
+
+    OUTPUT DIRECTORY: {output_dir}
+    APP URL: {app_url}
+    AVAILABLE ROLES: {roles}
+
+    API SPECIFICATION:
+    {api_spec}
+
+    TEST PLAN (BE section — follow this precisely):
+    {test_plan}
+
+    CREDENTIALS:
+    {credentials}
+    {feedback}
+
+    FILE NAMING & STRUCTURE:
+    - Output to: {output_dir}/tests/api/
+    - File naming: [resource].api.spec.ts (e.g., users.api.spec.ts)
+    - Role-based files: tests/api/roles/ (e.g., user-permissions.spec.ts)
+    - One spec file per logical domain/resource group
+
+    EVERY SPEC FILE MUST INCLUDE:
+    1. Comment block at top listing all required env vars
+    2. Allure annotations on every test: epic, feature, story, severity
+    3. test.beforeAll() for auth setup (derive token and baseURL)
+    4. test.afterAll() for cleanup ONLY if tests created data via API
+    5. AAA pattern (Arrange-Act-Assert) in every test
+
+    AUTH PATTERNS — Detect and use the correct pattern:
+    - Bearer Token: Authorization: Bearer <token> — most common for JWT/OAuth
+    - Session Cookie: Set-Cookie from login — cookie-based auth
+    - Basic Auth: Authorization: Basic <base64> — legacy APIs
+    - API Key: X-API-Key header or query param — service-to-service
+    Store token/session in beforeAll, reuse across tests via shared variable.
+
+    ASSERTION STRATEGY:
+    - Use expect() for critical assertions (status codes, auth failures, data integrity)
+    - Use expect.soft() for non-critical assertions (response shape, optional fields)
+      so all checks run even on partial failure
+    - Always assert: status code, response body schema, key field values
+    - For error responses: assert status code AND error message shape
+
+    RULES:
+    1. Use Playwright's request fixture — no axios, fetch, or other HTTP libraries
+    2. Never hardcode credentials — always use process.env with clearly named variables
+    3. Every test asserting on dynamic data MUST create that data via API in Arrange step
+    4. Each test must be independently readable — no shared mutable state between tests
+    5. Test each endpoint with each role that should have access (positive)
+    6. Test permission denied for roles that should NOT have access (negative)
+    7. Include boundary and negative tests from the test plan
+    8. Do NOT generate MCP tool calls — MCP is for agent discovery only, not in test code
+    9. Cleanup in afterAll: only delete data YOUR tests created (never existing data)
+
+    EXAMPLE STRUCTURE:
+    ```typescript
+    // Required env vars: BASE_URL, ADMIN_EMAIL, ADMIN_PASSWORD
+    import { test, expect } from '@playwright/test';
+    import { allure } from 'allure-playwright';
+
+    test.describe('Users — CRUD Operations', () => {
+      let baseURL: string;
+      let adminToken: string;
+      let createdUserId: string;
+
+      test.beforeAll(async ({ request }) => {
+        baseURL = process.env.BASE_URL!;
+        const loginRes = await request.post(`${baseURL}/auth/login`, {
+          data: { email: process.env.ADMIN_EMAIL, password: process.env.ADMIN_PASSWORD }
+        });
+        adminToken = (await loginRes.json()).token;
+      });
+
+      test.afterAll(async ({ request }) => {
+        if (createdUserId) {
+          await request.delete(`${baseURL}/users/${createdUserId}`, {
+            headers: { Authorization: `Bearer ${adminToken}` }
+          });
+        }
+      });
+
+      test('POST /users creates user with valid data', async ({ request }) => {
+        await allure.epic('User Management');
+        await allure.feature('Users');
+        await allure.story('Create User');
+        await allure.severity('critical');
+
+        const response = await request.post(`${baseURL}/users`, {
+          headers: { Authorization: `Bearer ${adminToken}` },
+          data: { name: 'Test User', email: `test-${Date.now()}@example.com` }
+        });
+        expect(response.status()).toBe(201);
+        const body = await response.json();
+        expect.soft(body).toHaveProperty('id');
+        expect.soft(body.name).toBe('Test User');
+        createdUserId = body.id;
+      });
+    });
+    ```
+  expected_output: >
+    Multiple .spec.ts files written to the output directory covering all API endpoints
+    with Allure annotations, role-based access testing, expect.soft() for non-critical
+    assertions, env var documentation, proper auth setup, and cleanup.
+  agent: be_test_writer

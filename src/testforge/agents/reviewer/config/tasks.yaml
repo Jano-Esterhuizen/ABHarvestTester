@@ -1,0 +1,47 @@
+review_tests:
+  description: >
+    Execute the generated test suite and analyze results.
+
+    OUTPUT DIRECTORY: {output_dir}
+    APP URL: {app_url}
+    ROLES: {roles}
+
+    STEPS:
+    1. Use the run_tests tool with output_dir={output_dir}
+       - This first runs tsc --noEmit (compilation gate)
+       - If compilation fails, report COMPILE_ERROR and list the errors
+       - If compilation passes, it runs npx playwright test
+
+    2. Analyze the results:
+       - For each failure, categorize it:
+         * TEST_BUG: wrong selector, bad assertion, bad import → provide fix
+         * APP_BUG: genuine application defect → report as finding
+         * DATA_DEPENDENT: empty table, missing data → report, do NOT send to writer
+         * FLAKY: intermittent → suggest retry annotation
+         * ENVIRONMENT: app unreachable → report as blocked
+
+    3. Output your analysis in this format:
+
+       ## Results Summary
+       - Passed: X
+       - Failed: Y
+       - Skipped: Z
+
+       ## Failures
+
+       ### [test file name]
+       Category: TEST_BUG | APP_BUG | DATA_DEPENDENT | FLAKY | ENVIRONMENT
+       Error: [exact error message]
+       Fix: [specific fix instruction for the writer]
+
+       ## Findings (App Bugs)
+       - [description of genuine bugs found]
+
+    For TEST_BUG entries, format as:
+    TEST_BUG:|[file_path]|[issue description]|[fix suggestion]
+
+    This format allows automated parsing of feedback.
+  expected_output: >
+    A structured analysis of test results with categorized failures,
+    fix instructions for test bugs, and findings for genuine app bugs.
+  agent: reviewer

@@ -1,0 +1,117 @@
+write_fe_tests:
+  description: >
+    Generate frontend UI test files and POM structure for the target application.
+
+    OUTPUT DIRECTORY: {output_dir}
+    APP URL: {app_url}
+    AVAILABLE ROLES: {roles}
+
+    APPLICATION CONTEXT:
+    {context_document}
+
+    TEST PLAN (FE section — follow this precisely):
+    {test_plan}
+
+    CREDENTIALS:
+    {credentials}
+    {feedback}
+
+    FILE STRUCTURE — Generate for each page/feature:
+
+    1. ui/pages/[feature]/[feature].page.ts — Pure selectors (exported const)
+       ```typescript
+       export const featurePage = {
+         heading: 'heading', // role name for getByRole
+         submitButton: 'Submit', // name for getByRole('button', { name })
+         emailInput: 'Email', // label for getByLabel
+         dataGrid: 'user-table', // testid for getByTestId
+       } as const;
+       ```
+
+    2. ui/objects/[feature]/[feature].object.ts — Accessor class (Locators only)
+       ```typescript
+       import { Page, Locator } from '@playwright/test';
+       import { featurePage } from '../../pages/feature/feature.page';
+       export class FeatureObject {
+         constructor(private page: Page) {}
+         getHeading(): Locator {
+           return this.page.getByRole('heading', { name: featurePage.heading });
+         }
+         getSubmitButton(): Locator {
+           return this.page.getByRole('button', { name: featurePage.submitButton });
+         }
+         getEmailInput(): Locator {
+           return this.page.getByLabel(featurePage.emailInput);
+         }
+       }
+       ```
+
+    3. ui/models/[feature]/[feature].model.ts — Business logic + workflows
+       ```typescript
+       import { Page, expect } from '@playwright/test';
+       import { FeatureObject } from '../../objects/feature/feature.object';
+       export class FeatureModel {
+         private obj: FeatureObject;
+         constructor(private page: Page) { this.obj = new FeatureObject(page); }
+         async fillAndSubmitForm(email: string) {
+           await this.obj.getEmailInput().fill(email);
+           await this.obj.getSubmitButton().click();
+           await this.page.waitForResponse(resp => resp.url().includes('/api/') && resp.status() === 200);
+         }
+       }
+       ```
+
+    4. tests/ui/[feature]/[feature].ui.spec.ts — Test file using Models
+       ```typescript
+       import { test, expect } from '@playwright/test';
+       import { allure } from 'allure-playwright';
+       import { FeatureModel } from '../../../ui/models/feature/feature.model';
+
+       test.describe('Feature — User Interactions', () => {
+         test('user can submit form with valid data', async ({ page }) => {
+           await allure.epic('Feature');
+           await allure.feature('Form Submission');
+           await allure.severity('critical');
+           const feature = new FeatureModel(page);
+           await page.goto('/feature');
+           await feature.fillAndSubmitForm('test@example.com');
+           await expect(page.getByText('Success')).toBeVisible();
+         });
+       });
+       ```
+
+    SELECTOR STRATEGY (priority order — FOLLOW THIS):
+    1. getByRole() — buttons, headings, links, textboxes (preferred)
+    2. getByLabel() — form inputs associated with labels
+    3. getByTestId() — data-testid attributes (when role/label unavailable)
+    4. getByText() — visible text (last resort for interactive elements)
+    NEVER USE: CSS class selectors (.btn-primary), XPath, nth-child, or generated IDs.
+
+    STABILITY RULES:
+    - NO hard waits (page.waitForTimeout is FORBIDDEN)
+    - Use: waitForResponse, waitForSelector, expect().toBeVisible({ timeout })
+    - baseURL comes from playwright.config.ts (use page.goto('/relative-path'))
+    - All tests must be parallelisable (no cross-file dependencies)
+    - Use storageState for authenticated sessions (don't login in every test)
+
+    POM RULES:
+    - Pages: NO methods, NO logic, ONLY selector values (strings/const)
+    - Objects: NO assertions, NO waits — only return Locators
+    - Models: ALL business logic lives here (waits, workflows, multi-step actions)
+    - Tests: Use Models only — never import Pages or Objects directly
+
+    CI/CD RULES:
+    - Tests must work headless
+    - Include Allure annotations (epic, feature, severity) on every test
+    - Test role-based access (what each role can/cannot see or do)
+    - Screenshot/trace on failure handled by playwright.config.ts — don't add per-test
+
+    CROSS-TEAM COMPATIBILITY:
+    - If POM files already exist in the output directory: extend them, never overwrite
+    - Match existing naming conventions and import patterns
+    - Respect existing folder hierarchy
+  expected_output: >
+    Multiple files written: page selectors (role-based queries), objects, models,
+    and .spec.ts test files following the Three-Tier POM pattern with Allure annotations,
+    no hard waits, stable selectors, and CI-friendly configuration.
+  agent: fe_test_writer

@@ -1,0 +1,22 @@
+[project]
+name = "testforge"
+version = "0.1.0"
+description = "Multi-agent AI test orchestration system that generates Playwright test suites"
+requires-python = ">=3.11"
+dependencies = [
+    "crewai[tools]>=0.121.0",
+    "openai>=1.82.0",
+    "pyyaml>=6.0",
+    "click>=8.1.0",
+    "tiktoken>=0.7.0",
+]
+
+[project.scripts]
+testforge = "testforge.__main__:cli"
+
+[build-system]
+requires = ["setuptools>=68.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["src"]

@@ -1,0 +1,485 @@
+agent: 'Repo Reader' parent_document: 'TestForge Architecture Decision Document' owner: 'Agile Bridge' date: '2026-05-21'
+
+status: 'Design — pre-implementation'
+Repo Reader Agent — Detailed Design
+Companion document to the TestForge architecture. This document is the full specification for the Repo Reader agent: the first non-orchestrator agent in the flow. It is responsible for acquiring the target repository, analysing its entire codebase, and producing two outputs that every downstream agent depends on.
+
+1. Purpose & Position in the Flow
+The Repo Reader is the discovery layer of TestForge. Everything downstream — the Scraper, the BE Test Writer, the FE Test Writer, and the Reviewer — operates on the artefacts this agent produces. If the Repo Reader's output is wrong, incomplete, or unstructured, the rest of the system degrades quickly.
+
+CONFIG ──▶ ORC ──▶ ┌─────────────────┐ ──▶ SCRAPER ──▶ WRITERS ──▶ REVIEWER
+                   │   REPO READER    │
+                   │  (this agent)    │
+                   └─────────────────┘
+                            │
+                            ├──▶ codebase-overview.txt   (human-readable narrative)
+                            └──▶ context-document.md     (structured, schema-driven)
+Contract with the rest of the system
+Concern	Commitment
+Inputs accepted	Local path OR git URL (public) OR git URL + PAT (private)
+Stack assumption	None. Generic discovery across any language/framework
+Outputs produced	codebase-overview.txt + context-document.md (both required)
+Side effects on target repo	Read-only. Never writes, modifies, or commits to the target
+Failure mode	Fail fast with clear diagnostics; never produce a partial context doc and pretend it's complete
+2. Inputs
+The agent accepts three input shapes. The Orchestrator resolves which shape is in play and normalises before invoking the Repo Reader.
+
+2.1 Input shape A — Local path (already cloned)
+{
+  "source_type": "local",
+  "repo_path": "/absolute/path/to/repo"
+}
+Validation: path exists, is a directory, contains a .git folder (warn but proceed if not — could be an exported codebase).
+
+2.2 Input shape B — Public git URL
+{
+  "source_type": "git_public",
+  "repo_url": "https://github.com/owner/repo.git",
+  "branch": "main"
+}
+The Repo Reader clones into a temp directory: /tmp/testforge-repos/<sha256(url)>-<timestamp>/. Shallow clone (--depth 50) by default to save bandwidth while keeping enough history for any "what changed recently" heuristics.
+
+2.3 Input shape C — Private git URL
+{
+  "source_type": "git_private",
+  "repo_url": "https://github.com/owner/repo.git",
+  "branch": "main",
+  "auth": {
+    "method": "pat",
+    "pat_source": "file" | "env" | "prompt",
+    "pat_file_path": "./github-pat.txt",
+    "pat_env_var": "TESTFORGE_GITHUB_PAT"
+  }
+}
+PAT resolution order (the agent tries each in turn, first success wins):
+
+Explicit file — if pat_source: "file" and pat_file_path is set, read trimmed contents of that file. File must have permissions 0600 or stricter on POSIX; if not, the agent refuses and tells the user to chmod 600 it.
+Environment variable — if pat_source: "env" or as a fallback, read from pat_env_var (default TESTFORGE_GITHUB_PAT).
+Interactive prompt — if pat_source: "prompt" or all above fail, ask the user via the CLI (getpass, never echoed). Only used in interactive runs.
+The PAT is held in memory for the duration of the clone, then explicitly cleared (del pat; gc.collect()). It is never logged, never written to disk by TestForge, and never included in any output artefact.
+
+2.4 Auto-detection (when source_type is omitted)
+If the orchestrator passes only a string: - Starts with http://, https://, or git@ → treat as git URL → try unauthenticated clone first → if it fails with auth error, escalate to private flow - Otherwise → treat as local path
+
+3. Outputs
+The Repo Reader produces two artefacts, both required, written to the TestForge run's working directory.
+
+3.1 codebase-overview.txt — Free-form narrative
+A plain-text, human-readable explanation of the repository. Written in prose. No headings required, no schema. Audience: a tester or engineer who has never seen this codebase and needs to understand it well enough to write tests.
+
+Target length: 800–2000 words depending on repo size. Should answer questions like:
+
+What does this application do, in plain language?
+Who are the users and what do they do with it?
+What is the architecture in broad strokes (monolith, microservices, frontend/backend split)?
+Where are the important parts of the code? What lives where?
+What's the auth and permissions model?
+What's unusual or worth knowing before writing tests?
+What are the risky areas — places where bugs are likely?
+This file exists specifically because target repos often have no README or stale docs. It becomes the "if you read one thing before starting, read this" document.
+
+3.2 context-document.md — Structured schema
+A markdown document with a strict, schema-driven structure so downstream agents (Scraper, Writers) can reliably extract sections by heading. Every section in the schema below MUST appear, even if empty (with an explicit "Not applicable" or "Not detected" note).
+
+Schema for context-document.md
+---
+repo_name: <string>
+repo_source: <local | git_public | git_private>
+analysed_at: <ISO 8601 timestamp>
+analyser_version: <semver>
+commit_sha: <git SHA if available>
+---
+
+# Codebase Context Document
+
+## 1. Tech Stack
+- **Primary language(s):** <e.g., TypeScript (frontend), Python (backend)>
+- **Backend framework:** <e.g., FastAPI, Express, Rails, Spring Boot>
+- **Frontend framework:** <e.g., React, Vue, Svelte, server-rendered>
+- **Database(s):** <e.g., PostgreSQL via SQLAlchemy>
+- **ORM / data layer:** <e.g., Prisma, SQLAlchemy, ActiveRecord>
+- **Auth mechanism:** <e.g., JWT, session cookies, OAuth2, SAML>
+- **Test framework present:** <e.g., Jest, pytest — useful to know what conventions exist>
+- **Package manager(s):** <e.g., npm, poetry, bundler>
+- **Build/run commands:** <as extracted from package.json scripts, Makefile, etc.>
+
+## 2. Repository Structure
+<A tree of the repo, depth-limited to 3 levels for top-level dirs, deeper for the
+"important" ones identified during analysis. Each major directory annotated with
+one-line purpose.>
+
+repo-root/ ├── src/ # Backend application code │ ├── routes/ # HTTP route definitions │ ├── models/ # DB models │ └── services/ # Business logic ├── client/ # Frontend SPA │ ├── pages/ # Route-level components │ └── components/ # Reusable UI └── tests/ # Existing test suite
+
+
+## 3. Entry Points
+- **Backend entry:** <file path + brief description>
+- **Frontend entry:** <file path + brief description>
+- **CLI entry points (if any):** <file paths>
+- **Background workers (if any):** <file paths>
+
+## 4. Routes & Endpoints (Inventory)
+> Note: This is an inventory for the Scraper to expand. Scraper produces the full API spec.
+
+### 4.1 Backend HTTP Routes
+| Method | Path | Source File | Handler | Auth Required | Roles Hinted |
+|--------|------|-------------|---------|--------------|-------------|
+| GET    | /api/users | src/routes/users.py | list_users | yes | admin |
+| ...    | ...  | ...         | ...     | ...          | ...         |
+
+### 4.2 Frontend Routes
+| Path | Source File | Component | Auth Required | Roles Hinted |
+|------|-------------|-----------|--------------|-------------|
+| /dashboard | client/pages/Dashboard.tsx | Dashboard | yes | any |
+| ...  | ...         | ...       | ...          | ...         |
+
+## 5. Data Models
+> One subsection per model. Schema as detected from ORM definitions or migration files.
+
+### 5.1 User
+- **Source:** src/models/user.py
+- **Fields:** id (uuid), email (string, unique), password_hash (string), role (enum), created_at (timestamp)
+- **Relationships:** has_many Projects, belongs_to Organization
+
+### 5.2 <Next model>
+...
+
+## 6. Authentication & Authorization
+- **Auth flow:** <description of login → token/session lifecycle>
+- **Token/session location:** <header name, cookie name>
+- **Logout mechanism:** <endpoint or client-side>
+- **Password requirements (if discoverable):** <length, complexity>
+
+### 6.1 Roles & Permissions
+> Discovered roles in the system. The Test Writers use this to plan per-role test coverage.
+
+| Role | Source of truth | Granted permissions / capabilities | Restricted from |
+|------|----------------|-----------------------------------|----------------|
+| user | src/auth/roles.py | view own profile, create projects | admin endpoints |
+| admin | src/auth/roles.py | all user perms + user management | super-admin actions |
+| super_admin | src/auth/roles.py | full access | (none) |
+
+### 6.2 Permission Enforcement Points
+> Where in the code permission checks happen. Test Writers target these.
+
+- Middleware: src/middleware/auth.py — `require_role(role)` decorator
+- Per-endpoint: <list of endpoints with inline checks>
+- Frontend guards: <list of route guards>
+
+## 7. Business Domain Glossary
+> Plain-language definitions of domain entities. Helps Test Writers name tests meaningfully.
+
+- **Project:** A container for time-tracked work. Owned by a User, may be shared with a team.
+- **Time Entry:** A single recorded block of time against a Project.
+- **Invoice:** Generated billable summary derived from Time Entries.
+- ...
+
+## 8. Module Dependency Map
+> High-level dependency relationships between major modules. Helps identify blast radius for tests.
+
+routes/users → services/user_service → models/user → db routes/users → middleware/auth → services/token_service client/pages/Dashboard → client/api/projects → backend /api/projects
+
+
+## 9. Existing Test Suite (if any)
+- **Framework:** <pytest | jest | etc.>
+- **Coverage estimate:** <if discoverable from coverage reports>
+- **Test file count:** <integer>
+- **Patterns observed:** <e.g., uses factory-boy fixtures, beforeEach hooks>
+- **Gaps observed:** <e.g., no integration tests, no role-permission tests>
+
+## 10. Risk & Test Priority Hints
+> Subjective annotations from the analyser. Things the Test Writers should prioritise.
+
+- **High-risk areas:** <e.g., payment processing in src/billing/, recently modified per git log>
+- **Permission boundaries:** <e.g., admin endpoints accessible from user routes — needs negative tests>
+- **Untested critical paths:** <e.g., user registration has no existing tests>
+- **Known fragile areas:** <e.g., TODO/FIXME comments in src/sync/>
+
+## 11. Environment & Configuration
+- **Required env vars:** <as extracted from .env.example, config files>
+- **Default ports:** <backend port, frontend dev port>
+- **External services (mocked vs real):** <e.g., Stripe in test mode, SendGrid mocked>
+
+## 12. Open Questions / Confidence Notes
+> Where the analyser was uncertain. Honest signalling so downstream agents don't over-trust.
+
+- The role `editor` is referenced in 2 files but never defined — possibly dead code or external integration
+- Several endpoints lack explicit auth decorators; reading the middleware suggests they're protected globally, but the Scraper should confirm
+- The frontend appears to have feature flags (`useFeatureFlag(...)`) — coverage of disabled paths may not be possible without flag overrides
+Why a strict schema
+Downstream agents read this file via section headings. If the schema drifts (Scraper expects ## 4. Routes & Endpoints but the Repo Reader emits ## Endpoints), the pipeline silently degrades. The schema is enforced by a post-generation validator (see section 6.4).
+
+4. Analysis Strategy — Hybrid Approach
+A real codebase has thousands of files. We cannot feed all of them to the LLM. The Repo Reader runs a hybrid pipeline: heuristics narrow the scope to high-signal files, then LLM passes synthesise the outputs.
+
+4.1 Pass 0 — Acquisition
+Resolve input shape (local / public / private).
+If git-based: clone to temp dir with shallow depth.
+Verify accessibility, record commit_sha.
+4.2 Pass 1 — Heuristic Scan (no LLM, pure code)
+Walk the file tree once. Build a structured inventory in memory. No LLM calls in this pass.
+
+Detect tech stack via marker files:
+
+Marker file	Implies
+package.json	Node.js project — parse for framework deps (express, next, react, etc.)
+pyproject.toml / requirements.txt / setup.py	Python — parse for fastapi, django, flask, sqlalchemy
+Gemfile	Ruby — parse for rails, sinatra
+go.mod	Go — parse for gin, echo, fiber
+pom.xml / build.gradle	Java/Kotlin — parse for spring
+Cargo.toml	Rust
+composer.json	PHP — parse for laravel, symfony
+.csproj	.NET
+Dockerfile / docker-compose.yml	Containerised — parse for service hints
+prisma/schema.prisma	Prisma ORM
+alembic.ini / migrations/	DB migrations present
+.env.example / .env.sample	Env var inventory
+Classify every file into a tier:
+
+Tier	Definition	Treatment
+Tier 1 — Critical	Routes, controllers, models, auth middleware, config, schema	Read in full, send to LLM
+Tier 2 — Supporting	Services, utilities referenced by Tier 1, fixtures, existing tests	Read in full if budget allows; otherwise summary only
+Tier 3 — Boilerplate	Generated files, lockfiles, build outputs, node_modules, vendor/, .git/	Skip entirely
+Tier 4 — Documentation	README, docs/, CHANGELOG	Read in full — high signal, low cost
+Tier 1 detection heuristics (generic across stacks):
+
+Filenames or paths containing: routes, controllers, handlers, endpoints, views, api, models, schemas, entities, auth, middleware, permissions, policies
+Files containing route-definition patterns: @app.get, @router., app.get(, router.post(, @RequestMapping, resources :, Route::, func .* (w http.ResponseWriter, etc.
+Files importing ORM base classes
+Config files: *.config.*, settings.py, config/*.{js,ts,yml}
+Skip patterns (always):
+
+node_modules/  vendor/  .git/  dist/  build/  target/  __pycache__/
+*.min.js  *.min.css  *.lock  *.lockb  .DS_Store  coverage/
+.next/  .nuxt/  .venv/  venv/  *.pyc
+Output of Pass 1: an in-memory FileInventory object with tier-classified file paths, detected stack markers, and a rough size estimate of what the LLM will need to ingest.
+
+4.3 Pass 2 — Targeted LLM Reads
+For each Tier 1 file, send the file contents to the LLM (Claude Sonnet 4) with a focused prompt: "Extract from this file: routes defined, models defined, auth checks, role references. Respond as JSON with this schema."
+
+Batched in groups of ~5-10 files per LLM call to stay under context limits and reduce cost. Each batch produces a partial structured result that gets merged into a running aggregate.
+
+If total Tier 1 content exceeds a configurable budget (default ~200K tokens of source): demote lowest-priority Tier 1 files to "summary only" mode — LLM gets just the file path, first 50 lines, and last 20 lines, with a note that the file was truncated.
+
+4.4 Pass 3 — Synthesis
+Two LLM calls produce the two outputs:
+
+context-document.md — LLM is given the aggregated structured data from Pass 2 plus the schema template, and asked to fill it in. Strict instruction: every heading present, no invented data, mark unknowns as "Not detected."
+
+codebase-overview.txt — LLM is given the same aggregate plus the context document it just produced, and asked to write a 800-2000 word narrative for a tester encountering the codebase cold.
+
+These two synthesis calls use Claude Sonnet 4 (high quality required) and run sequentially — overview after context, so overview can reference the structured findings without contradicting them.
+
+4.5 Pass 4 — Validation
+A pure-code validator (no LLM) checks:
+
+context-document.md contains all 12 required top-level sections in order
+Frontmatter is well-formed YAML
+Tables in sections 4, 5, 6 have the required columns
+No section is completely empty (must have at least "Not detected" or "Not applicable")
+If validation fails: one retry of Pass 3 with the validator's complaints fed back. If it fails again: emit what we have, log the gaps, raise a warning to the Orchestrator. Do not silently ship malformed output.
+
+5. Tools Used by the Agent
+Tool	Purpose	When used
+file_read_tool	Read individual files	Pass 1 (markers), Pass 2 (Tier 1 contents)
+directory_list_tool	Walk the file tree	Pass 1
+git_clone_tool	Clone public/private repos	Pass 0 (when input is a URL)
+git_metadata_tool	Get commit SHA, branch, last-modified-per-file	Pass 0, Pass 1 (risk hints)
+file_write_tool	Write the two output artefacts	Pass 3 / Pass 4
+schema_validator_tool	Validate context-document.md against the schema	Pass 4
+git_clone_tool and git_metadata_tool are new and need to be implemented under src/testforge/tools/git_tools.py.
+
+6. CrewAI Agent Definition
+6.1 agents.yaml
+repo_reader:
+  role: "Codebase Analyst"
+  goal: >
+    Produce two artefacts for the target repository:
+    (1) a structured context-document.md following the TestForge schema, and
+    (2) a free-form codebase-overview.txt narrative.
+    The outputs must be accurate, complete on all required sections, and honest
+    about uncertainty.
+  backstory: >
+    You are a senior software engineer who joins new projects regularly and
+    becomes productive on day two. You read code methodically, recognise
+    framework conventions across many languages, and write clear documentation
+    for the next person who will work on the codebase. You distinguish what
+    you know from what you're guessing, and you say so.
+  tools:
+    - file_read_tool
+    - directory_list_tool
+    - git_clone_tool
+    - git_metadata_tool
+    - file_write_tool
+    - schema_validator_tool
+  llm: claude-sonnet-4
+  max_iter: 5
+  memory: true
+  verbose: true
+6.2 tasks.yaml
+acquire_repository:
+  description: >
+    Resolve the repository input and make it available locally.
+    Input shape: {source_type, repo_path | repo_url, branch?, auth?}
+    If source_type is git_public or git_private, clone to a temp directory.
+    For git_private, resolve PAT via the documented resolution order.
+    Record the commit SHA. Validate the working tree exists and is readable.
+  expected_output: >
+    A LocalRepoHandle with {local_path, commit_sha, branch, source_metadata}.
+  agent: repo_reader
+
+scan_filesystem:
+  description: >
+    Walk the repository tree (excluding skip-patterns) and classify every file
+    into Tiers 1-4. Detect tech stack from marker files. Produce a FileInventory.
+  expected_output: >
+    A FileInventory object listing files per tier, detected stack markers,
+    and an estimate of total Tier 1 token size.
+  agent: repo_reader
+  context:
+    - acquire_repository
+
+extract_structured_data:
+  description: >
+    For each Tier 1 file (and Tier 2 files within budget), extract routes,
+    models, auth references, role references, and config values. Aggregate
+    findings into a structured intermediate representation.
+  expected_output: >
+    An aggregated dictionary keyed by category (routes, models, roles, etc.)
+    with source-file references for traceability.
+  agent: repo_reader
+  context:
+    - scan_filesystem
+
+synthesise_context_document:
+  description: >
+    Given the structured findings, produce context-document.md following the
+    TestForge schema exactly. Every required section must appear. Unknown
+    values are marked "Not detected." Do not invent data.
+  expected_output: >
+    A markdown string conforming to the context-document schema.
+  agent: repo_reader
+  context:
+    - extract_structured_data
+
+synthesise_overview_narrative:
+  description: >
+    Given the structured findings and the context document, write a 800-2000
+    word free-form narrative explaining the codebase to a tester who has never
+    seen it. Plain prose, no markdown headings required.
+  expected_output: >
+    A plain-text narrative.
+  agent: repo_reader
+  context:
+    - synthesise_context_document
+
+validate_and_write:
+  description: >
+    Run the schema validator over the context document. If it fails, retry the
+    synthesis once with the validator's feedback. Write both artefacts to the
+    output directory. Update shared state with file paths.
+  expected_output: >
+    Paths to context-document.md and codebase-overview.txt, plus a
+    validation report.
+  agent: repo_reader
+  context:
+    - synthesise_context_document
+    - synthesise_overview_narrative
+6.3 Updates to TestForgeState
+Two new fields are needed on the shared state to expose the Repo Reader's outputs to downstream agents:
+
+# Add to TestForgeState:
+context_document_path: str = ""      # Path to context-document.md
+codebase_overview_path: str = ""     # Path to codebase-overview.txt
+repo_local_path: str = ""            # Resolved local path (for downstream file reads)
+repo_commit_sha: str = ""            # For reproducibility / debugging
+analyser_confidence: dict = field(default_factory=dict)
+    # {section_name: "high"|"medium"|"low"} — signals to downstream agents
+The existing context_document: str field stays as the in-memory copy for agents that don't want to re-read from disk.
+
+6.4 Schema Validator
+A small pure-Python validator at src/testforge/tools/schema_validator.py:
+
+REQUIRED_SECTIONS = [
+    "## 1. Tech Stack",
+    "## 2. Repository Structure",
+    "## 3. Entry Points",
+    "## 4. Routes & Endpoints",
+    "## 5. Data Models",
+    "## 6. Authentication & Authorization",
+    "## 7. Business Domain Glossary",
+    "## 8. Module Dependency Map",
+    "## 9. Existing Test Suite",
+    "## 10. Risk & Test Priority Hints",
+    "## 11. Environment & Configuration",
+    "## 12. Open Questions / Confidence Notes",
+]
+
+def validate_context_document(md: str) -> ValidationResult:
+    # 1. Frontmatter parses as YAML and has required keys
+    # 2. Each required section heading appears, in order
+    # 3. No section is empty (>= 1 line of content)
+    # 4. Tables in §4, §5, §6 have the right column headers
+    ...
+7. Failure Modes & Handling
+Scenario	Handling
+Local path doesn't exist	Fail immediately, clear error to Orchestrator
+Git URL unreachable (network)	Retry 2x with backoff, then fail
+Private repo, no PAT resolvable	Fail with instruction: "Provide PAT via file, env var, or interactive prompt"
+PAT file has wrong permissions	Fail with instruction to chmod 600
+PAT is invalid (401/403 from git)	Fail with explicit "auth failed" — do not retry, do not log the PAT
+Repo is empty or has no source files	Produce minimal outputs marked "Empty repository — no analysis possible"
+Repo is gigantic (>100K files)	Apply aggressive Tier 3 skipping, warn in confidence notes
+Tier 1 content exceeds LLM budget	Truncate per Pass 2 strategy, note truncation in §12
+LLM returns malformed structured data	Retry once with stricter prompt; if still bad, drop the bad file and continue
+Schema validator fails after retry	Emit what we have, log all violations, flag downstream agents to treat output with caution
+Unsupported language / unknown stack	Still produce outputs; mark stack as "Unrecognised — generic analysis only"
+The agent's commitment is: always produce both output files, even degraded. Empty schema sections are explicit ("Not detected"), never silently missing. Downstream agents can then make informed decisions about how much to trust each section.
+
+8. Performance & Cost Considerations
+Lever	Default	Tuneable
+Shallow clone depth	50 commits	--clone-depth CLI flag
+Pass 2 batch size	8 files per LLM call	Config
+Pass 2 total budget	200K tokens of source	--max-source-tokens
+Tier 2 inclusion	On if budget allows	--skip-tier-2 to force off
+Synthesis model	Claude Sonnet 4	--repo-reader-model
+Cost ceiling for a typical mid-sized repo (~500 source files, ~50 Tier 1): - Pass 2: ~10 batched LLM calls @ ~15K tokens each ≈ 150K input tokens - Pass 3: 2 synthesis calls @ ~30K input + ~5K output each - Estimated total: ~250K input / ~12K output Sonnet tokens per run
+
+This is the most expensive single agent in TestForge. Tier classification exists specifically to keep this bounded.
+
+9. Security Considerations
+Concern	Mitigation
+PAT exposure in logs	Explicit redaction in logger; PAT never passed as CLI arg, only via file/env/prompt
+PAT exposure in output artefacts	Outputs are generated from analysis results, never from raw config; PAT is structurally not in the data flow after clone
+Cloned repo persistence	Temp dirs cleaned up on success; on failure, path is logged so user can inspect, but a --cleanup-on-failure flag forces deletion
+Reading sensitive files (.env with real secrets)	Real .env files are read for variable names only; values are redacted in any output. .env.example is read normally
+Malicious repo content	We only read files, never execute. No eval, no exec, no running of the target's scripts
+Symlink escape	File walker resolves symlinks and rejects any that point outside the repo root
+Path traversal in inputs	All input paths are resolved to absolute, canonical form before use
+10. Definition of Done
+The Repo Reader's task is complete when all of the following hold:
+
+context-document.md exists at the configured output path
+codebase-overview.txt exists at the configured output path
+Schema validator returns PASS on the context document (or, after one retry, PASS_WITH_WARNINGS logged)
+Shared state has context_document_path, codebase_overview_path, repo_local_path, and repo_commit_sha populated
+Any temp clones are either retained at a known path or cleaned, depending on config
+PAT (if used) has been cleared from memory
+The Orchestrator has been signalled that the next agent (Scraper) can begin
+11. Open Questions for the Team
+Things flagged for the wider TestForge team to confirm before implementation:
+
+Clone location — Is /tmp/testforge-repos/ acceptable, or do we want a configurable working dir under the TestForge output directory so everything is co-located per run?
+Branch selection — Default to repo's default branch (detected via git remote show origin), or require explicit --branch?
+Submodules — Recurse into git submodules, or treat them as Tier 3 and skip? Default proposal: skip, note in §12.
+Monorepo handling — If the repo is a monorepo with multiple apps (e.g., apps/web, apps/api), do we analyse the whole thing or accept a --subpath to narrow scope? Default proposal: analyse whole; add --subpath later if needed.
+Existing-doc precedence — If the repo has a high-quality README or docs/ folder, do we lean on it (faster, less LLM cost) or ignore it and analyse from source (more reliable)? Default proposal: read it as Tier 4 input, but don't trust it as ground truth — verify against source where they conflict.
+Caching across runs — If the same commit_sha is analysed twice, can we reuse the previous outputs? Useful for iteration during the competition demo. Default proposal: opt-in via --use-cache.
+12. Handoff to Downstream Agents
+The Repo Reader's outputs are consumed as follows:
+
+Downstream agent	Consumes	How
+Scraper	context-document.md §4 (Route inventory) + §6 (Auth) + raw repo access	Uses inventory as a starting checklist; expands each entry into full API spec
+BE Test Writer	Full context-document.md + codebase-overview.txt (for context)	Schema sections drive structured test planning; narrative gives domain understanding
+FE Test Writer	Full context-document.md + codebase-overview.txt + app URL	§4.2 (frontend routes) and §6 (roles) are the primary inputs
+Reviewer	codebase-overview.txt for context when diagnosing failures	Used only when the reviewer needs to judge whether a failure is a test bug or an app bug
+This handoff is the reason §12 (Open Questions / Confidence Notes) of the context document matters: it tells downstream agents which sections to trust fully and which to verify before acting on.
