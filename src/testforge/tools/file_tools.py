@@ -4,6 +4,29 @@ import os
 from pathlib import Path
 from crewai.tools import tool
 
+# Module-level repo path — set by the flow before agents run
+_repo_path: str = ""
+
+
+def set_repo_path(repo_path: str):
+    """Set the target repo path for file tools to resolve relative paths."""
+    global _repo_path
+    _repo_path = repo_path
+
+
+def _resolve_path(file_path: str) -> Path:
+    """Resolve a path, trying relative to repo if not absolute."""
+    path = Path(file_path)
+    if path.is_absolute():
+        return path
+    # Try relative to repo path
+    if _repo_path:
+        repo_relative = Path(_repo_path) / file_path
+        if repo_relative.exists():
+            return repo_relative
+    # Fall back to CWD-relative
+    return path
+
 
 @tool("read_file")
 def file_read_tool(file_path: str) -> str:
@@ -11,33 +34,43 @@ def file_read_tool(file_path: str) -> str:
 
     Args:
         file_path: Absolute or relative path to the file to read.
+                   Relative paths are resolved against the target repository.
 
     Returns:
         The file contents as a string.
     """
-    path = Path(file_path)
+    path = _resolve_path(file_path)
     if not path.exists():
         return f"ERROR: File not found: {file_path}"
     if not path.is_file():
         return f"ERROR: Not a file: {file_path}"
     try:
-        return path.read_text(encoding="utf-8")
+        content = path.read_text(encoding="utf-8")
+        # Truncate very large files to avoid blowing token budgets
+        if len(content) > 50000:
+            return content[:50000] + "\n\n... [TRUNCATED — file too large]"
+        return content
     except UnicodeDecodeError:
         return f"ERROR: Cannot read binary file: {file_path}"
 
 
 @tool("list_directory")
-def directory_list_tool(directory_path: str, max_depth: int = 3) -> str:
+def directory_list_tool(directory_path: str = "", max_depth: int = 3) -> str:
     """List directory contents recursively up to a specified depth.
 
     Args:
-        directory_path: Path to the directory to list.
+        directory_path: Path to the directory to list. If relative or empty,
+                       resolved against the target repository root.
         max_depth: Maximum recursion depth (default 3).
 
     Returns:
         A tree-style listing of files and folders.
     """
-    path = Path(directory_path)
+    if not directory_path or directory_path == ".":
+        path = Path(_repo_path) if _repo_path else Path(".")
+    else:
+        path = _resolve_path(directory_path)
+
     if not path.exists():
         return f"ERROR: Directory not found: {directory_path}"
     if not path.is_dir():

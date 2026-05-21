@@ -19,10 +19,7 @@ class ScraperCrew:
 
     agents_config = "config/agents.yaml"
     tasks_config = "config/tasks.yaml"
-
-    def __init__(self, mcp_tools: list = None):
-        super().__init__()
-        self._mcp_tools = mcp_tools or []
+    _mcp_tools: list = []
 
     @agent
     def scraper(self) -> Agent:
@@ -66,7 +63,8 @@ def run_scraper(state: TestForgeState) -> None:
                 dev_mcp = None
 
     try:
-        crew = ScraperCrew(mcp_tools=mcp_tools)
+        crew = ScraperCrew()
+        crew._mcp_tools = mcp_tools
         result = crew.crew().kickoff(
             inputs={
                 "repo_path": state.repo_path,

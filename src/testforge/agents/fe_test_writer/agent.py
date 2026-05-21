@@ -19,10 +19,7 @@ class FETestWriterCrew:
 
     agents_config = "config/agents.yaml"
     tasks_config = "config/tasks.yaml"
-
-    def __init__(self, playwright_tools: list = None):
-        super().__init__()
-        self._playwright_tools = playwright_tools or []
+    _playwright_tools: list = []
 
     @agent
     def fe_test_writer(self) -> Agent:
@@ -63,7 +60,8 @@ def run_fe_writer(state: TestForgeState) -> None:
         pw_tools = pw_mcp.tools
         logger.info(f"Playwright MCP started — {len(pw_tools)} tools available for FE Writer")
 
-        crew = FETestWriterCrew(playwright_tools=pw_tools)
+        crew = FETestWriterCrew()
+        crew._playwright_tools = pw_tools
         result = crew.crew().kickoff(
             inputs={
                 "output_dir": state.output_dir,

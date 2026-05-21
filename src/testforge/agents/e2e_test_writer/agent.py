@@ -19,10 +19,7 @@ class E2ETestWriterCrew:
 
     agents_config = "config/agents.yaml"
     tasks_config = "config/tasks.yaml"
-
-    def __init__(self, playwright_tools: list = None):
-        super().__init__()
-        self._playwright_tools = playwright_tools or []
+    _playwright_tools: list = []
 
     @agent
     def e2e_test_writer(self) -> Agent:
@@ -63,7 +60,8 @@ def run_e2e_writer(state: TestForgeState) -> None:
         pw_tools = pw_mcp.tools
         logger.info(f"Playwright MCP started — {len(pw_tools)} tools available for E2E Writer")
 
-        crew = E2ETestWriterCrew(playwright_tools=pw_tools)
+        crew = E2ETestWriterCrew()
+        crew._playwright_tools = pw_tools
         result = crew.crew().kickoff(
             inputs={
                 "output_dir": state.output_dir,

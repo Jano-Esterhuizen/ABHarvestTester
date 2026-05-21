@@ -83,6 +83,10 @@ class TestForgeFlow(Flow[TestForgeState]):
         self.state.force = config.force
         self.state.mcp_server_config = config.mcp_server_config
 
+        # Set repo path for file tools so relative paths resolve correctly
+        from testforge.tools.file_tools import set_repo_path
+        set_repo_path(self.state.repo_path)
+
         self.state.incremental = detect_existing_framework(self.state.output_dir)
         if self.state.incremental:
             logger.info("Existing framework detected — incremental mode")
