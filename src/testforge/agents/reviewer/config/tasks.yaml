@@ -1,18 +1,57 @@
 review_tests:
   description: >
-    Review these test results and provide fix suggestions.
+    Analyze test failures and provide specific fix instructions for each.
 
-    TEST RESULTS:
+    OUTPUT DIRECTORY: {output_dir}
+
+    TEST PLAN (use this to identify expected failures — a 403 on a denied-access
+    scenario is a PASS, not a failure):
+    {test_plan}
+
+    RAW TEST OUTPUT:
     {test_results}
 
-    FAILURES TO ANALYZE:
+    FAILURES TO DIAGNOSE:
     {failures}
 
-    For each failure, provide:
-    1. Root cause (wrong selector, auth issue, timing, bad assertion)
-    2. Specific fix (exact code change needed)
+    STEPS:
+    1. For each failure, use file_read_tool to read the failing test file from {output_dir}.
+       The file path is derived from the test title or the error stack trace.
+       Reading the actual test code is mandatory — do not guess at fixes without seeing it.
 
-    Be concise. Output structured list of fixes.
+    2. Categorize each failure:
+       - TEST_BUG:        wrong selector, bad assertion, bad import, wrong endpoint path
+       - APP_BUG:         genuine application defect (unexpected 500, data not saved, etc.)
+       - DATA_DEPENDENT:  test requires data that does not exist in the environment
+       - FLAKY:           timing issue, intermittent — add retry annotation
+       - ENVIRONMENT:     app unreachable, npx not found, env var missing
+
+    3. Cross-reference each failure against the test plan. If the scenario says
+       "[role] is denied [action]" and the test gets a 403, that is a PASS —
+       do not report it as a failure.
+
+    4. Output your analysis in this format:
+
+       ## Results Summary
+       - Passed: X
+       - Failed: Y
+
+       ## Failures
+
+       ### [test title]
+       Category: TEST_BUG | APP_BUG | DATA_DEPENDENT | FLAKY | ENVIRONMENT
+       File: [path to test file]
+       Error: [exact error message]
+       Fix: [specific fix — exact selector, import path, assertion value, etc.]
+
+       ## App Bugs Found
+       - [description of any genuine application defects]
+
+    5. For every TEST_BUG also emit a machine-readable line:
+       TEST_BUG|[file_path]|[issue description]|[fix suggestion]
+
   expected_output: >
-    List of failures with root cause and specific fix for each.
+    A structured failure analysis. Each failure categorized, each TEST_BUG accompanied
+    by a specific fix instruction and a TEST_BUG|file|issue|fix line for automated parsing.
+    APP_BUGs reported separately. Expected negative outcomes not reported as failures.
   agent: reviewer

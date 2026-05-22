@@ -9,6 +9,7 @@ from crewai import Agent, Task, Crew
 from crewai.project import CrewBase, agent, task, crew
 
 from testforge.state import TestForgeState
+from testforge.tools.file_tools import file_read_tool
 from testforge.llm import get_llm
 
 logger = logging.getLogger("testforge")
@@ -25,7 +26,7 @@ class ReviewerCrew:
     def reviewer(self) -> Agent:
         return Agent(
             config=self.agents_config["reviewer"],
-            tools=[],
+            tools=[file_read_tool],
             llm=get_llm("gpt-4o-mini"),
             verbose=True,
         )
@@ -110,6 +111,8 @@ def run_reviewer(state: TestForgeState) -> None:
     crew = ReviewerCrew()
     result = crew.crew().kickoff(
         inputs={
+            "output_dir": state.output_dir,
+            "test_plan": state.test_plan,
             "test_results": raw_output[:1500],
             "failures": failures_text[:2000],
         }
