@@ -1,191 +1,26 @@
 write_e2e_tests:
   description: >
-    Generate end-to-end user journey test files for the target application.
+    Write Playwright E2E journey tests for these workflows.
 
-    OUTPUT DIRECTORY: {output_dir}
     APP URL: {app_url}
-    AVAILABLE ROLES: {roles}
+    ROLES: {roles}
+    CREDENTIALS: {credentials}
 
-    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-    STEP 0 — READ THE TEST PLAN BEFORE WRITING ANYTHING
-    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-    Use file_read_tool to read: {output_dir}/test-plan.md
+    JOURNEYS TO TEST:
+    {e2e_chunk}
 
-    This is your PRIMARY source of truth. You MUST implement every Scenario
-    tagged @e2e from that file. Do not invent test cases. Do not skip any @e2e Scenario.
-    If the file does not exist, fall back to the application context and test plan below.
-
-    How to read Gherkin Scenarios and convert them to Playwright E2E tests:
-    - Feature: [Name]    → one test file: tests/e2e/[name].e2e.spec.ts
-    - Scenario: [title]  → one test('[title]', ...) block
-    - @P0                → allure.severity('critical')
-    - @P1                → allure.severity('normal')
-    - @P2 / @P3          → allure.severity('minor')
-    - @[role]            → authenticate using getAccountByRole('[role]')
-    - Given (setup)      → beforeAll API calls to create pre-existing data
-    - When (actions)     → sequence of Model method calls across multiple pages
-    - Then (outcome)     → final expect() assertion on end state
-    - And (checkpoint)   → intermediate expect.soft() checks at workflow steps
-
-    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-    FALLBACK INPUTS (use only if test-plan.md cannot be read)
-    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
-    APPLICATION CONTEXT:
-    {context_document}
-
-    API SPECIFICATION (for data setup in Arrange steps):
-    {api_spec}
-
-    TEST PLAN:
-    {test_plan}
-
-    CREDENTIALS:
-    {credentials}
+    TEST PLAN (relevant section):
+    {plan_chunk}
     {feedback}
 
-    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-    FILE STRUCTURE
-    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-    - Output to: {output_dir}/tests/e2e/
-    - One file per Feature block: [workflow-name].e2e.spec.ts
-    - Use existing Page Object Models from {output_dir}/ui/models/ where available
+    Rules:
+    - Each test simulates a full user journey (login -> actions -> verify)
+    - Use both page interactions and API calls where appropriate
+    - Assert intermediate states (navigation, loading) and final state
+    - Clean up test data in afterAll
+    - Output ONE complete .spec.ts file
 
-    REQUIRED STRUCTURE per spec file:
-    ```typescript
-    // Required env vars: BASE_URL, [ROLE]_EMAIL, [ROLE]_PASSWORD
-    import {{ test, expect }} from '@playwright/test';
-    import {{ allure }} from 'allure-playwright';
-    import {{ getAccountByRole }} from '../../data/credentials/accounts';
-    // Import Models as needed — never import raw Pages or Objects
-    import {{ LoginModel }} from '../../ui/models/login/login.model';
-    import {{ ProjectModel }} from '../../ui/models/projects/project.model';
-
-    test.describe('Journey: [workflow name from Gherkin Feature]', () => {{
-      let createdResourceId: string;
-
-      test.beforeAll(async ({{ request }}) => {{
-        // Arrange — create pre-existing data via API if the Gherkin Given step requires it
-        const account = getAccountByRole('[role]');
-        const loginRes = await request.post(`${{process.env.BASE_URL}}/auth/login`, {{
-          data: {{ email: account.username, password: account.password }},
-        }});
-        const {{ token }} = await loginRes.json();
-        // Create any data the journey needs...
-      }});
-
-      test.afterAll(async ({{ request }}) => {{
-        // Cleanup — delete only data this test created
-      }});
-
-      test('[Scenario title from Gherkin]', async ({{ page, request }}) => {{
-        await allure.epic('Journey');
-        await allure.feature('[Feature name]');
-        await allure.story('[Scenario title]');
-        await allure.severity('critical'); // derived from @P tag
-
-        const account = getAccountByRole('[role]');
-
-        // Arrange — set up page state
-        const loginModel = new LoginModel(page);
-        await loginModel.signIn(account.username, account.password);
-
-        // Act — multi-page workflow (When steps)
-        const projectModel = new ProjectModel(page);
-        await page.goto('/projects');
-        await projectModel.createProject('Test Project');
-
-        // Assert — end state (Then step)
-        await expect(page.getByRole('heading', {{ name: 'Test Project' }})).toBeVisible();
-
-        // Checkpoint assertions (And steps)
-        expect.soft(await page.title()).toContain('Projects');
-      }});
-    }});
-    ```
-
-    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-    SELECTOR STRATEGY (same as FE writer — never deviate)
-    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-    1. Import and use Models from ui/models/ — never write raw selectors in E2E tests
-    2. When a Model doesn't exist yet: use getByRole() as fallback, note it in coverage report
-    3. NEVER USE: CSS class selectors (.anything), XPath, nth-child, auto-generated IDs
-
-    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-    STABILITY RULES
-    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-    - NO hard waits — page.waitForTimeout() is FORBIDDEN
-    - After navigation: waitForURL() or waitForLoadState('networkidle')
-    - After form submit: waitForResponse() matching the API endpoint
-    - After UI updates: expect(locator).toBeVisible({ timeout: 10000 })
-    - All tests must be self-sufficient — no shared state between test files
-
-    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-    ALLURE ANNOTATIONS
-    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-    Every test() must include:
-      await allure.epic('Journey');
-      await allure.feature('[workflow name]');
-      await allure.story('[scenario title]');
-      await allure.severity('[critical|normal|minor]'); // from @P tag on Gherkin Scenario
-
-    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-    FINAL STEP — WRITE COVERAGE REPORT
-    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-    After ALL test files have been written, use file_write_tool to write a coverage
-    report to: {output_dir}/reports/e2e-test-coverage.md
-
-    The report MUST use this exact structure:
-
-    # E2E Test Coverage Report
-
-    **Generated by:** E2E Test Writer
-    **Source:** test-plan.md — Section 4 (@e2e scenarios)
-    **Output directory:** {output_dir}/tests/e2e/
-
-    ## Summary
-
-    | Total @e2e Scenarios | Implemented | Skipped |
-    |----------------------|-------------|---------|
-    | <count>              | <count>     | <count> |
-
-    ## Scenario Coverage
-
-    ### Feature: [Feature Name from test-plan.md]
-
-    | Scenario | Priority | Roles | Status | File | Models Used |
-    |----------|----------|-------|--------|------|-------------|
-    | [title]  | P0       | director, pm | ✅ Implemented | tests/e2e/[file].e2e.spec.ts | LoginModel, ProjectModel |
-    | [title]  | P1       | analyst | ⚠️ Partial — ProjectModel missing, used raw selector | tests/e2e/[file].e2e.spec.ts | LoginModel |
-    | [title]  | P0       | director | ❌ Skipped — [reason] | — | — |
-
-    [Repeat table for each Feature]
-
-    ## Missing Page Object Models
-
-    List any Model files that were needed but did not exist in ui/models/:
-    - ui/models/[feature]/[feature].model.ts — needed by [Scenario title], used raw selector fallback
-
-    ## Skipped Scenarios
-
-    Any @e2e scenarios NOT implemented, with a brief reason for each.
-
-    ## Notes
-
-    Multi-role handoff scenarios or cross-session tests that required special handling.
-
-    ---
-    STATUS VALUES:
-    - ✅ Implemented — full journey implemented using Models
-    - ⚠️ Partial     — implemented but a Model was missing (raw selector used as fallback)
-    - ❌ Skipped     — not written (always give a reason)
-
+    Output ONLY TypeScript code, no explanation.
   expected_output: >
-    Multiple .e2e.spec.ts files written to {output_dir}/tests/e2e/ — one per Feature block
-    tagged @e2e in test-plan.md. Each file implements every @e2e Scenario as a full
-    multi-page workflow test using Page Object Models, with Allure annotations (severity
-    from @P tag), API-based data setup in beforeAll, cleanup in afterAll, no hard waits,
-    and no CSS class selectors.
-    PLUS a coverage report at {output_dir}/reports/e2e-test-coverage.md listing every
-    @e2e Scenario with its implementation status, file location, and Models used.
+    A complete valid TypeScript Playwright E2E test file.
   agent: e2e_test_writer

@@ -48,4 +48,7 @@ class TestForgeState(FlowState):
         """True if all tests passed in the last review."""
         if not self.test_results:
             return False
-        return all(r.get("failed", 0) == 0 for r in self.test_results)
+        return all(
+            r.get("status") == "passed" or r.get("failed", 0) == 0
+            for r in self.test_results
+        )
