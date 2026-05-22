@@ -9,6 +9,8 @@ from crewai.project import CrewBase, agent, task, crew
 
 from testforge.state import TestForgeState
 from testforge.llm import get_llm
+from testforge.tools.file_tools import file_read_tool
+from testforge.tools.playwright_mcp import create_playwright_mcp
 
 logger = logging.getLogger("testforge")
 
@@ -20,11 +22,15 @@ class E2ETestWriterCrew:
     agents_config = "config/agents.yaml"
     tasks_config = "config/tasks.yaml"
 
+    def __init__(self, playwright_tools: list | None = None):
+        super().__init__()
+        self._playwright_tools = playwright_tools or []
+
     @agent
     def e2e_test_writer(self) -> Agent:
         return Agent(
             config=self.agents_config["e2e_test_writer"],
-            tools=[],
+            tools=[file_read_tool] + self._playwright_tools,
             llm=get_llm(),
             verbose=True,
         )
@@ -91,28 +97,44 @@ def run_e2e_writer(state: TestForgeState) -> None:
     output_dir = os.path.join(state.output_dir, "tests", "e2e")
     os.makedirs(output_dir, exist_ok=True)
 
-    for journey_name, e2e_chunk in chunks:
-        plan_chunk = e2e_chunk[:2500]
+    # Start Playwright MCP for UI exploration
+    playwright_mcp = create_playwright_mcp(state.app_url)
+    try:
+        playwright_tools = playwright_mcp.tools
+        logger.info("Playwright MCP started for E2E Writer")
+    except Exception as e:
+        logger.warning(f"Playwright MCP unavailable: {e} — proceeding without browser tools")
+        playwright_tools = []
 
-        logger.info(f"Generating E2E tests for journey: {journey_name}")
+    try:
+        for journey_name, e2e_chunk in chunks:
+            plan_chunk = e2e_chunk[:2500]
 
-        crew = E2ETestWriterCrew()
-        result = crew.crew().kickoff(
-            inputs={
-                "e2e_chunk": plan_chunk,
-                "plan_chunk": plan_chunk,
-                "roles": roles,
-                "credentials": creds_summary,
-                "feedback": feedback_context,
-                "app_url": state.app_url,
-            }
-        )
+            logger.info(f"Generating E2E tests for journey: {journey_name}")
 
-        code = str(result)
-        slug = re.sub(r"[^a-z0-9]", "-", journey_name.lower()).strip("-") or "journey"
-        filepath = os.path.join(output_dir, f"{slug}.e2e.spec.ts")
-        with open(filepath, "w", encoding="utf-8") as f:
-            f.write(code)
+            crew = E2ETestWriterCrew(playwright_tools=playwright_tools)
+            result = crew.crew().kickoff(
+                inputs={
+                    "e2e_chunk": plan_chunk,
+                    "plan_chunk": plan_chunk,
+                    "roles": roles,
+                    "credentials": creds_summary,
+                    "feedback": feedback_context,
+                    "app_url": state.app_url,
+                }
+            )
 
-        state.e2e_tests.append({"file": filepath, "journey": journey_name, "status": "generated"})
-        logger.info(f"Wrote E2E test: {filepath}")
+            code = str(result)
+            slug = re.sub(r"[^a-z0-9]", "-", journey_name.lower()).strip("-") or "journey"
+            filepath = os.path.join(output_dir, f"{slug}.e2e.spec.ts")
+            with open(filepath, "w", encoding="utf-8") as f:
+                f.write(code)
+
+            state.e2e_tests.append({"file": filepath, "journey": journey_name, "status": "generated"})
+            logger.info(f"Wrote E2E test: {filepath}")
+    finally:
+        try:
+            playwright_mcp.stop()
+        except Exception:
+            pass
+        logger.info("Playwright MCP stopped for E2E Writer")

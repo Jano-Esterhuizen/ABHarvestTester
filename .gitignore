@@ -7,3 +7,7 @@ Thumbs.db
 
 # User-specific config
 *.user.toml
+
+# Secrets
+.env
+*.env

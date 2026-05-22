@@ -9,6 +9,8 @@ from crewai.project import CrewBase, agent, task, crew
 
 from testforge.state import TestForgeState
 from testforge.llm import get_llm
+from testforge.tools.file_tools import file_read_tool, directory_list_tool
+from testforge.tools.playwright_mcp import create_playwright_mcp
 
 logger = logging.getLogger("testforge")
 
@@ -20,11 +22,15 @@ class FETestWriterCrew:
     agents_config = "config/agents.yaml"
     tasks_config = "config/tasks.yaml"
 
+    def __init__(self, playwright_tools: list | None = None):
+        super().__init__()
+        self._playwright_tools = playwright_tools or []
+
     @agent
     def fe_test_writer(self) -> Agent:
         return Agent(
             config=self.agents_config["fe_test_writer"],
-            tools=[],
+            tools=[file_read_tool, directory_list_tool] + self._playwright_tools,
             llm=get_llm(),
             verbose=True,
         )
@@ -91,47 +97,67 @@ def run_fe_writer(state: TestForgeState) -> None:
 
     chunks = _split_ui_routes(state.context_document)
 
+    # Demo mode: limit to 3 chunks
+    if state.demo:
+        chunks = chunks[:3]
+        logger.info("DEMO MODE: limiting FE tests to 3 pages")
+
     output_dir = os.path.join(state.output_dir, "tests", "ui")
     pom_dir = os.path.join(state.output_dir, "tests", "ui", "pages")
     os.makedirs(output_dir, exist_ok=True)
     os.makedirs(pom_dir, exist_ok=True)
 
-    for page_name, ui_chunk in chunks:
-        plan_chunk = state.test_plan[:2000] if state.test_plan else "No test plan"
+    # Start Playwright MCP for UI exploration
+    playwright_mcp = create_playwright_mcp(state.app_url)
+    try:
+        playwright_tools = playwright_mcp.tools
+        logger.info("Playwright MCP started for FE Writer")
+    except Exception as e:
+        logger.warning(f"Playwright MCP unavailable: {e} — proceeding without browser tools")
+        playwright_tools = []
 
-        logger.info(f"Generating FE tests for page: {page_name}")
+    try:
+        for page_name, ui_chunk in chunks:
+            plan_chunk = state.test_plan[:2000] if state.test_plan else "No test plan"
 
-        crew = FETestWriterCrew()
-        result = crew.crew().kickoff(
-            inputs={
-                "ui_chunk": ui_chunk[:2500],
-                "plan_chunk": plan_chunk,
-                "roles": roles,
-                "credentials": creds_summary,
-                "feedback": feedback_context,
-                "app_url": state.app_url,
-            }
-        )
+            logger.info(f"Generating FE tests for page: {page_name}")
 
-        code = str(result)
+            crew = FETestWriterCrew(playwright_tools=playwright_tools)
+            result = crew.crew().kickoff(
+                inputs={
+                    "ui_chunk": ui_chunk[:2500],
+                    "plan_chunk": plan_chunk,
+                    "roles": roles,
+                    "credentials": creds_summary,
+                    "feedback": feedback_context,
+                    "app_url": state.app_url,
+                }
+            )
 
-        # Split POM and spec if file break marker present
-        parts = code.split("// --- FILE BREAK ---")
-        if len(parts) == 2:
-            pom_code, spec_code = parts
-            slug = re.sub(r"[^a-z0-9]", "-", page_name.lower()).strip("-")
-            pom_path = os.path.join(pom_dir, f"{slug}.page.ts")
-            spec_path = os.path.join(output_dir, f"{slug}.ui.spec.ts")
-            with open(pom_path, "w", encoding="utf-8") as f:
-                f.write(pom_code.strip())
-            with open(spec_path, "w", encoding="utf-8") as f:
-                f.write(spec_code.strip())
-        else:
-            slug = re.sub(r"[^a-z0-9]", "-", page_name.lower()).strip("-")
-            spec_path = os.path.join(output_dir, f"{slug}.ui.spec.ts")
-            with open(spec_path, "w", encoding="utf-8") as f:
-                f.write(code)
+            code = str(result)
 
-        state.fe_tests.append({"file": spec_path, "page": page_name, "status": "generated"})
-        logger.info(f"Wrote FE test: {spec_path}")
+            # Split POM and spec if file break marker present
+            parts = code.split("// --- FILE BREAK ---")
+            if len(parts) == 2:
+                pom_code, spec_code = parts
+                slug = re.sub(r"[^a-z0-9]", "-", page_name.lower()).strip("-")
+                pom_path = os.path.join(pom_dir, f"{slug}.page.ts")
+                spec_path = os.path.join(output_dir, f"{slug}.ui.spec.ts")
+                with open(pom_path, "w", encoding="utf-8") as f:
+                    f.write(pom_code.strip())
+                with open(spec_path, "w", encoding="utf-8") as f:
+                    f.write(spec_code.strip())
+            else:
+                slug = re.sub(r"[^a-z0-9]", "-", page_name.lower()).strip("-")
+                spec_path = os.path.join(output_dir, f"{slug}.ui.spec.ts")
+                with open(spec_path, "w", encoding="utf-8") as f:
+                    f.write(code)
+
+            state.fe_tests.append({"file": spec_path, "page": page_name, "status": "generated"})
+            logger.info(f"Wrote FE test: {spec_path}")
+    finally:
+        try:
+            playwright_mcp.stop()
+        except Exception:
+            pass
         logger.info("Playwright MCP stopped for FE Writer")

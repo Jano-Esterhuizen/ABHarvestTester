@@ -8,6 +8,7 @@ from crewai.project import CrewBase, agent, task, crew
 
 from testforge.state import TestForgeState
 from testforge.llm import get_llm
+from testforge.tools.file_tools import file_read_tool, directory_list_tool
 
 logger = logging.getLogger("testforge")
 
@@ -23,7 +24,7 @@ class QAAnalystCrew:
     def qa_analyst(self) -> Agent:
         return Agent(
             config=self.agents_config["qa_analyst"],
-            tools=[],
+            tools=[file_read_tool, directory_list_tool],
             llm=get_llm(),
             verbose=True,
         )
