@@ -126,6 +126,14 @@ write_fe_tests:
     - Tests:   Import and use Models ONLY — never import Pages or Objects directly
 
     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    TEST COUNT LIMIT
+    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    HARD LIMIT — Maximum 2 test cases per page or UI component. Choose the 2
+    highest-value Scenarios (prefer P0 > P1 > P2). If the test plan lists more
+    than 2 Scenarios for a single page/component, implement only the top 2 by
+    priority and mark the rest as ⚠️ Skipped (budget cap) in the coverage report.
+
+    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
     STABILITY RULES
     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
     - NO hard waits — page.waitForTimeout() is FORBIDDEN

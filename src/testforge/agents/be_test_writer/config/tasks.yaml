@@ -82,6 +82,10 @@ write_be_tests:
     7. Include boundary and negative tests from the test plan
     8. Do NOT generate MCP tool calls — MCP is for agent discovery only, not in test code
     9. Cleanup in afterAll: only delete data YOUR tests created (never existing data)
+    10. HARD LIMIT — Maximum 2 test cases per endpoint. Choose the 2 highest-value
+        scenarios (prefer P0 > P1 > P2). If the test plan lists more than 2 Scenarios
+        for a single endpoint, implement only the top 2 by priority and mark the rest
+        as ⚠️ Skipped (budget cap) in the coverage report.
 
     EXAMPLE — converting a Gherkin Scenario to a Playwright test:
 
