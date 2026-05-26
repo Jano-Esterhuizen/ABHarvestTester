@@ -6,6 +6,7 @@ from crewai.tools import tool
 
 # Module-level repo path — set by the flow before agents run
 _repo_path: str = ""
+_output_dir: str = ""
 
 
 def set_repo_path(repo_path: str):
@@ -14,11 +15,22 @@ def set_repo_path(repo_path: str):
     _repo_path = repo_path
 
 
+def set_output_dir(output_dir: str):
+    """Set the test output directory for file tools to resolve relative paths."""
+    global _output_dir
+    _output_dir = output_dir
+
+
 def _resolve_path(file_path: str) -> Path:
     """Resolve a path, trying relative to repo if not absolute."""
     path = Path(file_path)
     if path.is_absolute():
         return path
+    # Try relative to output dir first (for reviewer reading test files)
+    if _output_dir:
+        output_relative = Path(_output_dir) / file_path
+        if output_relative.exists():
+            return output_relative
     # Try relative to repo path
     if _repo_path:
         repo_relative = Path(_repo_path) / file_path

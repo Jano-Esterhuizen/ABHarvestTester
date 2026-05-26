@@ -5,7 +5,7 @@ import os
 from crewai import LLM
 
 
-def get_llm(model: str = "gpt-4.1") -> LLM:
+def get_llm(model: str = "gpt-4o-mini") -> LLM:
     """Create an LLM instance configured for GitHub Models API."""
     return LLM(
         model=f"openai/{model}",

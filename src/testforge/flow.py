@@ -59,7 +59,7 @@ class TestForgeFlow(Flow[TestForgeState]):
 
     Sequence:
     load_config → read_repository → extract_api_spec → scaffold_framework
-    → plan_tests → write_tests → review_tests → (retry | complete)
+    → plan_tests → write_tests → janator_setup → review_tests → (retry | complete)
     """
 
     _config: ClassVar[TestForgeConfig]
@@ -81,11 +81,13 @@ class TestForgeFlow(Flow[TestForgeState]):
         self.state.credentials = config.credentials
         self.state.output_dir = config.output_dir
         self.state.force = config.force
+        self.state.demo = config.demo
         self.state.mcp_server_config = config.mcp_server_config
 
         # Set repo path for file tools so relative paths resolve correctly
-        from testforge.tools.file_tools import set_repo_path
+        from testforge.tools.file_tools import set_repo_path, set_output_dir
         set_repo_path(self.state.repo_path)
+        set_output_dir(self.state.output_dir)
 
         self.state.incremental = detect_existing_framework(self.state.output_dir)
         if self.state.incremental:
@@ -153,12 +155,31 @@ class TestForgeFlow(Flow[TestForgeState]):
         # TODO: Run concurrently with asyncio or threading
         run_be_writer(self.state)
         run_fe_writer(self.state)
-        run_e2e_writer(self.state)
+        if not self.state.demo:
+            run_e2e_writer(self.state)
+        else:
+            logger.info("DEMO MODE: skipping E2E writer")
 
         total = len(self.state.be_tests) + len(self.state.fe_tests) + len(self.state.e2e_tests)
         logger.info(f"Generated {total} test files")
 
-    @router(write_tests)
+    @listen(write_tests)
+    def janator_setup(self):
+        """Janator: finalize boilerplate and install dependencies."""
+        logger.info("Agent: Janator — preparing boilerplate and dependencies...")
+        from testforge.agents.janator.agent import run_janator
+
+        run_janator(self.state)
+
+    @listen(janator_setup)
+    def clean_tests(self):
+        """Code Cleaner: deterministic fixes + npm install + tsc check."""
+        logger.info("Agent: Code Cleaner — fixing generated test code...")
+        from testforge.agents.code_cleaner.agent import run_code_cleaner
+
+        run_code_cleaner(self.state)
+
+    @router(clean_tests)
     def review_tests(self):
         """Reviewer: run tests, check results, decide next step."""
         logger.info(f"Agent: Reviewer — iteration {self.state.iteration + 1}/{self.state.max_iterations}...")
@@ -186,11 +207,20 @@ class TestForgeFlow(Flow[TestForgeState]):
         from testforge.agents.be_test_writer.agent import run_be_writer
         from testforge.agents.fe_test_writer.agent import run_fe_writer
         from testforge.agents.e2e_test_writer.agent import run_e2e_writer
+        from testforge.agents.janator.agent import run_janator
 
         # Re-run writers with feedback context
         run_be_writer(self.state)
         run_fe_writer(self.state)
-        run_e2e_writer(self.state)
+        if not self.state.demo:
+            run_e2e_writer(self.state)
+
+        # Re-apply project boilerplate/bootstrap after regenerated tests
+        run_janator(self.state)
+
+        # Clean the regenerated files
+        from testforge.agents.code_cleaner.agent import run_code_cleaner
+        run_code_cleaner(self.state)
 
     @listen("complete")
     def deliver_results(self):

@@ -14,6 +14,7 @@ class TestForgeConfig:
     credentials: dict
     output_dir: str
     force: bool = False
+    demo: bool = False
     mcp_config_path: Optional[str] = None
     mcp_server_config: Optional[dict] = None
     github_token: str = ""

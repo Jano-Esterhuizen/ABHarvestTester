@@ -1,0 +1,44 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "commonjs",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true,
+    "outDir": "./dist",
+    "rootDir": ".",
+    "baseUrl": ".",
+    "paths": {
+      "@core/*": [
+        "core/*"
+      ],
+      "@data/*": [
+        "data/*"
+      ],
+      "@utils/*": [
+        "utils/*"
+      ],
+      "@ui/*": [
+        "ui/*"
+      ],
+      "@business/*": [
+        "business/*"
+      ],
+      "@fixtures/*": [
+        "fixtures/*"
+      ]
+    },
+    "types": [
+      "node"
+    ]
+  },
+  "include": [
+    "**/*.ts"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist"
+  ]
+}

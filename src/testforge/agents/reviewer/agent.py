@@ -28,7 +28,7 @@ class ReviewerCrew:
         return Agent(
             config=self.agents_config["reviewer"],
             tools=[file_read_tool, test_runner_tool],
-            llm=get_llm("gpt-4o-mini"),
+            llm=get_llm(),
             verbose=True,
         )
 
@@ -53,11 +53,12 @@ def _run_tests(output_dir: str) -> tuple[str, list[dict]]:
 
     try:
         result = subprocess.run(
-            ["npx", "playwright", "test", "--reporter=json"],
+            "npx playwright test --reporter=json",
             cwd=output_dir,
             capture_output=True,
             text=True,
             timeout=120,
+            shell=True,
             env={**os.environ, "BASE_URL": os.environ.get("BASE_URL", "http://localhost:3000")},
         )
         raw = result.stdout + result.stderr

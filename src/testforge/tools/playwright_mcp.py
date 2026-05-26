@@ -15,6 +15,16 @@ from crewai_tools import MCPServerAdapter
 
 logger = logging.getLogger("testforge")
 
+# Only expose a useful subset of tools to avoid bloating the LLM prompt
+USEFUL_TOOLS = {
+    "browser_navigate",
+    "browser_snapshot",
+    "browser_click",
+    "browser_fill_form",
+    "browser_take_screenshot",
+    "browser_press_key",
+}
+
 
 def create_playwright_mcp(app_url: str) -> MCPServerAdapter:
     """Create an MCPServerAdapter connected to the Playwright MCP server.
@@ -24,13 +34,13 @@ def create_playwright_mcp(app_url: str) -> MCPServerAdapter:
             agent = Agent(tools=tools, ...)
 
     Args:
-        app_url: The target application URL to navigate to.
+        app_url: The target application URL to navigate to (passed to agents for navigation).
 
     Returns:
         MCPServerAdapter instance (call .tools after starting).
     """
     server_params = StdioServerParameters(
         command="npx",
-        args=["-y", "@playwright/mcp@latest", "--url", app_url],
+        args=["-y", "@playwright/mcp@latest", "--headless"],
     )
-    return MCPServerAdapter(server_params)
+    return MCPServerAdapter(server_params, connect_timeout=60)

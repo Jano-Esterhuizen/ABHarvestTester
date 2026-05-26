@@ -1,0 +1,32 @@
+clean_code:
+  description: >
+    Clean and fix the following TypeScript Playwright test file.
+
+    FILE PATH: {file_path}
+
+    CURRENT CODE (may include TYPESCRIPT COMPILER ERRORS at the end):
+    {file_content}
+
+    FIX these issues:
+    1. Remove markdown code fences (```typescript, ```) — output pure TypeScript only
+    2. Remove any preamble text or explanations before/after the code
+    3. Fix all TypeScript compiler errors listed (if any are shown after the code)
+    4. Fix imports: only import { test, expect } from '@playwright/test' — `request` is a FIXTURE not an export
+    5. Fix imports: use '@playwright/test' not 'playwright' for Page type
+    6. Ensure test.beforeAll that uses `request` has it as a fixture parameter: async ({ request }) => ...
+    7. Remove duplicate imports or duplicate variable declarations
+    8. Ensure all variables declared in beforeAll are accessible in tests (proper scoping)
+    9. Fix any obvious TypeScript syntax errors (unclosed braces, missing semicolons)
+    10. If BASE_URL is used, ensure it reads from process.env.BASE_URL with a fallback
+    11. Do NOT use `import { request }` — it must be a destructured fixture in test functions
+
+    RULES:
+    - Do NOT change the test logic or assertions
+    - Do NOT add new tests or remove existing tests
+    - Do NOT add explanations — output ONLY the cleaned TypeScript code
+    - The output must be valid TypeScript that compiles without errors
+
+    Output ONLY the cleaned TypeScript code, nothing else.
+  expected_output: >
+    A complete, valid TypeScript file with no markdown artifacts or syntax errors.
+  agent: code_cleaner

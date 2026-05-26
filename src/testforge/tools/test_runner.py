@@ -35,6 +35,7 @@ def test_runner_tool(output_dir: str, test_file: str = "") -> str:
         capture_output=True,
         text=True,
         timeout=30,
+        shell=True,
     )
 
     if tsc_result.returncode != 0:
@@ -58,11 +59,15 @@ def test_runner_tool(output_dir: str, test_file: str = "") -> str:
         capture_output=True,
         text=True,
         timeout=300,
+        shell=True,
     )
 
     output = f"EXIT_CODE: {pw_result.returncode}\n\n"
-    output += pw_result.stdout
+
+    # Truncate to avoid exceeding LLM token limits (8k model)
+    stdout_text = pw_result.stdout[:4000] if pw_result.stdout else ""
+    output += stdout_text
     if pw_result.stderr:
-        output += f"\nSTDERR:\n{pw_result.stderr}"
+        output += f"\nSTDERR:\n{pw_result.stderr[:1000]}"
 
     return output

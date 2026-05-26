@@ -5,6 +5,11 @@ write_e2e_tests:
     APP URL: {app_url}
     ROLES: {roles}
     CREDENTIALS: {credentials}
+    LOGIN CONTRACT:
+    - login_url_path: {login_url_path}
+    - username_field: {login_username_field}
+    - password_field: {login_password_field}
+    - submit_button: {login_submit_button}
 
     JOURNEYS TO TEST:
     {e2e_chunk}
@@ -15,8 +20,12 @@ write_e2e_tests:
 
     Rules:
     - Each test simulates a full user journey (login -> actions -> verify)
+    - If using browser_snapshot, ALWAYS pass string values (never null):
+      target: "body", filename: "snapshot.md"
+    - Use LOGIN CONTRACT fields for authentication steps and payload keys
     - Use both page interactions and API calls where appropriate
     - Assert intermediate states (navigation, loading) and final state
+    - For invalid-login assertions, prefer unauthorized checks that accept either 400 or 401
     - Clean up test data in afterAll
     - Output ONE complete .spec.ts file
 

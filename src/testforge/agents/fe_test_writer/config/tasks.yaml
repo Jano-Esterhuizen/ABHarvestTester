@@ -5,6 +5,11 @@ write_fe_tests:
     APP URL: {app_url}
     ROLES: {roles}
     CREDENTIALS: {credentials}
+    LOGIN CONTRACT:
+    - login_url_path: {login_url_path}
+    - username_field: {login_username_field}
+    - password_field: {login_password_field}
+    - submit_button: {login_submit_button}
 
     PAGES TO TEST:
     {ui_chunk}
@@ -14,10 +19,17 @@ write_fe_tests:
     {feedback}
 
     Rules:
+    - FIRST use browser_navigate to visit the page at the APP URL, then use browser_snapshot
+      to discover real element selectors (data-testid attributes, roles, labels)
+    - For browser_snapshot calls, ALWAYS pass string values (never null):
+      target: "body", filename: "snapshot.md"
     - Use Page Object Model: one POM class per page, tests import POM
-    - Locators: prefer data-testid, then role, then text content
+    - Every POM class MUST be declared as `export class XxxPage` and include `constructor(private page: Page)`
+    - Spec MUST import each used POM class from the generated POM file and instantiate with `new XxxPage(page)`
+    - If multiple page classes are in one POM file, use a single grouped named import line for that file
+    - Locators: prefer data-testid, then role, then text content — use REAL selectors from browser_snapshot
     - Wait for network idle or specific element before asserting
-    - Test with each specified role (login in beforeAll)
+    - Test with each specified role (login in beforeAll) using LOGIN CONTRACT fields
     - Verify page content, navigation, form validation, error states
     - Output TWO files: the POM class and the test spec
     - HARD LIMIT: maximum 2 test cases per page — pick the 2 highest priority (P0 first, then P1)

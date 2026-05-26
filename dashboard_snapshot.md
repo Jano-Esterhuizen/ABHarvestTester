@@ -1,0 +1,13 @@
+- generic [ref=e1] [box=0,0,1280,720]:
+  - generic [ref=e5] [box=499,145,282,430]:
+    - generic [ref=e6] [box=537,145,205,56]:
+      - heading "ProjectControl" [level=1] [ref=e7] [box=537,145,205,32]
+      - paragraph [ref=e8] [box=537,181,205,20]: AI-powered project management
+    - generic [ref=e9] [box=499,225,282,350]:
+      - heading "Sign in" [level=2] [ref=e10] [box=532,258,216,28]
+      - generic [ref=e11] [box=532,310,216,196]
+      - paragraph [ref=e19] [box=532,522,216,20]
+  - region "Notifications alt+T" [box=0,720,1280,0]
+  - button "Open Next.js Dev Tools" [ref=e26] [cursor=pointer] [box=22,666,32,32]:
+    - img [ref=e27] [box=22,662,40,40]
+  - alert [ref=e30] [box=-1,719,1,1]

@@ -1,0 +1,1410 @@
+{
+  "config": {
+    "configFile": "C:\\Git\\AB.HarvestTester\\test-output\\playwright.config.ts",
+    "rootDir": "C:/Git/AB.HarvestTester/test-output/tests",
+    "forbidOnly": false,
+    "fullyParallel": true,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 10
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "C:/Git/AB.HarvestTester/test-output/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 10
+        },
+        "id": "chromium",
+        "name": "chromium",
+        "testDir": "C:/Git/AB.HarvestTester/test-output/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "html",
+        null
+      ],
+      [
+        "json",
+        {
+          "outputFile": "results.json"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.60.0",
+    "workers": 10,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "api\\auth-api-case-1.api.spec.ts",
+      "file": "api/auth-api-case-1.api.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Auth API Tests",
+          "file": "api/auth-api-case-1.api.spec.ts",
+          "line": 23,
+          "column": 6,
+          "specs": [
+            {
+              "title": "API-1: POST /api/auth/login - Valid credentials for any role",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 149,
+                      "error": {
+                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m200\u001b[39m\nReceived: \u001b[31m400\u001b[39m",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m200\u001b[39m\nReceived: \u001b[31m400\u001b[39m\n    at C:\\Git\\AB.HarvestTester\\test-output\\tests\\api\\auth-api-case-1.api.spec.ts:29:31",
+                        "location": {
+                          "file": "C:\\Git\\AB.HarvestTester\\test-output\\tests\\api\\auth-api-case-1.api.spec.ts",
+                          "column": 31,
+                          "line": 29
+                        },
+                        "snippet": "\u001b[0m \u001b[90m 27 |\u001b[39m     })\u001b[33m;\u001b[39m\n \u001b[90m 28 |\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 29 |\u001b[39m     expect(response\u001b[33m.\u001b[39mstatus())\u001b[33m.\u001b[39mtoBe(\u001b[35m200\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                               \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 30 |\u001b[39m     \u001b[36mconst\u001b[39m body \u001b[33m=\u001b[39m \u001b[36mawait\u001b[39m response\u001b[33m.\u001b[39mjson()\u001b[33m;\u001b[39m\n \u001b[90m 31 |\u001b[39m     expect\u001b[33m.\u001b[39msoft(body)\u001b[33m.\u001b[39mtoHaveProperty(\u001b[32m'token'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 32 |\u001b[39m   })\u001b[33m;\u001b[39m\u001b[0m"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "C:\\Git\\AB.HarvestTester\\test-output\\tests\\api\\auth-api-case-1.api.spec.ts",
+                            "column": 31,
+                            "line": 29
+                          },
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m200\u001b[39m\nReceived: \u001b[31m400\u001b[39m\n\n\u001b[0m \u001b[90m 27 |\u001b[39m     })\u001b[33m;\u001b[39m\n \u001b[90m 28 |\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 29 |\u001b[39m     expect(response\u001b[33m.\u001b[39mstatus())\u001b[33m.\u001b[39mtoBe(\u001b[35m200\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                               \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 30 |\u001b[39m     \u001b[36mconst\u001b[39m body \u001b[33m=\u001b[39m \u001b[36mawait\u001b[39m response\u001b[33m.\u001b[39mjson()\u001b[33m;\u001b[39m\n \u001b[90m 31 |\u001b[39m     expect\u001b[33m.\u001b[39msoft(body)\u001b[33m.\u001b[39mtoHaveProperty(\u001b[32m'token'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 32 |\u001b[39m   })\u001b[33m;\u001b[39m\u001b[0m\n\u001b[2m    at C:\\Git\\AB.HarvestTester\\test-output\\tests\\api\\auth-api-case-1.api.spec.ts:29:31\u001b[22m"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-05-26T07:19:31.640Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "C:\\Git\\AB.HarvestTester\\test-output\\test-results\\api-auth-api-case-1.api-Au-47f3c-id-credentials-for-any-role-chromium\\error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "C:\\Git\\AB.HarvestTester\\test-output\\tests\\api\\auth-api-case-1.api.spec.ts",
+                        "column": 31,
+                        "line": 29
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "bfe9ee1da5a09db4bd06-07f08b0fb34d7476eefa",
+              "file": "api/auth-api-case-1.api.spec.ts",
+              "line": 24,
+              "column": 7
+            },
+            {
+              "title": "API-1: POST /api/auth/login - Invalid credentials",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 1,
+                      "status": "failed",
+                      "duration": 130,
+                      "error": {
+                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m401\u001b[39m\nReceived: \u001b[31m400\u001b[39m",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m401\u001b[39m\nReceived: \u001b[31m400\u001b[39m\n    at C:\\Git\\AB.HarvestTester\\test-output\\tests\\api\\auth-api-case-1.api.spec.ts:39:31",
+                        "location": {
+                          "file": "C:\\Git\\AB.HarvestTester\\test-output\\tests\\api\\auth-api-case-1.api.spec.ts",
+                          "column": 31,
+                          "line": 39
+                        },
+                        "snippet": "\u001b[0m \u001b[90m 37 |\u001b[39m     })\u001b[33m;\u001b[39m\n \u001b[90m 38 |\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 39 |\u001b[39m     expect(response\u001b[33m.\u001b[39mstatus())\u001b[33m.\u001b[39mtoBe(\u001b[35m401\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                               \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 40 |\u001b[39m     \u001b[36mconst\u001b[39m body \u001b[33m=\u001b[39m \u001b[36mawait\u001b[39m response\u001b[33m.\u001b[39mjson()\u001b[33m;\u001b[39m\n \u001b[90m 41 |\u001b[39m     expect\u001b[33m.\u001b[39msoft(body)\u001b[33m.\u001b[39mtoHaveProperty(\u001b[32m'error'\u001b[39m\u001b[33m,\u001b[39m \u001b[32m'Invalid credentials'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 42 |\u001b[39m   })\u001b[33m;\u001b[39m\u001b[0m"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "C:\\Git\\AB.HarvestTester\\test-output\\tests\\api\\auth-api-case-1.api.spec.ts",
+                            "column": 31,
+                            "line": 39
+                          },
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m401\u001b[39m\nReceived: \u001b[31m400\u001b[39m\n\n\u001b[0m \u001b[90m 37 |\u001b[39m     })\u001b[33m;\u001b[39m\n \u001b[90m 38 |\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 39 |\u001b[39m     expect(response\u001b[33m.\u001b[39mstatus())\u001b[33m.\u001b[39mtoBe(\u001b[35m401\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                               \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 40 |\u001b[39m     \u001b[36mconst\u001b[39m body \u001b[33m=\u001b[39m \u001b[36mawait\u001b[39m response\u001b[33m.\u001b[39mjson()\u001b[33m;\u001b[39m\n \u001b[90m 41 |\u001b[39m     expect\u001b[33m.\u001b[39msoft(body)\u001b[33m.\u001b[39mtoHaveProperty(\u001b[32m'error'\u001b[39m\u001b[33m,\u001b[39m \u001b[32m'Invalid credentials'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 42 |\u001b[39m   })\u001b[33m;\u001b[39m\u001b[0m\n\u001b[2m    at C:\\Git\\AB.HarvestTester\\test-output\\tests\\api\\auth-api-case-1.api.spec.ts:39:31\u001b[22m"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-05-26T07:19:31.674Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "C:\\Git\\AB.HarvestTester\\test-output\\test-results\\api-auth-api-case-1.api-Au-b2731-login---Invalid-credentials-chromium\\error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "C:\\Git\\AB.HarvestTester\\test-output\\tests\\api\\auth-api-case-1.api.spec.ts",
+                        "column": 31,
+                        "line": 39
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "bfe9ee1da5a09db4bd06-31c049a9a0a066bcb07d",
+              "file": "api/auth-api-case-1.api.spec.ts",
+              "line": 34,
+              "column": 7
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "api\\general-api-case-1.api.spec.ts",
+      "file": "api/general-api-case-1.api.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "API Tests",
+          "file": "api/general-api-case-1.api.spec.ts",
+          "line": 26,
+          "column": 6,
+          "specs": [
+            {
+              "title": "API-1: POST /api/auth/login with valid credentials (Director)",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 2,
+                      "status": "failed",
+                      "duration": 101,
+                      "error": {
+                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m200\u001b[39m\nReceived: \u001b[31m400\u001b[39m",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m200\u001b[39m\nReceived: \u001b[31m400\u001b[39m\n    at C:\\Git\\AB.HarvestTester\\test-output\\tests\\api\\general-api-case-1.api.spec.ts:32:31",
+                        "location": {
+                          "file": "C:\\Git\\AB.HarvestTester\\test-output\\tests\\api\\general-api-case-1.api.spec.ts",
+                          "column": 31,
+                          "line": 32
+                        },
+                        "snippet": "\u001b[0m \u001b[90m 30 |\u001b[39m       data\u001b[33m:\u001b[39m { username\u001b[33m:\u001b[39m \u001b[32m'director@abmail.co.za'\u001b[39m\u001b[33m,\u001b[39m password\u001b[33m:\u001b[39m \u001b[32m'Test1234'\u001b[39m }\u001b[33m,\u001b[39m\n \u001b[90m 31 |\u001b[39m     })\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 32 |\u001b[39m     expect(response\u001b[33m.\u001b[39mstatus())\u001b[33m.\u001b[39mtoBe(\u001b[35m200\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                               \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 33 |\u001b[39m     expect\u001b[33m.\u001b[39msoft(\u001b[36mawait\u001b[39m response\u001b[33m.\u001b[39mjson())\u001b[33m.\u001b[39mtoHaveProperty(\u001b[32m'token'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 34 |\u001b[39m   })\u001b[33m;\u001b[39m\n \u001b[90m 35 |\u001b[39m\u001b[0m"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "C:\\Git\\AB.HarvestTester\\test-output\\tests\\api\\general-api-case-1.api.spec.ts",
+                            "column": 31,
+                            "line": 32
+                          },
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m200\u001b[39m\nReceived: \u001b[31m400\u001b[39m\n\n\u001b[0m \u001b[90m 30 |\u001b[39m       data\u001b[33m:\u001b[39m { username\u001b[33m:\u001b[39m \u001b[32m'director@abmail.co.za'\u001b[39m\u001b[33m,\u001b[39m password\u001b[33m:\u001b[39m \u001b[32m'Test1234'\u001b[39m }\u001b[33m,\u001b[39m\n \u001b[90m 31 |\u001b[39m     })\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 32 |\u001b[39m     expect(response\u001b[33m.\u001b[39mstatus())\u001b[33m.\u001b[39mtoBe(\u001b[35m200\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                               \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 33 |\u001b[39m     expect\u001b[33m.\u001b[39msoft(\u001b[36mawait\u001b[39m response\u001b[33m.\u001b[39mjson())\u001b[33m.\u001b[39mtoHaveProperty(\u001b[32m'token'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 34 |\u001b[39m   })\u001b[33m;\u001b[39m\n \u001b[90m 35 |\u001b[39m\u001b[0m\n\u001b[2m    at C:\\Git\\AB.HarvestTester\\test-output\\tests\\api\\general-api-case-1.api.spec.ts:32:31\u001b[22m"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-05-26T07:19:31.670Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "C:\\Git\\AB.HarvestTester\\test-output\\test-results\\api-general-api-case-1.api-640de-valid-credentials-Director--chromium\\error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "C:\\Git\\AB.HarvestTester\\test-output\\tests\\api\\general-api-case-1.api.spec.ts",
+                        "column": 31,
+                        "line": 32
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "21a14826d96d24453a04-2bf2c1902bf2de234766",
+              "file": "api/general-api-case-1.api.spec.ts",
+              "line": 28,
+              "column": 7
+            },
+            {
+              "title": "API-1: POST /api/auth/login with invalid credentials",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 3,
+                      "parallelIndex": 3,
+                      "status": "failed",
+                      "duration": 90,
+                      "error": {
+                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m401\u001b[39m\nReceived: \u001b[31m400\u001b[39m",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m401\u001b[39m\nReceived: \u001b[31m400\u001b[39m\n    at C:\\Git\\AB.HarvestTester\\test-output\\tests\\api\\general-api-case-1.api.spec.ts:40:31",
+                        "location": {
+                          "file": "C:\\Git\\AB.HarvestTester\\test-output\\tests\\api\\general-api-case-1.api.spec.ts",
+                          "column": 31,
+                          "line": 40
+                        },
+                        "snippet": "\u001b[0m \u001b[90m 38 |\u001b[39m       data\u001b[33m:\u001b[39m { username\u001b[33m:\u001b[39m \u001b[32m'wrong@user.com'\u001b[39m\u001b[33m,\u001b[39m password\u001b[33m:\u001b[39m \u001b[32m'WrongPassword'\u001b[39m }\u001b[33m,\u001b[39m\n \u001b[90m 39 |\u001b[39m     })\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 40 |\u001b[39m     expect(response\u001b[33m.\u001b[39mstatus())\u001b[33m.\u001b[39mtoBe(\u001b[35m401\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                               \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 41 |\u001b[39m     expect\u001b[33m.\u001b[39msoft(\u001b[36mawait\u001b[39m response\u001b[33m.\u001b[39mjson())\u001b[33m.\u001b[39mtoHaveProperty(\u001b[32m'message'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 42 |\u001b[39m   })\u001b[33m;\u001b[39m\n \u001b[90m 43 |\u001b[39m\u001b[0m"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "C:\\Git\\AB.HarvestTester\\test-output\\tests\\api\\general-api-case-1.api.spec.ts",
+                            "column": 31,
+                            "line": 40
+                          },
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m401\u001b[39m\nReceived: \u001b[31m400\u001b[39m\n\n\u001b[0m \u001b[90m 38 |\u001b[39m       data\u001b[33m:\u001b[39m { username\u001b[33m:\u001b[39m \u001b[32m'wrong@user.com'\u001b[39m\u001b[33m,\u001b[39m password\u001b[33m:\u001b[39m \u001b[32m'WrongPassword'\u001b[39m }\u001b[33m,\u001b[39m\n \u001b[90m 39 |\u001b[39m     })\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 40 |\u001b[39m     expect(response\u001b[33m.\u001b[39mstatus())\u001b[33m.\u001b[39mtoBe(\u001b[35m401\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                               \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 41 |\u001b[39m     expect\u001b[33m.\u001b[39msoft(\u001b[36mawait\u001b[39m response\u001b[33m.\u001b[39mjson())\u001b[33m.\u001b[39mtoHaveProperty(\u001b[32m'message'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 42 |\u001b[39m   })\u001b[33m;\u001b[39m\n \u001b[90m 43 |\u001b[39m\u001b[0m\n\u001b[2m    at C:\\Git\\AB.HarvestTester\\test-output\\tests\\api\\general-api-case-1.api.spec.ts:40:31\u001b[22m"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-05-26T07:19:31.679Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "C:\\Git\\AB.HarvestTester\\test-output\\test-results\\api-general-api-case-1.api-6213c-in-with-invalid-credentials-chromium\\error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "C:\\Git\\AB.HarvestTester\\test-output\\tests\\api\\general-api-case-1.api.spec.ts",
+                        "column": 31,
+                        "line": 40
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "21a14826d96d24453a04-472687a7cb0dab2eb48b",
+              "file": "api/general-api-case-1.api.spec.ts",
+              "line": 36,
+              "column": 7
+            },
+            {
+              "title": "API-1: POST /api/auth/login with valid credentials (Project Manager)",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 4,
+                      "parallelIndex": 4,
+                      "status": "failed",
+                      "duration": 96,
+                      "error": {
+                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m200\u001b[39m\nReceived: \u001b[31m400\u001b[39m",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m200\u001b[39m\nReceived: \u001b[31m400\u001b[39m\n    at C:\\Git\\AB.HarvestTester\\test-output\\tests\\api\\general-api-case-1.api.spec.ts:48:31",
+                        "location": {
+                          "file": "C:\\Git\\AB.HarvestTester\\test-output\\tests\\api\\general-api-case-1.api.spec.ts",
+                          "column": 31,
+                          "line": 48
+                        },
+                        "snippet": "\u001b[0m \u001b[90m 46 |\u001b[39m       data\u001b[33m:\u001b[39m { username\u001b[33m:\u001b[39m \u001b[32m'pm@abmail.co.za'\u001b[39m\u001b[33m,\u001b[39m password\u001b[33m:\u001b[39m \u001b[32m'Test1234'\u001b[39m }\u001b[33m,\u001b[39m\n \u001b[90m 47 |\u001b[39m     })\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 48 |\u001b[39m     expect(response\u001b[33m.\u001b[39mstatus())\u001b[33m.\u001b[39mtoBe(\u001b[35m200\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                               \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 49 |\u001b[39m     expect\u001b[33m.\u001b[39msoft(\u001b[36mawait\u001b[39m response\u001b[33m.\u001b[39mjson())\u001b[33m.\u001b[39mtoHaveProperty(\u001b[32m'token'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 50 |\u001b[39m   })\u001b[33m;\u001b[39m\n \u001b[90m 51 |\u001b[39m\u001b[0m"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "C:\\Git\\AB.HarvestTester\\test-output\\tests\\api\\general-api-case-1.api.spec.ts",
+                            "column": 31,
+                            "line": 48
+                          },
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m200\u001b[39m\nReceived: \u001b[31m400\u001b[39m\n\n\u001b[0m \u001b[90m 46 |\u001b[39m       data\u001b[33m:\u001b[39m { username\u001b[33m:\u001b[39m \u001b[32m'pm@abmail.co.za'\u001b[39m\u001b[33m,\u001b[39m password\u001b[33m:\u001b[39m \u001b[32m'Test1234'\u001b[39m }\u001b[33m,\u001b[39m\n \u001b[90m 47 |\u001b[39m     })\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 48 |\u001b[39m     expect(response\u001b[33m.\u001b[39mstatus())\u001b[33m.\u001b[39mtoBe(\u001b[35m200\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                               \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 49 |\u001b[39m     expect\u001b[33m.\u001b[39msoft(\u001b[36mawait\u001b[39m response\u001b[33m.\u001b[39mjson())\u001b[33m.\u001b[39mtoHaveProperty(\u001b[32m'token'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 50 |\u001b[39m   })\u001b[33m;\u001b[39m\n \u001b[90m 51 |\u001b[39m\u001b[0m\n\u001b[2m    at C:\\Git\\AB.HarvestTester\\test-output\\tests\\api\\general-api-case-1.api.spec.ts:48:31\u001b[22m"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-05-26T07:19:31.674Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "C:\\Git\\AB.HarvestTester\\test-output\\test-results\\api-general-api-case-1.api-95d3f-redentials-Project-Manager--chromium\\error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "C:\\Git\\AB.HarvestTester\\test-output\\tests\\api\\general-api-case-1.api.spec.ts",
+                        "column": 31,
+                        "line": 48
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "21a14826d96d24453a04-db8b12202d90e1006ff5",
+              "file": "api/general-api-case-1.api.spec.ts",
+              "line": 44,
+              "column": 7
+            },
+            {
+              "title": "API-1: POST /api/auth/login with valid credentials (Analyst)",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 5,
+                      "parallelIndex": 5,
+                      "status": "failed",
+                      "duration": 77,
+                      "error": {
+                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m200\u001b[39m\nReceived: \u001b[31m400\u001b[39m",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m200\u001b[39m\nReceived: \u001b[31m400\u001b[39m\n    at C:\\Git\\AB.HarvestTester\\test-output\\tests\\api\\general-api-case-1.api.spec.ts:56:31",
+                        "location": {
+                          "file": "C:\\Git\\AB.HarvestTester\\test-output\\tests\\api\\general-api-case-1.api.spec.ts",
+                          "column": 31,
+                          "line": 56
+                        },
+                        "snippet": "\u001b[0m \u001b[90m 54 |\u001b[39m       data\u001b[33m:\u001b[39m { username\u001b[33m:\u001b[39m \u001b[32m'analyst@abmail.co.za'\u001b[39m\u001b[33m,\u001b[39m password\u001b[33m:\u001b[39m \u001b[32m'Test1234'\u001b[39m }\u001b[33m,\u001b[39m\n \u001b[90m 55 |\u001b[39m     })\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 56 |\u001b[39m     expect(response\u001b[33m.\u001b[39mstatus())\u001b[33m.\u001b[39mtoBe(\u001b[35m200\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                               \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 57 |\u001b[39m     expect\u001b[33m.\u001b[39msoft(\u001b[36mawait\u001b[39m response\u001b[33m.\u001b[39mjson())\u001b[33m.\u001b[39mtoHaveProperty(\u001b[32m'token'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 58 |\u001b[39m   })\u001b[33m;\u001b[39m\n \u001b[90m 59 |\u001b[39m\u001b[0m"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "C:\\Git\\AB.HarvestTester\\test-output\\tests\\api\\general-api-case-1.api.spec.ts",
+                            "column": 31,
+                            "line": 56
+                          },
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m200\u001b[39m\nReceived: \u001b[31m400\u001b[39m\n\n\u001b[0m \u001b[90m 54 |\u001b[39m       data\u001b[33m:\u001b[39m { username\u001b[33m:\u001b[39m \u001b[32m'analyst@abmail.co.za'\u001b[39m\u001b[33m,\u001b[39m password\u001b[33m:\u001b[39m \u001b[32m'Test1234'\u001b[39m }\u001b[33m,\u001b[39m\n \u001b[90m 55 |\u001b[39m     })\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 56 |\u001b[39m     expect(response\u001b[33m.\u001b[39mstatus())\u001b[33m.\u001b[39mtoBe(\u001b[35m200\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                               \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 57 |\u001b[39m     expect\u001b[33m.\u001b[39msoft(\u001b[36mawait\u001b[39m response\u001b[33m.\u001b[39mjson())\u001b[33m.\u001b[39mtoHaveProperty(\u001b[32m'token'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 58 |\u001b[39m   })\u001b[33m;\u001b[39m\n \u001b[90m 59 |\u001b[39m\u001b[0m\n\u001b[2m    at C:\\Git\\AB.HarvestTester\\test-output\\tests\\api\\general-api-case-1.api.spec.ts:56:31\u001b[22m"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-05-26T07:19:31.679Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "C:\\Git\\AB.HarvestTester\\test-output\\test-results\\api-general-api-case-1.api-8bfcd--valid-credentials-Analyst--chromium\\error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "C:\\Git\\AB.HarvestTester\\test-output\\tests\\api\\general-api-case-1.api.spec.ts",
+                        "column": 31,
+                        "line": 56
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "21a14826d96d24453a04-a94b057147ae029230a7",
+              "file": "api/general-api-case-1.api.spec.ts",
+              "line": 52,
+              "column": 7
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "api\\post-api-auth-login-api-case-1.api.spec.ts",
+      "file": "api/post-api-auth-login-api-case-1.api.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "API Tests - Auth",
+          "file": "api/post-api-auth-login-api-case-1.api.spec.ts",
+          "line": 5,
+          "column": 6,
+          "specs": [
+            {
+              "title": "API-1: Should return 200 on valid credentials for director",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 6,
+                      "parallelIndex": 6,
+                      "status": "failed",
+                      "duration": 96,
+                      "error": {
+                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m200\u001b[39m\nReceived: \u001b[31m400\u001b[39m",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m200\u001b[39m\nReceived: \u001b[31m400\u001b[39m\n    at C:\\Git\\AB.HarvestTester\\test-output\\tests\\api\\post-api-auth-login-api-case-1.api.spec.ts:26:31",
+                        "location": {
+                          "file": "C:\\Git\\AB.HarvestTester\\test-output\\tests\\api\\post-api-auth-login-api-case-1.api.spec.ts",
+                          "column": 31,
+                          "line": 26
+                        },
+                        "snippet": "\u001b[0m \u001b[90m 24 |\u001b[39m       }\n \u001b[90m 25 |\u001b[39m     })\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 26 |\u001b[39m     expect(response\u001b[33m.\u001b[39mstatus())\u001b[33m.\u001b[39mtoBe(\u001b[35m200\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                               \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 27 |\u001b[39m     \u001b[36mconst\u001b[39m body \u001b[33m=\u001b[39m \u001b[36mawait\u001b[39m response\u001b[33m.\u001b[39mjson()\u001b[33m;\u001b[39m\n \u001b[90m 28 |\u001b[39m     expect\u001b[33m.\u001b[39msoft(body)\u001b[33m.\u001b[39mtoHaveProperty(\u001b[32m'token'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 29 |\u001b[39m   })\u001b[33m;\u001b[39m\u001b[0m"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "C:\\Git\\AB.HarvestTester\\test-output\\tests\\api\\post-api-auth-login-api-case-1.api.spec.ts",
+                            "column": 31,
+                            "line": 26
+                          },
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m200\u001b[39m\nReceived: \u001b[31m400\u001b[39m\n\n\u001b[0m \u001b[90m 24 |\u001b[39m       }\n \u001b[90m 25 |\u001b[39m     })\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 26 |\u001b[39m     expect(response\u001b[33m.\u001b[39mstatus())\u001b[33m.\u001b[39mtoBe(\u001b[35m200\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                               \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 27 |\u001b[39m     \u001b[36mconst\u001b[39m body \u001b[33m=\u001b[39m \u001b[36mawait\u001b[39m response\u001b[33m.\u001b[39mjson()\u001b[33m;\u001b[39m\n \u001b[90m 28 |\u001b[39m     expect\u001b[33m.\u001b[39msoft(body)\u001b[33m.\u001b[39mtoHaveProperty(\u001b[32m'token'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 29 |\u001b[39m   })\u001b[33m;\u001b[39m\u001b[0m\n\u001b[2m    at C:\\Git\\AB.HarvestTester\\test-output\\tests\\api\\post-api-auth-login-api-case-1.api.spec.ts:26:31\u001b[22m"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-05-26T07:19:31.679Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "C:\\Git\\AB.HarvestTester\\test-output\\test-results\\api-post-api-auth-login-ap-f200a-id-credentials-for-director-chromium\\error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "C:\\Git\\AB.HarvestTester\\test-output\\tests\\api\\post-api-auth-login-api-case-1.api.spec.ts",
+                        "column": 31,
+                        "line": 26
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "00ba8f0a7a23d0da1f76-2916499686a2440f9414",
+              "file": "api/post-api-auth-login-api-case-1.api.spec.ts",
+              "line": 19,
+              "column": 7
+            },
+            {
+              "title": "API-1: Should return 401 for invalid credentials",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 7,
+                      "parallelIndex": 7,
+                      "status": "failed",
+                      "duration": 126,
+                      "error": {
+                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m401\u001b[39m\nReceived: \u001b[31m400\u001b[39m",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m401\u001b[39m\nReceived: \u001b[31m400\u001b[39m\n    at C:\\Git\\AB.HarvestTester\\test-output\\tests\\api\\post-api-auth-login-api-case-1.api.spec.ts:38:31",
+                        "location": {
+                          "file": "C:\\Git\\AB.HarvestTester\\test-output\\tests\\api\\post-api-auth-login-api-case-1.api.spec.ts",
+                          "column": 31,
+                          "line": 38
+                        },
+                        "snippet": "\u001b[0m \u001b[90m 36 |\u001b[39m       }\n \u001b[90m 37 |\u001b[39m     })\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 38 |\u001b[39m     expect(response\u001b[33m.\u001b[39mstatus())\u001b[33m.\u001b[39mtoBe(\u001b[35m401\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                               \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 39 |\u001b[39m   })\u001b[33m;\u001b[39m\n \u001b[90m 40 |\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m 41 |\u001b[39m\u001b[0m"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "C:\\Git\\AB.HarvestTester\\test-output\\tests\\api\\post-api-auth-login-api-case-1.api.spec.ts",
+                            "column": 31,
+                            "line": 38
+                          },
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m401\u001b[39m\nReceived: \u001b[31m400\u001b[39m\n\n\u001b[0m \u001b[90m 36 |\u001b[39m       }\n \u001b[90m 37 |\u001b[39m     })\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 38 |\u001b[39m     expect(response\u001b[33m.\u001b[39mstatus())\u001b[33m.\u001b[39mtoBe(\u001b[35m401\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                               \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 39 |\u001b[39m   })\u001b[33m;\u001b[39m\n \u001b[90m 40 |\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m 41 |\u001b[39m\u001b[0m\n\u001b[2m    at C:\\Git\\AB.HarvestTester\\test-output\\tests\\api\\post-api-auth-login-api-case-1.api.spec.ts:38:31\u001b[22m"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-05-26T07:19:31.693Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "C:\\Git\\AB.HarvestTester\\test-output\\test-results\\api-post-api-auth-login-ap-cc8ee-401-for-invalid-credentials-chromium\\error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "C:\\Git\\AB.HarvestTester\\test-output\\tests\\api\\post-api-auth-login-api-case-1.api.spec.ts",
+                        "column": 31,
+                        "line": 38
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "00ba8f0a7a23d0da1f76-67ebff334d2da12bf3e5",
+              "file": "api/post-api-auth-login-api-case-1.api.spec.ts",
+              "line": 31,
+              "column": 7
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "ui\\pages-ui-case-1.ui.spec.ts",
+      "file": "ui/pages-ui-case-1.ui.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "UI Tests",
+          "file": "ui/pages-ui-case-1.ui.spec.ts",
+          "line": 16,
+          "column": 6,
+          "specs": [
+            {
+              "title": "Home Page loads",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 8,
+                      "parallelIndex": 8,
+                      "status": "failed",
+                      "duration": 1343,
+                      "error": {
+                        "message": "TypeError: _pagesUiCase.HomePage is not a constructor",
+                        "stack": "TypeError: _pagesUiCase.HomePage is not a constructor\n    at C:\\Git\\AB.HarvestTester\\test-output\\tests\\ui\\pages-ui-case-1.ui.spec.ts:30:20",
+                        "location": {
+                          "file": "C:\\Git\\AB.HarvestTester\\test-output\\tests\\ui\\pages-ui-case-1.ui.spec.ts",
+                          "column": 20,
+                          "line": 30
+                        },
+                        "snippet": "\u001b[0m \u001b[90m 28 |\u001b[39m\n \u001b[90m 29 |\u001b[39m     test\u001b[33m.\u001b[39mbeforeEach(\u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 30 |\u001b[39m         homePage \u001b[33m=\u001b[39m \u001b[36mnew\u001b[39m \u001b[33mHomePage\u001b[39m(page)\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                    \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 31 |\u001b[39m         actionsPage \u001b[33m=\u001b[39m \u001b[36mnew\u001b[39m \u001b[33mActionsPage\u001b[39m(page)\u001b[33m;\u001b[39m\n \u001b[90m 32 |\u001b[39m         adminPage \u001b[33m=\u001b[39m \u001b[36mnew\u001b[39m \u001b[33mAdminPage\u001b[39m(page)\u001b[33m;\u001b[39m\n \u001b[90m 33 |\u001b[39m         clientsPage \u001b[33m=\u001b[39m \u001b[36mnew\u001b[39m \u001b[33mClientsPage\u001b[39m(page)\u001b[33m;\u001b[39m\u001b[0m"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "C:\\Git\\AB.HarvestTester\\test-output\\tests\\ui\\pages-ui-case-1.ui.spec.ts",
+                            "column": 20,
+                            "line": 30
+                          },
+                          "message": "TypeError: _pagesUiCase.HomePage is not a constructor\n\n\u001b[0m \u001b[90m 28 |\u001b[39m\n \u001b[90m 29 |\u001b[39m     test\u001b[33m.\u001b[39mbeforeEach(\u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 30 |\u001b[39m         homePage \u001b[33m=\u001b[39m \u001b[36mnew\u001b[39m \u001b[33mHomePage\u001b[39m(page)\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                    \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 31 |\u001b[39m         actionsPage \u001b[33m=\u001b[39m \u001b[36mnew\u001b[39m \u001b[33mActionsPage\u001b[39m(page)\u001b[33m;\u001b[39m\n \u001b[90m 32 |\u001b[39m         adminPage \u001b[33m=\u001b[39m \u001b[36mnew\u001b[39m \u001b[33mAdminPage\u001b[39m(page)\u001b[33m;\u001b[39m\n \u001b[90m 33 |\u001b[39m         clientsPage \u001b[33m=\u001b[39m \u001b[36mnew\u001b[39m \u001b[33mClientsPage\u001b[39m(page)\u001b[33m;\u001b[39m\u001b[0m\n\u001b[2m    at C:\\Git\\AB.HarvestTester\\test-output\\tests\\ui\\pages-ui-case-1.ui.spec.ts:30:20\u001b[22m"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-05-26T07:19:31.782Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "C:\\Git\\AB.HarvestTester\\test-output\\test-results\\ui-pages-ui-case-1.ui-UI-Tests-Home-Page-loads-chromium\\test-failed-1.png"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "C:\\Git\\AB.HarvestTester\\test-output\\test-results\\ui-pages-ui-case-1.ui-UI-Tests-Home-Page-loads-chromium\\error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "C:\\Git\\AB.HarvestTester\\test-output\\tests\\ui\\pages-ui-case-1.ui.spec.ts",
+                        "column": 20,
+                        "line": 30
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "f291dc7c2f63c2974378-80803ca2feec69056f9f",
+              "file": "ui/pages-ui-case-1.ui.spec.ts",
+              "line": 43,
+              "column": 9
+            },
+            {
+              "title": "Actions Page loads",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 9,
+                      "parallelIndex": 9,
+                      "status": "failed",
+                      "duration": 1342,
+                      "error": {
+                        "message": "TypeError: _pagesUiCase.HomePage is not a constructor",
+                        "stack": "TypeError: _pagesUiCase.HomePage is not a constructor\n    at C:\\Git\\AB.HarvestTester\\test-output\\tests\\ui\\pages-ui-case-1.ui.spec.ts:30:20",
+                        "location": {
+                          "file": "C:\\Git\\AB.HarvestTester\\test-output\\tests\\ui\\pages-ui-case-1.ui.spec.ts",
+                          "column": 20,
+                          "line": 30
+                        },
+                        "snippet": "\u001b[0m \u001b[90m 28 |\u001b[39m\n \u001b[90m 29 |\u001b[39m     test\u001b[33m.\u001b[39mbeforeEach(\u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 30 |\u001b[39m         homePage \u001b[33m=\u001b[39m \u001b[36mnew\u001b[39m \u001b[33mHomePage\u001b[39m(page)\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                    \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 31 |\u001b[39m         actionsPage \u001b[33m=\u001b[39m \u001b[36mnew\u001b[39m \u001b[33mActionsPage\u001b[39m(page)\u001b[33m;\u001b[39m\n \u001b[90m 32 |\u001b[39m         adminPage \u001b[33m=\u001b[39m \u001b[36mnew\u001b[39m \u001b[33mAdminPage\u001b[39m(page)\u001b[33m;\u001b[39m\n \u001b[90m 33 |\u001b[39m         clientsPage \u001b[33m=\u001b[39m \u001b[36mnew\u001b[39m \u001b[33mClientsPage\u001b[39m(page)\u001b[33m;\u001b[39m\u001b[0m"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "C:\\Git\\AB.HarvestTester\\test-output\\tests\\ui\\pages-ui-case-1.ui.spec.ts",
+                            "column": 20,
+                            "line": 30
+                          },
+                          "message": "TypeError: _pagesUiCase.HomePage is not a constructor\n\n\u001b[0m \u001b[90m 28 |\u001b[39m\n \u001b[90m 29 |\u001b[39m     test\u001b[33m.\u001b[39mbeforeEach(\u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 30 |\u001b[39m         homePage \u001b[33m=\u001b[39m \u001b[36mnew\u001b[39m \u001b[33mHomePage\u001b[39m(page)\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                    \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 31 |\u001b[39m         actionsPage \u001b[33m=\u001b[39m \u001b[36mnew\u001b[39m \u001b[33mActionsPage\u001b[39m(page)\u001b[33m;\u001b[39m\n \u001b[90m 32 |\u001b[39m         adminPage \u001b[33m=\u001b[39m \u001b[36mnew\u001b[39m \u001b[33mAdminPage\u001b[39m(page)\u001b[33m;\u001b[39m\n \u001b[90m 33 |\u001b[39m         clientsPage \u001b[33m=\u001b[39m \u001b[36mnew\u001b[39m \u001b[33mClientsPage\u001b[39m(page)\u001b[33m;\u001b[39m\u001b[0m\n\u001b[2m    at C:\\Git\\AB.HarvestTester\\test-output\\tests\\ui\\pages-ui-case-1.ui.spec.ts:30:20\u001b[22m"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-05-26T07:19:31.752Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "C:\\Git\\AB.HarvestTester\\test-output\\test-results\\ui-pages-ui-case-1.ui-UI-Tests-Actions-Page-loads-chromium\\test-failed-1.png"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "C:\\Git\\AB.HarvestTester\\test-output\\test-results\\ui-pages-ui-case-1.ui-UI-Tests-Actions-Page-loads-chromium\\error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "C:\\Git\\AB.HarvestTester\\test-output\\tests\\ui\\pages-ui-case-1.ui.spec.ts",
+                        "column": 20,
+                        "line": 30
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "f291dc7c2f63c2974378-33ea92e1387611e7dcb1",
+              "file": "ui/pages-ui-case-1.ui.spec.ts",
+              "line": 49,
+              "column": 9
+            },
+            {
+              "title": "Admin Page loads",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 10,
+                      "parallelIndex": 6,
+                      "status": "failed",
+                      "duration": 812,
+                      "error": {
+                        "message": "TypeError: _pagesUiCase.HomePage is not a constructor",
+                        "stack": "TypeError: _pagesUiCase.HomePage is not a constructor\n    at C:\\Git\\AB.HarvestTester\\test-output\\tests\\ui\\pages-ui-case-1.ui.spec.ts:30:20",
+                        "location": {
+                          "file": "C:\\Git\\AB.HarvestTester\\test-output\\tests\\ui\\pages-ui-case-1.ui.spec.ts",
+                          "column": 20,
+                          "line": 30
+                        },
+                        "snippet": "\u001b[0m \u001b[90m 28 |\u001b[39m\n \u001b[90m 29 |\u001b[39m     test\u001b[33m.\u001b[39mbeforeEach(\u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 30 |\u001b[39m         homePage \u001b[33m=\u001b[39m \u001b[36mnew\u001b[39m \u001b[33mHomePage\u001b[39m(page)\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                    \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 31 |\u001b[39m         actionsPage \u001b[33m=\u001b[39m \u001b[36mnew\u001b[39m \u001b[33mActionsPage\u001b[39m(page)\u001b[33m;\u001b[39m\n \u001b[90m 32 |\u001b[39m         adminPage \u001b[33m=\u001b[39m \u001b[36mnew\u001b[39m \u001b[33mAdminPage\u001b[39m(page)\u001b[33m;\u001b[39m\n \u001b[90m 33 |\u001b[39m         clientsPage \u001b[33m=\u001b[39m \u001b[36mnew\u001b[39m \u001b[33mClientsPage\u001b[39m(page)\u001b[33m;\u001b[39m\u001b[0m"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "C:\\Git\\AB.HarvestTester\\test-output\\tests\\ui\\pages-ui-case-1.ui.spec.ts",
+                            "column": 20,
+                            "line": 30
+                          },
+                          "message": "TypeError: _pagesUiCase.HomePage is not a constructor\n\n\u001b[0m \u001b[90m 28 |\u001b[39m\n \u001b[90m 29 |\u001b[39m     test\u001b[33m.\u001b[39mbeforeEach(\u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 30 |\u001b[39m         homePage \u001b[33m=\u001b[39m \u001b[36mnew\u001b[39m \u001b[33mHomePage\u001b[39m(page)\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                    \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 31 |\u001b[39m         actionsPage \u001b[33m=\u001b[39m \u001b[36mnew\u001b[39m \u001b[33mActionsPage\u001b[39m(page)\u001b[33m;\u001b[39m\n \u001b[90m 32 |\u001b[39m         adminPage \u001b[33m=\u001b[39m \u001b[36mnew\u001b[39m \u001b[33mAdminPage\u001b[39m(page)\u001b[33m;\u001b[39m\n \u001b[90m 33 |\u001b[39m         clientsPage \u001b[33m=\u001b[39m \u001b[36mnew\u001b[39m \u001b[33mClientsPage\u001b[39m(page)\u001b[33m;\u001b[39m\u001b[0m\n\u001b[2m    at C:\\Git\\AB.HarvestTester\\test-output\\tests\\ui\\pages-ui-case-1.ui.spec.ts:30:20\u001b[22m"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-05-26T07:19:33.337Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "C:\\Git\\AB.HarvestTester\\test-output\\test-results\\ui-pages-ui-case-1.ui-UI-Tests-Admin-Page-loads-chromium\\test-failed-1.png"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "C:\\Git\\AB.HarvestTester\\test-output\\test-results\\ui-pages-ui-case-1.ui-UI-Tests-Admin-Page-loads-chromium\\error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "C:\\Git\\AB.HarvestTester\\test-output\\tests\\ui\\pages-ui-case-1.ui.spec.ts",
+                        "column": 20,
+                        "line": 30
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "f291dc7c2f63c2974378-4eb29b685f7390e8b972",
+              "file": "ui/pages-ui-case-1.ui.spec.ts",
+              "line": 55,
+              "column": 9
+            },
+            {
+              "title": "Clients Page loads",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 11,
+                      "parallelIndex": 7,
+                      "status": "failed",
+                      "duration": 755,
+                      "error": {
+                        "message": "TypeError: _pagesUiCase.HomePage is not a constructor",
+                        "stack": "TypeError: _pagesUiCase.HomePage is not a constructor\n    at C:\\Git\\AB.HarvestTester\\test-output\\tests\\ui\\pages-ui-case-1.ui.spec.ts:30:20",
+                        "location": {
+                          "file": "C:\\Git\\AB.HarvestTester\\test-output\\tests\\ui\\pages-ui-case-1.ui.spec.ts",
+                          "column": 20,
+                          "line": 30
+                        },
+                        "snippet": "\u001b[0m \u001b[90m 28 |\u001b[39m\n \u001b[90m 29 |\u001b[39m     test\u001b[33m.\u001b[39mbeforeEach(\u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 30 |\u001b[39m         homePage \u001b[33m=\u001b[39m \u001b[36mnew\u001b[39m \u001b[33mHomePage\u001b[39m(page)\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                    \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 31 |\u001b[39m         actionsPage \u001b[33m=\u001b[39m \u001b[36mnew\u001b[39m \u001b[33mActionsPage\u001b[39m(page)\u001b[33m;\u001b[39m\n \u001b[90m 32 |\u001b[39m         adminPage \u001b[33m=\u001b[39m \u001b[36mnew\u001b[39m \u001b[33mAdminPage\u001b[39m(page)\u001b[33m;\u001b[39m\n \u001b[90m 33 |\u001b[39m         clientsPage \u001b[33m=\u001b[39m \u001b[36mnew\u001b[39m \u001b[33mClientsPage\u001b[39m(page)\u001b[33m;\u001b[39m\u001b[0m"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "C:\\Git\\AB.HarvestTester\\test-output\\tests\\ui\\pages-ui-case-1.ui.spec.ts",
+                            "column": 20,
+                            "line": 30
+                          },
+                          "message": "TypeError: _pagesUiCase.HomePage is not a constructor\n\n\u001b[0m \u001b[90m 28 |\u001b[39m\n \u001b[90m 29 |\u001b[39m     test\u001b[33m.\u001b[39mbeforeEach(\u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 30 |\u001b[39m         homePage \u001b[33m=\u001b[39m \u001b[36mnew\u001b[39m \u001b[33mHomePage\u001b[39m(page)\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                    \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 31 |\u001b[39m         actionsPage \u001b[33m=\u001b[39m \u001b[36mnew\u001b[39m \u001b[33mActionsPage\u001b[39m(page)\u001b[33m;\u001b[39m\n \u001b[90m 32 |\u001b[39m         adminPage \u001b[33m=\u001b[39m \u001b[36mnew\u001b[39m \u001b[33mAdminPage\u001b[39m(page)\u001b[33m;\u001b[39m\n \u001b[90m 33 |\u001b[39m         clientsPage \u001b[33m=\u001b[39m \u001b[36mnew\u001b[39m \u001b[33mClientsPage\u001b[39m(page)\u001b[33m;\u001b[39m\u001b[0m\n\u001b[2m    at C:\\Git\\AB.HarvestTester\\test-output\\tests\\ui\\pages-ui-case-1.ui.spec.ts:30:20\u001b[22m"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-05-26T07:19:33.397Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "C:\\Git\\AB.HarvestTester\\test-output\\test-results\\ui-pages-ui-case-1.ui-UI-Tests-Clients-Page-loads-chromium\\test-failed-1.png"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "C:\\Git\\AB.HarvestTester\\test-output\\test-results\\ui-pages-ui-case-1.ui-UI-Tests-Clients-Page-loads-chromium\\error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "C:\\Git\\AB.HarvestTester\\test-output\\tests\\ui\\pages-ui-case-1.ui.spec.ts",
+                        "column": 20,
+                        "line": 30
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "f291dc7c2f63c2974378-f47b8ba55137f3f0ca74",
+              "file": "ui/pages-ui-case-1.ui.spec.ts",
+              "line": 61,
+              "column": 9
+            },
+            {
+              "title": "New Client Page loads",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 12,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 886,
+                      "error": {
+                        "message": "TypeError: _pagesUiCase.HomePage is not a constructor",
+                        "stack": "TypeError: _pagesUiCase.HomePage is not a constructor\n    at C:\\Git\\AB.HarvestTester\\test-output\\tests\\ui\\pages-ui-case-1.ui.spec.ts:30:20",
+                        "location": {
+                          "file": "C:\\Git\\AB.HarvestTester\\test-output\\tests\\ui\\pages-ui-case-1.ui.spec.ts",
+                          "column": 20,
+                          "line": 30
+                        },
+                        "snippet": "\u001b[0m \u001b[90m 28 |\u001b[39m\n \u001b[90m 29 |\u001b[39m     test\u001b[33m.\u001b[39mbeforeEach(\u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 30 |\u001b[39m         homePage \u001b[33m=\u001b[39m \u001b[36mnew\u001b[39m \u001b[33mHomePage\u001b[39m(page)\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                    \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 31 |\u001b[39m         actionsPage \u001b[33m=\u001b[39m \u001b[36mnew\u001b[39m \u001b[33mActionsPage\u001b[39m(page)\u001b[33m;\u001b[39m\n \u001b[90m 32 |\u001b[39m         adminPage \u001b[33m=\u001b[39m \u001b[36mnew\u001b[39m \u001b[33mAdminPage\u001b[39m(page)\u001b[33m;\u001b[39m\n \u001b[90m 33 |\u001b[39m         clientsPage \u001b[33m=\u001b[39m \u001b[36mnew\u001b[39m \u001b[33mClientsPage\u001b[39m(page)\u001b[33m;\u001b[39m\u001b[0m"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "C:\\Git\\AB.HarvestTester\\test-output\\tests\\ui\\pages-ui-case-1.ui.spec.ts",
+                            "column": 20,
+                            "line": 30
+                          },
+                          "message": "TypeError: _pagesUiCase.HomePage is not a constructor\n\n\u001b[0m \u001b[90m 28 |\u001b[39m\n \u001b[90m 29 |\u001b[39m     test\u001b[33m.\u001b[39mbeforeEach(\u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 30 |\u001b[39m         homePage \u001b[33m=\u001b[39m \u001b[36mnew\u001b[39m \u001b[33mHomePage\u001b[39m(page)\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                    \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 31 |\u001b[39m         actionsPage \u001b[33m=\u001b[39m \u001b[36mnew\u001b[39m \u001b[33mActionsPage\u001b[39m(page)\u001b[33m;\u001b[39m\n \u001b[90m 32 |\u001b[39m         adminPage \u001b[33m=\u001b[39m \u001b[36mnew\u001b[39m \u001b[33mAdminPage\u001b[39m(page)\u001b[33m;\u001b[39m\n \u001b[90m 33 |\u001b[39m         clientsPage \u001b[33m=\u001b[39m \u001b[36mnew\u001b[39m \u001b[33mClientsPage\u001b[39m(page)\u001b[33m;\u001b[39m\u001b[0m\n\u001b[2m    at C:\\Git\\AB.HarvestTester\\test-output\\tests\\ui\\pages-ui-case-1.ui.spec.ts:30:20\u001b[22m"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-05-26T07:19:33.323Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "C:\\Git\\AB.HarvestTester\\test-output\\test-results\\ui-pages-ui-case-1.ui-UI-Tests-New-Client-Page-loads-chromium\\test-failed-1.png"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "C:\\Git\\AB.HarvestTester\\test-output\\test-results\\ui-pages-ui-case-1.ui-UI-Tests-New-Client-Page-loads-chromium\\error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "C:\\Git\\AB.HarvestTester\\test-output\\tests\\ui\\pages-ui-case-1.ui.spec.ts",
+                        "column": 20,
+                        "line": 30
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "f291dc7c2f63c2974378-202ed136ad9122bd9df0",
+              "file": "ui/pages-ui-case-1.ui.spec.ts",
+              "line": 67,
+              "column": 9
+            },
+            {
+              "title": "Dashboard Page loads",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 13,
+                      "parallelIndex": 1,
+                      "status": "failed",
+                      "duration": 731,
+                      "error": {
+                        "message": "TypeError: _pagesUiCase.HomePage is not a constructor",
+                        "stack": "TypeError: _pagesUiCase.HomePage is not a constructor\n    at C:\\Git\\AB.HarvestTester\\test-output\\tests\\ui\\pages-ui-case-1.ui.spec.ts:30:20",
+                        "location": {
+                          "file": "C:\\Git\\AB.HarvestTester\\test-output\\tests\\ui\\pages-ui-case-1.ui.spec.ts",
+                          "column": 20,
+                          "line": 30
+                        },
+                        "snippet": "\u001b[0m \u001b[90m 28 |\u001b[39m\n \u001b[90m 29 |\u001b[39m     test\u001b[33m.\u001b[39mbeforeEach(\u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 30 |\u001b[39m         homePage \u001b[33m=\u001b[39m \u001b[36mnew\u001b[39m \u001b[33mHomePage\u001b[39m(page)\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                    \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 31 |\u001b[39m         actionsPage \u001b[33m=\u001b[39m \u001b[36mnew\u001b[39m \u001b[33mActionsPage\u001b[39m(page)\u001b[33m;\u001b[39m\n \u001b[90m 32 |\u001b[39m         adminPage \u001b[33m=\u001b[39m \u001b[36mnew\u001b[39m \u001b[33mAdminPage\u001b[39m(page)\u001b[33m;\u001b[39m\n \u001b[90m 33 |\u001b[39m         clientsPage \u001b[33m=\u001b[39m \u001b[36mnew\u001b[39m \u001b[33mClientsPage\u001b[39m(page)\u001b[33m;\u001b[39m\u001b[0m"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "C:\\Git\\AB.HarvestTester\\test-output\\tests\\ui\\pages-ui-case-1.ui.spec.ts",
+                            "column": 20,
+                            "line": 30
+                          },
+                          "message": "TypeError: _pagesUiCase.HomePage is not a constructor\n\n\u001b[0m \u001b[90m 28 |\u001b[39m\n \u001b[90m 29 |\u001b[39m     test\u001b[33m.\u001b[39mbeforeEach(\u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 30 |\u001b[39m         homePage \u001b[33m=\u001b[39m \u001b[36mnew\u001b[39m \u001b[33mHomePage\u001b[39m(page)\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                    \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 31 |\u001b[39m         actionsPage \u001b[33m=\u001b[39m \u001b[36mnew\u001b[39m \u001b[33mActionsPage\u001b[39m(page)\u001b[33m;\u001b[39m\n \u001b[90m 32 |\u001b[39m         adminPage \u001b[33m=\u001b[39m \u001b[36mnew\u001b[39m \u001b[33mAdminPage\u001b[39m(page)\u001b[33m;\u001b[39m\n \u001b[90m 33 |\u001b[39m         clientsPage \u001b[33m=\u001b[39m \u001b[36mnew\u001b[39m \u001b[33mClientsPage\u001b[39m(page)\u001b[33m;\u001b[39m\u001b[0m\n\u001b[2m    at C:\\Git\\AB.HarvestTester\\test-output\\tests\\ui\\pages-ui-case-1.ui.spec.ts:30:20\u001b[22m"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-05-26T07:19:33.408Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "C:\\Git\\AB.HarvestTester\\test-output\\test-results\\ui-pages-ui-case-1.ui-UI-Tests-Dashboard-Page-loads-chromium\\test-failed-1.png"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "C:\\Git\\AB.HarvestTester\\test-output\\test-results\\ui-pages-ui-case-1.ui-UI-Tests-Dashboard-Page-loads-chromium\\error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "C:\\Git\\AB.HarvestTester\\test-output\\tests\\ui\\pages-ui-case-1.ui.spec.ts",
+                        "column": 20,
+                        "line": 30
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "f291dc7c2f63c2974378-5b590edd4df02c2da39c",
+              "file": "ui/pages-ui-case-1.ui.spec.ts",
+              "line": 73,
+              "column": 9
+            },
+            {
+              "title": "Help Page loads",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 14,
+                      "parallelIndex": 2,
+                      "status": "failed",
+                      "duration": 828,
+                      "error": {
+                        "message": "TypeError: _pagesUiCase.HomePage is not a constructor",
+                        "stack": "TypeError: _pagesUiCase.HomePage is not a constructor\n    at C:\\Git\\AB.HarvestTester\\test-output\\tests\\ui\\pages-ui-case-1.ui.spec.ts:30:20",
+                        "location": {
+                          "file": "C:\\Git\\AB.HarvestTester\\test-output\\tests\\ui\\pages-ui-case-1.ui.spec.ts",
+                          "column": 20,
+                          "line": 30
+                        },
+                        "snippet": "\u001b[0m \u001b[90m 28 |\u001b[39m\n \u001b[90m 29 |\u001b[39m     test\u001b[33m.\u001b[39mbeforeEach(\u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 30 |\u001b[39m         homePage \u001b[33m=\u001b[39m \u001b[36mnew\u001b[39m \u001b[33mHomePage\u001b[39m(page)\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                    \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 31 |\u001b[39m         actionsPage \u001b[33m=\u001b[39m \u001b[36mnew\u001b[39m \u001b[33mActionsPage\u001b[39m(page)\u001b[33m;\u001b[39m\n \u001b[90m 32 |\u001b[39m         adminPage \u001b[33m=\u001b[39m \u001b[36mnew\u001b[39m \u001b[33mAdminPage\u001b[39m(page)\u001b[33m;\u001b[39m\n \u001b[90m 33 |\u001b[39m         clientsPage \u001b[33m=\u001b[39m \u001b[36mnew\u001b[39m \u001b[33mClientsPage\u001b[39m(page)\u001b[33m;\u001b[39m\u001b[0m"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "C:\\Git\\AB.HarvestTester\\test-output\\tests\\ui\\pages-ui-case-1.ui.spec.ts",
+                            "column": 20,
+                            "line": 30
+                          },
+                          "message": "TypeError: _pagesUiCase.HomePage is not a constructor\n\n\u001b[0m \u001b[90m 28 |\u001b[39m\n \u001b[90m 29 |\u001b[39m     test\u001b[33m.\u001b[39mbeforeEach(\u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 30 |\u001b[39m         homePage \u001b[33m=\u001b[39m \u001b[36mnew\u001b[39m \u001b[33mHomePage\u001b[39m(page)\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                    \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 31 |\u001b[39m         actionsPage \u001b[33m=\u001b[39m \u001b[36mnew\u001b[39m \u001b[33mActionsPage\u001b[39m(page)\u001b[33m;\u001b[39m\n \u001b[90m 32 |\u001b[39m         adminPage \u001b[33m=\u001b[39m \u001b[36mnew\u001b[39m \u001b[33mAdminPage\u001b[39m(page)\u001b[33m;\u001b[39m\n \u001b[90m 33 |\u001b[39m         clientsPage \u001b[33m=\u001b[39m \u001b[36mnew\u001b[39m \u001b[33mClientsPage\u001b[39m(page)\u001b[33m;\u001b[39m\u001b[0m\n\u001b[2m    at C:\\Git\\AB.HarvestTester\\test-output\\tests\\ui\\pages-ui-case-1.ui.spec.ts:30:20\u001b[22m"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-05-26T07:19:33.347Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "C:\\Git\\AB.HarvestTester\\test-output\\test-results\\ui-pages-ui-case-1.ui-UI-Tests-Help-Page-loads-chromium\\test-failed-1.png"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "C:\\Git\\AB.HarvestTester\\test-output\\test-results\\ui-pages-ui-case-1.ui-UI-Tests-Help-Page-loads-chromium\\error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "C:\\Git\\AB.HarvestTester\\test-output\\tests\\ui\\pages-ui-case-1.ui.spec.ts",
+                        "column": 20,
+                        "line": 30
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "f291dc7c2f63c2974378-320cfc66b29b42033937",
+              "file": "ui/pages-ui-case-1.ui.spec.ts",
+              "line": 79,
+              "column": 9
+            },
+            {
+              "title": "Login succeeds for Director",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 15,
+                      "parallelIndex": 3,
+                      "status": "failed",
+                      "duration": 690,
+                      "error": {
+                        "message": "TypeError: _pagesUiCase.HomePage is not a constructor",
+                        "stack": "TypeError: _pagesUiCase.HomePage is not a constructor\n    at C:\\Git\\AB.HarvestTester\\test-output\\tests\\ui\\pages-ui-case-1.ui.spec.ts:30:20",
+                        "location": {
+                          "file": "C:\\Git\\AB.HarvestTester\\test-output\\tests\\ui\\pages-ui-case-1.ui.spec.ts",
+                          "column": 20,
+                          "line": 30
+                        },
+                        "snippet": "\u001b[0m \u001b[90m 28 |\u001b[39m\n \u001b[90m 29 |\u001b[39m     test\u001b[33m.\u001b[39mbeforeEach(\u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 30 |\u001b[39m         homePage \u001b[33m=\u001b[39m \u001b[36mnew\u001b[39m \u001b[33mHomePage\u001b[39m(page)\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                    \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 31 |\u001b[39m         actionsPage \u001b[33m=\u001b[39m \u001b[36mnew\u001b[39m \u001b[33mActionsPage\u001b[39m(page)\u001b[33m;\u001b[39m\n \u001b[90m 32 |\u001b[39m         adminPage \u001b[33m=\u001b[39m \u001b[36mnew\u001b[39m \u001b[33mAdminPage\u001b[39m(page)\u001b[33m;\u001b[39m\n \u001b[90m 33 |\u001b[39m         clientsPage \u001b[33m=\u001b[39m \u001b[36mnew\u001b[39m \u001b[33mClientsPage\u001b[39m(page)\u001b[33m;\u001b[39m\u001b[0m"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "C:\\Git\\AB.HarvestTester\\test-output\\tests\\ui\\pages-ui-case-1.ui.spec.ts",
+                            "column": 20,
+                            "line": 30
+                          },
+                          "message": "TypeError: _pagesUiCase.HomePage is not a constructor\n\n\u001b[0m \u001b[90m 28 |\u001b[39m\n \u001b[90m 29 |\u001b[39m     test\u001b[33m.\u001b[39mbeforeEach(\u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 30 |\u001b[39m         homePage \u001b[33m=\u001b[39m \u001b[36mnew\u001b[39m \u001b[33mHomePage\u001b[39m(page)\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                    \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 31 |\u001b[39m         actionsPage \u001b[33m=\u001b[39m \u001b[36mnew\u001b[39m \u001b[33mActionsPage\u001b[39m(page)\u001b[33m;\u001b[39m\n \u001b[90m 32 |\u001b[39m         adminPage \u001b[33m=\u001b[39m \u001b[36mnew\u001b[39m \u001b[33mAdminPage\u001b[39m(page)\u001b[33m;\u001b[39m\n \u001b[90m 33 |\u001b[39m         clientsPage \u001b[33m=\u001b[39m \u001b[36mnew\u001b[39m \u001b[33mClientsPage\u001b[39m(page)\u001b[33m;\u001b[39m\u001b[0m\n\u001b[2m    at C:\\Git\\AB.HarvestTester\\test-output\\tests\\ui\\pages-ui-case-1.ui.spec.ts:30:20\u001b[22m"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-05-26T07:19:33.446Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "C:\\Git\\AB.HarvestTester\\test-output\\test-results\\ui-pages-ui-case-1.ui-UI-Tests-Login-succeeds-for-Director-chromium\\test-failed-1.png"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "C:\\Git\\AB.HarvestTester\\test-output\\test-results\\ui-pages-ui-case-1.ui-UI-Tests-Login-succeeds-for-Director-chromium\\error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "C:\\Git\\AB.HarvestTester\\test-output\\tests\\ui\\pages-ui-case-1.ui.spec.ts",
+                        "column": 20,
+                        "line": 30
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "f291dc7c2f63c2974378-5b3bfe9447c584826434",
+              "file": "ui/pages-ui-case-1.ui.spec.ts",
+              "line": 85,
+              "column": 9
+            },
+            {
+              "title": "Portfolio Page loads",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 16,
+                      "parallelIndex": 4,
+                      "status": "failed",
+                      "duration": 659,
+                      "error": {
+                        "message": "TypeError: _pagesUiCase.HomePage is not a constructor",
+                        "stack": "TypeError: _pagesUiCase.HomePage is not a constructor\n    at C:\\Git\\AB.HarvestTester\\test-output\\tests\\ui\\pages-ui-case-1.ui.spec.ts:30:20",
+                        "location": {
+                          "file": "C:\\Git\\AB.HarvestTester\\test-output\\tests\\ui\\pages-ui-case-1.ui.spec.ts",
+                          "column": 20,
+                          "line": 30
+                        },
+                        "snippet": "\u001b[0m \u001b[90m 28 |\u001b[39m\n \u001b[90m 29 |\u001b[39m     test\u001b[33m.\u001b[39mbeforeEach(\u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 30 |\u001b[39m         homePage \u001b[33m=\u001b[39m \u001b[36mnew\u001b[39m \u001b[33mHomePage\u001b[39m(page)\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                    \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 31 |\u001b[39m         actionsPage \u001b[33m=\u001b[39m \u001b[36mnew\u001b[39m \u001b[33mActionsPage\u001b[39m(page)\u001b[33m;\u001b[39m\n \u001b[90m 32 |\u001b[39m         adminPage \u001b[33m=\u001b[39m \u001b[36mnew\u001b[39m \u001b[33mAdminPage\u001b[39m(page)\u001b[33m;\u001b[39m\n \u001b[90m 33 |\u001b[39m         clientsPage \u001b[33m=\u001b[39m \u001b[36mnew\u001b[39m \u001b[33mClientsPage\u001b[39m(page)\u001b[33m;\u001b[39m\u001b[0m"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "C:\\Git\\AB.HarvestTester\\test-output\\tests\\ui\\pages-ui-case-1.ui.spec.ts",
+                            "column": 20,
+                            "line": 30
+                          },
+                          "message": "TypeError: _pagesUiCase.HomePage is not a constructor\n\n\u001b[0m \u001b[90m 28 |\u001b[39m\n \u001b[90m 29 |\u001b[39m     test\u001b[33m.\u001b[39mbeforeEach(\u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 30 |\u001b[39m         homePage \u001b[33m=\u001b[39m \u001b[36mnew\u001b[39m \u001b[33mHomePage\u001b[39m(page)\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                    \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 31 |\u001b[39m         actionsPage \u001b[33m=\u001b[39m \u001b[36mnew\u001b[39m \u001b[33mActionsPage\u001b[39m(page)\u001b[33m;\u001b[39m\n \u001b[90m 32 |\u001b[39m         adminPage \u001b[33m=\u001b[39m \u001b[36mnew\u001b[39m \u001b[33mAdminPage\u001b[39m(page)\u001b[33m;\u001b[39m\n \u001b[90m 33 |\u001b[39m         clientsPage \u001b[33m=\u001b[39m \u001b[36mnew\u001b[39m \u001b[33mClientsPage\u001b[39m(page)\u001b[33m;\u001b[39m\u001b[0m\n\u001b[2m    at C:\\Git\\AB.HarvestTester\\test-output\\tests\\ui\\pages-ui-case-1.ui.spec.ts:30:20\u001b[22m"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-05-26T07:19:33.451Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "C:\\Git\\AB.HarvestTester\\test-output\\test-results\\ui-pages-ui-case-1.ui-UI-Tests-Portfolio-Page-loads-chromium\\test-failed-1.png"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "C:\\Git\\AB.HarvestTester\\test-output\\test-results\\ui-pages-ui-case-1.ui-UI-Tests-Portfolio-Page-loads-chromium\\error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "C:\\Git\\AB.HarvestTester\\test-output\\tests\\ui\\pages-ui-case-1.ui.spec.ts",
+                        "column": 20,
+                        "line": 30
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "f291dc7c2f63c2974378-b390db38a9666439602c",
+              "file": "ui/pages-ui-case-1.ui.spec.ts",
+              "line": 91,
+              "column": 9
+            },
+            {
+              "title": "Profile Page loads",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 17,
+                      "parallelIndex": 5,
+                      "status": "failed",
+                      "duration": 656,
+                      "error": {
+                        "message": "TypeError: _pagesUiCase.HomePage is not a constructor",
+                        "stack": "TypeError: _pagesUiCase.HomePage is not a constructor\n    at C:\\Git\\AB.HarvestTester\\test-output\\tests\\ui\\pages-ui-case-1.ui.spec.ts:30:20",
+                        "location": {
+                          "file": "C:\\Git\\AB.HarvestTester\\test-output\\tests\\ui\\pages-ui-case-1.ui.spec.ts",
+                          "column": 20,
+                          "line": 30
+                        },
+                        "snippet": "\u001b[0m \u001b[90m 28 |\u001b[39m\n \u001b[90m 29 |\u001b[39m     test\u001b[33m.\u001b[39mbeforeEach(\u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 30 |\u001b[39m         homePage \u001b[33m=\u001b[39m \u001b[36mnew\u001b[39m \u001b[33mHomePage\u001b[39m(page)\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                    \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 31 |\u001b[39m         actionsPage \u001b[33m=\u001b[39m \u001b[36mnew\u001b[39m \u001b[33mActionsPage\u001b[39m(page)\u001b[33m;\u001b[39m\n \u001b[90m 32 |\u001b[39m         adminPage \u001b[33m=\u001b[39m \u001b[36mnew\u001b[39m \u001b[33mAdminPage\u001b[39m(page)\u001b[33m;\u001b[39m\n \u001b[90m 33 |\u001b[39m         clientsPage \u001b[33m=\u001b[39m \u001b[36mnew\u001b[39m \u001b[33mClientsPage\u001b[39m(page)\u001b[33m;\u001b[39m\u001b[0m"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "C:\\Git\\AB.HarvestTester\\test-output\\tests\\ui\\pages-ui-case-1.ui.spec.ts",
+                            "column": 20,
+                            "line": 30
+                          },
+                          "message": "TypeError: _pagesUiCase.HomePage is not a constructor\n\n\u001b[0m \u001b[90m 28 |\u001b[39m\n \u001b[90m 29 |\u001b[39m     test\u001b[33m.\u001b[39mbeforeEach(\u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 30 |\u001b[39m         homePage \u001b[33m=\u001b[39m \u001b[36mnew\u001b[39m \u001b[33mHomePage\u001b[39m(page)\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                    \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 31 |\u001b[39m         actionsPage \u001b[33m=\u001b[39m \u001b[36mnew\u001b[39m \u001b[33mActionsPage\u001b[39m(page)\u001b[33m;\u001b[39m\n \u001b[90m 32 |\u001b[39m         adminPage \u001b[33m=\u001b[39m \u001b[36mnew\u001b[39m \u001b[33mAdminPage\u001b[39m(page)\u001b[33m;\u001b[39m\n \u001b[90m 33 |\u001b[39m         clientsPage \u001b[33m=\u001b[39m \u001b[36mnew\u001b[39m \u001b[33mClientsPage\u001b[39m(page)\u001b[33m;\u001b[39m\u001b[0m\n\u001b[2m    at C:\\Git\\AB.HarvestTester\\test-output\\tests\\ui\\pages-ui-case-1.ui.spec.ts:30:20\u001b[22m"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-05-26T07:19:33.449Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "C:\\Git\\AB.HarvestTester\\test-output\\test-results\\ui-pages-ui-case-1.ui-UI-Tests-Profile-Page-loads-chromium\\test-failed-1.png"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "C:\\Git\\AB.HarvestTester\\test-output\\test-results\\ui-pages-ui-case-1.ui-UI-Tests-Profile-Page-loads-chromium\\error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "C:\\Git\\AB.HarvestTester\\test-output\\tests\\ui\\pages-ui-case-1.ui.spec.ts",
+                        "column": 20,
+                        "line": 30
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "f291dc7c2f63c2974378-ca5298139f5a78965e27",
+              "file": "ui/pages-ui-case-1.ui.spec.ts",
+              "line": 97,
+              "column": 9
+            },
+            {
+              "title": "Projects Page loads",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 18,
+                      "parallelIndex": 8,
+                      "status": "failed",
+                      "duration": 224,
+                      "error": {
+                        "message": "TypeError: _pagesUiCase.HomePage is not a constructor",
+                        "stack": "TypeError: _pagesUiCase.HomePage is not a constructor\n    at C:\\Git\\AB.HarvestTester\\test-output\\tests\\ui\\pages-ui-case-1.ui.spec.ts:30:20",
+                        "location": {
+                          "file": "C:\\Git\\AB.HarvestTester\\test-output\\tests\\ui\\pages-ui-case-1.ui.spec.ts",
+                          "column": 20,
+                          "line": 30
+                        },
+                        "snippet": "\u001b[0m \u001b[90m 28 |\u001b[39m\n \u001b[90m 29 |\u001b[39m     test\u001b[33m.\u001b[39mbeforeEach(\u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 30 |\u001b[39m         homePage \u001b[33m=\u001b[39m \u001b[36mnew\u001b[39m \u001b[33mHomePage\u001b[39m(page)\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                    \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 31 |\u001b[39m         actionsPage \u001b[33m=\u001b[39m \u001b[36mnew\u001b[39m \u001b[33mActionsPage\u001b[39m(page)\u001b[33m;\u001b[39m\n \u001b[90m 32 |\u001b[39m         adminPage \u001b[33m=\u001b[39m \u001b[36mnew\u001b[39m \u001b[33mAdminPage\u001b[39m(page)\u001b[33m;\u001b[39m\n \u001b[90m 33 |\u001b[39m         clientsPage \u001b[33m=\u001b[39m \u001b[36mnew\u001b[39m \u001b[33mClientsPage\u001b[39m(page)\u001b[33m;\u001b[39m\u001b[0m"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "C:\\Git\\AB.HarvestTester\\test-output\\tests\\ui\\pages-ui-case-1.ui.spec.ts",
+                            "column": 20,
+                            "line": 30
+                          },
+                          "message": "TypeError: _pagesUiCase.HomePage is not a constructor\n\n\u001b[0m \u001b[90m 28 |\u001b[39m\n \u001b[90m 29 |\u001b[39m     test\u001b[33m.\u001b[39mbeforeEach(\u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 30 |\u001b[39m         homePage \u001b[33m=\u001b[39m \u001b[36mnew\u001b[39m \u001b[33mHomePage\u001b[39m(page)\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                    \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 31 |\u001b[39m         actionsPage \u001b[33m=\u001b[39m \u001b[36mnew\u001b[39m \u001b[33mActionsPage\u001b[39m(page)\u001b[33m;\u001b[39m\n \u001b[90m 32 |\u001b[39m         adminPage \u001b[33m=\u001b[39m \u001b[36mnew\u001b[39m \u001b[33mAdminPage\u001b[39m(page)\u001b[33m;\u001b[39m\n \u001b[90m 33 |\u001b[39m         clientsPage \u001b[33m=\u001b[39m \u001b[36mnew\u001b[39m \u001b[33mClientsPage\u001b[39m(page)\u001b[33m;\u001b[39m\u001b[0m\n\u001b[2m    at C:\\Git\\AB.HarvestTester\\test-output\\tests\\ui\\pages-ui-case-1.ui.spec.ts:30:20\u001b[22m"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-05-26T07:19:34.999Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "C:\\Git\\AB.HarvestTester\\test-output\\test-results\\ui-pages-ui-case-1.ui-UI-Tests-Projects-Page-loads-chromium\\test-failed-1.png"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "C:\\Git\\AB.HarvestTester\\test-output\\test-results\\ui-pages-ui-case-1.ui-UI-Tests-Projects-Page-loads-chromium\\error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "C:\\Git\\AB.HarvestTester\\test-output\\tests\\ui\\pages-ui-case-1.ui.spec.ts",
+                        "column": 20,
+                        "line": 30
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "f291dc7c2f63c2974378-fa633912f52b45668e0f",
+              "file": "ui/pages-ui-case-1.ui.spec.ts",
+              "line": 103,
+              "column": 9
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-05-26T07:19:30.590Z",
+    "duration": 4882.985000000001,
+    "expected": 0,
+    "skipped": 0,
+    "unexpected": 19,
+    "flaky": 0
+  }
+}
