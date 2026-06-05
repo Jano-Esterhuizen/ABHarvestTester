@@ -45,21 +45,25 @@ class ReviewerCrew:
         )
 
 
-def _run_tests(output_dir: str) -> tuple[str, list[dict]]:
+def _run_tests(output_dir: str, skip_fe: bool = False, base_url: str = "http://localhost:3000") -> tuple[str, list[dict]]:
     """Run Playwright tests via subprocess, return (raw_output, results)."""
     test_dir = os.path.join(output_dir, "tests")
     if not os.path.isdir(test_dir):
         return "No tests directory found", []
 
     try:
+        cmd = "npx playwright test --reporter=json"
+        if skip_fe:
+            cmd = "npx playwright test tests/api --reporter=json"
+
         result = subprocess.run(
-            "npx playwright test --reporter=json",
+            cmd,
             cwd=output_dir,
             capture_output=True,
             text=True,
             timeout=120,
             shell=True,
-            env={**os.environ, "BASE_URL": os.environ.get("BASE_URL", "http://localhost:3000")},
+            env={**os.environ, "BASE_URL": base_url or os.environ.get("BASE_URL", "http://localhost:3000")},
         )
         raw = result.stdout + result.stderr
 
@@ -94,7 +98,11 @@ def _run_tests(output_dir: str) -> tuple[str, list[dict]]:
 
 def run_reviewer(state: TestForgeState) -> None:
     """Run tests, then use LLM only if there are failures to analyze."""
-    raw_output, results = _run_tests(state.output_dir)
+    raw_output, results = _run_tests(
+        state.output_dir,
+        skip_fe=state.skip_fe,
+        base_url=state.app_url,
+    )
     state.test_results = results
 
     failures = [r for r in results if r["status"] != "passed"]

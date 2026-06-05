@@ -3,12 +3,20 @@ write_be_tests:
     Write Playwright API tests (.spec.ts) for these endpoints.
 
     APP URL: {app_url}
+    AUTH ENABLED: {auth_enabled}
+    AUTHENTICATION: {auth_note}
     ROLES: {roles}
     CREDENTIALS: {credentials}
+
     LOGIN CONTRACT:
     - login_url_path: {login_url_path}
     - username_field: {login_username_field}
     - password_field: {login_password_field}
+
+    AUTH BRANCHING RULE:
+    - If AUTH ENABLED is "no": do not generate login/auth/token code, do not add Authorization headers,
+      do not use UI locators/selectors, and call endpoints directly with Playwright request fixture.
+    - If AUTH ENABLED is "yes": use LOGIN CONTRACT and role credentials for auth-related tests.
 
     ENDPOINTS TO TEST:
     {api_chunk}
@@ -19,15 +27,15 @@ write_be_tests:
 
     Rules:
     - Use Playwright request fixture, no external HTTP libs, and never import request from @playwright/test
-    - Build login payload keys EXACTLY from LOGIN CONTRACT (for example use email when username_field=email)
-    - beforeAll: login to get token, set baseURL from process.env.BASE_URL
+    - If AUTH ENABLED is "yes": Build login payload keys EXACTLY from LOGIN CONTRACT,
+      perform login in beforeAll, and test role-based access.
+    - If AUTH ENABLED is "no": NO login required and NO Authorization headers.
+    - Never call request.setBaseURL(...) or request.newContext(...) on Playwright request fixture.
+      Use absolute URLs built from BASE_URL (for example BASE_URL + '/api/cities')
+      or set use.baseURL in Playwright config.
     - AAA pattern: Arrange (create data via API), Act, Assert
-    - Test each role that should/shouldn't have access
     - expect() for status codes, expect.soft() for body shape
-    - For invalid-login scenarios, assert unauthorized via `expect([400, 401]).toContain(response.status())`
-      and assert an error/message field exists in response body
     - Always `await response.json()` before reading body properties
-    - Use credentials supplied in CREDENTIALS context for login tests, do not invent users
     - Output ONE complete .spec.ts file
     - HARD LIMIT: maximum 2 test cases per endpoint — pick the 2 highest priority (P0 first, then P1)
 

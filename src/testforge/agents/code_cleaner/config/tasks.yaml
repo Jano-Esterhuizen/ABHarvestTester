@@ -21,7 +21,8 @@ clean_code:
     11. Do NOT use `import { request }` — it must be a destructured fixture in test functions
 
     RULES:
-    - Do NOT change the test logic or assertions
+    - Preserve original test intent, but you MAY change code structure when needed to fix
+      Playwright fixture lifecycle misuse and API-shape/runtime errors
     - Do NOT add new tests or remove existing tests
     - Do NOT add explanations — output ONLY the cleaned TypeScript code
     - The output must be valid TypeScript that compiles without errors

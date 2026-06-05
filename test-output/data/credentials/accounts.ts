@@ -8,27 +8,6 @@ export interface AccountCredentials {
 }
 
 const accounts: AccountCredentials[] = [
-  {
-    role: UserRole.DIRECTOR,
-    username: process.env.DIRECTOR_USERNAME || "director@abmail.co.za",
-    password: process.env.DIRECTOR_PASSWORD || "Test1234",
-    description: "Sarah Director â€” Director role with highest permissions",
-  },
-
-  {
-    role: UserRole.PM,
-    username: process.env.PM_USERNAME || "pm@abmail.co.za",
-    password: process.env.PM_PASSWORD || "Test1234",
-    description: "James ProjectManager â€” Project Manager role",
-  },
-
-  {
-    role: UserRole.ANALYST,
-    username: process.env.ANALYST_USERNAME || "analyst@abmail.co.za",
-    password: process.env.ANALYST_PASSWORD || "Test1234",
-    description: "Emily Analyst â€” Analyst role with basic permissions",
-  },
-
 ];
 
 export function getAccountByRole(role: string): AccountCredentials {

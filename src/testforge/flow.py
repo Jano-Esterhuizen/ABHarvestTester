@@ -1,6 +1,7 @@
 """TestForge orchestration flow — deterministic Python, no LLM for routing."""
 
 import logging
+import shutil
 from pathlib import Path
 from typing import ClassVar
 
@@ -82,6 +83,7 @@ class TestForgeFlow(Flow[TestForgeState]):
         self.state.output_dir = config.output_dir
         self.state.force = config.force
         self.state.demo = config.demo
+        self.state.skip_fe = config.skip_fe
         self.state.mcp_server_config = config.mcp_server_config
 
         # Set repo path for file tools so relative paths resolve correctly
@@ -94,6 +96,15 @@ class TestForgeFlow(Flow[TestForgeState]):
             logger.info("Existing framework detected — incremental mode")
         else:
             logger.info("No existing framework — full scaffold mode")
+
+        # In API-only mode, remove stale UI/E2E tests from previous runs so they are not executed.
+        if self.state.skip_fe:
+            tests_root = Path(self.state.output_dir) / "tests"
+            for subdir in ("ui", "e2e"):
+                target = tests_root / subdir
+                if target.exists():
+                    shutil.rmtree(target, ignore_errors=True)
+                    logger.info(f"SKIP-FE MODE: removed stale {subdir} tests at {target}")
 
     @listen(load_config)
     def read_repository(self):
@@ -154,11 +165,14 @@ class TestForgeFlow(Flow[TestForgeState]):
 
         # TODO: Run concurrently with asyncio or threading
         run_be_writer(self.state)
-        run_fe_writer(self.state)
-        if not self.state.demo:
-            run_e2e_writer(self.state)
+        if not self.state.skip_fe:
+            run_fe_writer(self.state)
+            if not self.state.demo:
+                run_e2e_writer(self.state)
+            else:
+                logger.info("DEMO MODE: skipping E2E writer")
         else:
-            logger.info("DEMO MODE: skipping E2E writer")
+            logger.info("SKIP-FE MODE: skipping FE and E2E writers")
 
         total = len(self.state.be_tests) + len(self.state.fe_tests) + len(self.state.e2e_tests)
         logger.info(f"Generated {total} test files")
@@ -211,9 +225,14 @@ class TestForgeFlow(Flow[TestForgeState]):
 
         # Re-run writers with feedback context
         run_be_writer(self.state)
-        run_fe_writer(self.state)
-        if not self.state.demo:
-            run_e2e_writer(self.state)
+        if not self.state.skip_fe:
+            run_fe_writer(self.state)
+            if not self.state.demo:
+                run_e2e_writer(self.state)
+            else:
+                logger.info("DEMO MODE: skipping E2E writer")
+        else:
+            logger.info("SKIP-FE MODE: skipping FE and E2E writers during retry")
 
         # Re-apply project boilerplate/bootstrap after regenerated tests
         run_janator(self.state)

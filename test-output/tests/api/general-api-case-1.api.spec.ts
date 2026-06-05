@@ -1,49 +1,33 @@
 import { expect, test } from '@playwright/test';
 
-const BASE_URL = process.env.BASE_URL || 'http://localhost:3000';
+test.describe('API Tests for Automation Playground Application', () => {
+  const BASE_URL = 'http://localhost:8000';
 
-let token: string;
+  test('API-1: Should retrieve all cities', async ({ request }) => {
+    // Arrange
+    // Create any necessary data if required (not specified in the test plan)
+    
+    // Act
+    const response = await request.get(`${BASE_URL}/api/cities`);
 
-async function login(username: string, password: string, request: any) {
-  const response = await request.post(`${BASE_URL}/api/auth/login`, {
-    data: {
-      username,
-      password,
-    },
-  });
-  const body = await response.json();
-  return { token: body.token, status: response.status() };
-}
-
-test.beforeAll(async ({ request }) => {
-  const directorLogin = await login('director@abmail.co.za', 'Test1234', request);
-  token = directorLogin.token;
-});
-
-test.describe('API Tests', () => {
-  test('API-1: Login with valid credentials - Director should succeed', async ({ request }) => {
-    const response = await request.post(`${BASE_URL}/api/auth/login`, {
-      data: {
-        username: 'director@abmail.co.za',
-        password: 'Test1234',
-      },
-    });
-
+    // Assert
     expect(response.status()).toBe(200);
     const body = await response.json();
-    expect.soft(body).toHaveProperty('token');
+    expect(body).toHaveProperty('cities');
+    expect(body.cities).toBeInstanceOf(Array);
   });
 
-  test('API-1: Login with invalid credentials - Should return 401', async ({ request }) => {
-    const response = await request.post(`${BASE_URL}/api/auth/login`, {
-      data: {
-        username: 'invalid@abmail.co.za',
-        password: 'wrongpassword',
-      },
-    });
+  test('API-2: Should return city details for a given city', async ({ request }) => {
+    // Arrange
+    const cityId = 1; // Sample city ID, adjust if necessary
 
-    expect(response.status()).toBe(401);
+    // Act
+    const response = await request.get(`${BASE_URL}/api/cities/${cityId}`);
+
+    // Assert
+    expect(response.status()).toBe(200);
     const body = await response.json();
-    expect.soft(body).toMatchObject({ message: 'Invalid credentials' });
+    expect(body).toHaveProperty('city');
+    expect(body.city.id).toBe(cityId);
   });
 });

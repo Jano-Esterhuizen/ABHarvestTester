@@ -27,6 +27,8 @@ write_fe_tests:
     - Every POM class MUST be declared as `export class XxxPage` and include `constructor(private page: Page)`
     - Spec MUST import each used POM class from the generated POM file and instantiate with `new XxxPage(page)`
     - If multiple page classes are in one POM file, use a single grouped named import line for that file
+    - NEVER instantiate POMs at module scope (no `new XxxPage(page)` outside hooks/tests)
+    - Declare `let xxxPage: XxxPage;` at describe scope and initialize in `beforeEach(async ({ page }) => { ... })`
     - Locators: prefer data-testid, then role, then text content — use REAL selectors from browser_snapshot
     - Wait for network idle or specific element before asserting
     - Test with each specified role (login in beforeAll) using LOGIN CONTRACT fields

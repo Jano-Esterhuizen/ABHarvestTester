@@ -1,0 +1,1609 @@
+Preflight check...
+Preflight OK
+============================================================
+  TestForge ΓÇö Agentic AI Test Orchestration
+============================================================
+  Repo:    C:\Git\PFB\AgileBridseAutomation_nUnit_Intro
+  App URL: http://localhost:5164
+  Output:  C:\Git\AB.HarvestTester\test-output
+  Roles:   none (running without credentials)
+  Force:   False
+  Mode:    SKIP-FE (API-only, no frontend/E2E tests)
+============================================================
+ΓöîΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ ≡ƒîè Flow Execution ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÉ
+Γöé                                                                             Γöé
+Γöé  Starting Flow Execution                                                    Γöé
+Γöé  Name: TestForgeFlow                                                        Γöé
+Γöé  ID: a7b0adaa-909b-4ecc-979e-3fafc3e4b3a6                                   Γöé
+Γöé                                                                             Γöé
+Γöé                                                                             Γöé
+ΓööΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÿ
+
+ΓöîΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ Γ£¿ Update Available Γ£¿ ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÉ
+Γöé                                                                             Γöé
+Γöé  A new version of CrewAI is available!                                      Γöé
+Γöé                                                                             Γöé
+Γöé  Current version: 1.14.5                                                    Γöé
+Γöé  Latest version:  1.14.6                                                    Γöé
+Γöé                                                                             Γöé
+Γöé  To update, run: uv sync --upgrade-package crewai                           Γöé
+Γöé                                                                             Γöé
+ΓööΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÿ
+
+ΓöîΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ ≡ƒîè Flow Started ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÉ
+Γöé                                                                             Γöé
+Γöé  Flow Started                                                               Γöé
+Γöé  Name: TestForgeFlow                                                        Γöé
+Γöé  ID: a7b0adaa-909b-4ecc-979e-3fafc3e4b3a6                                   Γöé
+Γöé                                                                             Γöé
+Γöé                                                                             Γöé
+ΓööΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÿ
+
+Flow started with ID: a7b0adaa-909b-4ecc-979e-3fafc3e4b3a6
+ΓöîΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ ≡ƒöä Flow Method Running ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÉ
+Γöé                                                                             Γöé
+Γöé  Method: load_config                                                        Γöé
+Γöé  Status: Running                                                            Γöé
+Γöé                                                                             Γöé
+Γöé                                                                             Γöé
+ΓööΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÿ
+
+ΓöîΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ Γ£à Flow Method Completed ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÉ
+Γöé                                                                             Γöé
+Γöé  Method: load_config                                                        Γöé
+Γöé  Status: Completed                                                          Γöé
+Γöé                                                                             Γöé
+Γöé                                                                             Γöé
+ΓööΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÿ
+
+ΓöîΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ ≡ƒöä Flow Method Running ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÉ
+Γöé                                                                             Γöé
+Γöé  Method: read_repository                                                    Γöé
+Γöé  Status: Running                                                            Γöé
+Γöé                                                                             Γöé
+Γöé                                                                             Γöé
+ΓööΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÿ
+
+ΓöîΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ ≡ƒöä Flow Method Running ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÉ
+Γöé                                                                             Γöé
+Γöé  Method: extract_api_spec                                                   Γöé
+Γöé  Status: Running                                                            Γöé
+Γöé                                                                             Γöé
+Γöé                                                                             Γöé
+ΓööΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÿ
+
+ΓöîΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ Γ£à Flow Method Completed ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÉ
+Γöé                                                                             Γöé
+Γöé  Method: read_repository                                                    Γöé
+Γöé  Status: Completed                                                          Γöé
+Γöé                                                                             Γöé
+Γöé                                                                             Γöé
+ΓööΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÿ
+
+ΓöîΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ Γ£à Flow Method Completed ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÉ
+Γöé                                                                             Γöé
+Γöé  Method: extract_api_spec                                                   Γöé
+Γöé  Status: Completed                                                          Γöé
+Γöé                                                                             Γöé
+Γöé                                                                             Γöé
+ΓööΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÿ
+
+ΓöîΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ ≡ƒöä Flow Method Running ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÉ
+Γöé                                                                             Γöé
+Γöé  Method: scaffold_framework                                                 Γöé
+Γöé  Status: Running                                                            Γöé
+Γöé                                                                             Γöé
+Γöé                                                                             Γöé
+ΓööΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÿ
+ΓöîΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ Γ£à Flow Method Completed ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÉ
+Γöé                                                                             Γöé
+Γöé  Method: scaffold_framework                                                 Γöé
+Γöé  Status: Completed                                                          Γöé
+Γöé                                                                             Γöé
+Γöé                                                                             Γöé
+ΓööΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÿ
+ΓöîΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ ≡ƒöä Flow Method Running ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÉ
+Γöé                                                                             Γöé
+Γöé  Method: plan_tests                                                         Γöé
+Γöé  Status: Running                                                            Γöé
+Γöé                                                                             Γöé
+Γöé                                                                             Γöé
+ΓööΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÿ
+
+
+
+ΓöîΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ Γ£¿ Update Available Γ£¿ ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÉ
+Γöé                                                                             Γöé
+Γöé  A new version of CrewAI is available!                                      Γöé
+Γöé                                                                             Γöé
+Γöé  Current version: 1.14.5                                                    Γöé
+Γöé  Latest version:  1.14.6                                                    Γöé
+Γöé                                                                             Γöé
+Γöé  To update, run: uv sync --upgrade-package crewai                           Γöé
+Γöé                                                                             Γöé
+ΓööΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÿ
+
+ΓöîΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ ≡ƒÜÇ Crew Execution Started ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÉ
+Γöé                                                                             Γöé
+Γöé  Crew Execution Started                                                     Γöé
+Γöé  Name: QAAnalystCrew                                                        Γöé
+Γöé  ID: 7285c5f8-9d14-4455-a368-83b048f16553                                   Γöé
+Γöé                                                                             Γöé
+Γöé                                                                             Γöé
+ΓööΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÿ
+
+ΓöîΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ ≡ƒôï Task Started ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÉ
+Γöé                                                                             Γöé
+Γöé  Task Started                                                               Γöé
+Γöé  Name: plan_tests                                                           Γöé
+Γöé  ID: 38c71bbd-ce45-4efc-a606-37fbbfa5106e                                   Γöé
+Γöé                                                                             Γöé
+Γöé                                                                             Γöé
+ΓööΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÿ
+
+ΓöîΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ ≡ƒñû Agent Started ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÉ
+Γöé                                                                             Γöé
+Γöé  Agent: QA Test Planner                                                     Γöé
+Γöé                                                                             Γöé
+Γöé  Task: Create a prioritised test plan for this application.                 Γöé
+Γöé  CONTEXT: # Target Application Context                                      Γöé
+Γöé                                                                             Γöé
+Γöé  ## Tech Stack                                                              Γöé
+Γöé                                                                             Γöé
+Γöé                                                                             Γöé
+Γöé  ## Authentication & Authorization                                          Γöé
+Γöé  Not detected                                                               Γöé
+Γöé  API ENDPOINTS: No API routes found in repository.                          Γöé
+Γöé  ROLES:                                                                     Γöé
+Γöé  OUTPUT a structured test plan with sections: 1. API Tests (method,         Γöé
+Γöé  endpoint, role, priority P0-P2, assertions) 2. UI Tests (page, role,       Γöé
+Γöé  actions, assertions) 3. E2E Journeys (steps across pages) 4.               Γöé
+Γöé  Negative/Security tests (permission boundaries, invalid inputs)            Γöé
+Γöé  Rules: Every test has ID, priority, specific assertions. Think             Γöé
+Γöé  adversarially. P0=auth/security, P1=core CRUD, P2=edge cases.              Γöé
+Γöé                                                                             Γöé
+Γöé                                                                             Γöé
+ΓööΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÿ
+
+ΓöîΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ ≡ƒöº Tool Execution Started (#1) ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÉ
+Γöé                                                                             Γöé
+Γöé  Tool: list_directory                                                       Γöé
+Γöé  Args: {'directory_path': '', 'max_depth': 3}                               Γöé
+Γöé                                                                             Γöé
+Γöé                                                                             Γöé
+ΓööΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÿ
+
+[32mTool list_directory executed with result: .github/
+  workflows/
+    simple-ci-cd.yml
+.tours/
+  azure-devops-pipeline.tour
+  functional-testing.tour
+  github-actions-pipeline.tour
+  integration-testing.tour
+  rest-api-testing.tour
+  unit-testi...[0m
+ΓöîΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ Γ£à Tool Execution Completed (#1) ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÉ
+Γöé                                                                             Γöé
+Γöé  Tool Completed                                                             Γöé
+Γöé  Tool: list_directory                                                       Γöé
+Γöé  Output: .github/                                                           Γöé
+Γöé    workflows/                                                               Γöé
+Γöé      simple-ci-cd.yml                                                       Γöé
+Γöé  .tours/                                                                    Γöé
+Γöé    azure-devops-pipeline.tour                                               Γöé
+Γöé    functional-testing.tour                                                  Γöé
+Γöé    github-actions-pipeline.tour                                             Γöé
+Γöé    integration-testing.tour                                                 Γöé
+Γöé    rest-api-testing.tour                                                    Γöé
+Γöé    unit-testing.tour                                                        Γöé
+Γöé  docs/                                                                      Γöé
+Γöé    Diagrams/                                                                Γöé
+Γöé      api-request-flow-sequence.md                                           Γöé
+Γöé      api-request-flow-sequence.svg                                          Γöé
+Γöé      api_infrastructure.svg                                                 Γöé
+Γöé      cicd-pipeline-flow.md                                                  Γöé
+Γöé      cicd-pipeline-flow.svg                                                 Γöé
+Γöé      clean-architecture-layers.md                                           Γöé
+Γöé      clean-architecture-layers.svg                                          Γöé
+Γöé      core-entities-business-domain.md                                       Γöé
+Γöé      core-entities-business-domain.svg                                      Γöé
+Γöé      database-migration-setup-flow.md                                       Γöé
+Γöé      database-migration-setup-flow.svg                                      Γöé
+Γöé      database-schema-erd.md                                                 Γöé
+Γöé      database-schema-erd.svg                                                Γöé
+Γöé      docker-deployment-architecture.md                                      Γöé
+Γöé      docker-deployment-architecture.svg                                     Γöé
+Γöé      domain-entities-class-diagram.md                                       Γöé
+Γöé      domain-entities-class-diagram.svg                                      Γöé
+Γöé      error-handling-flow.md                                                 Γöé
+Γöé      error-handling-flow.svg                                                Γöé
+Γöé      learning-pathway-phase1.md                                             Γöé
+Γöé      learning-pathway-phase1.svg                                            Γöé
+Γöé      learning-pathway-phase2.md                                             Γöé
+Γöé      learning-pathway-phase2.svg                                            Γöé
+Γöé      learning-pathway-phase3.md                                             Γöé
+Γöé      learning-pathway-phase3.svg                                            Γöé
+Γöé      learning-pathway-phase4.md                                             Γöé
+Γöé      learning-pathway-phase4.svg                                            Γöé
+Γöé      manual-vs-automated-testing-flow.md                                    Γöé
+Γöé      manual-vs-automated-testing-flow.svg                                   Γöé
+Γöé      performance-testing-scenarios.md                                       Γöé
+Γöé      performance-testing-scenarios.svg                                      Γöé
+Γöé      simple-cicd-pipeline-flow.md                                           Γöé
+Γöé      simple-cicd-pipeline-flow.svg                                          Γöé
+Γöé      technology-stack-core.md                                               Γöé
+Γöé      technology-stack-core.svg                                              Γöé
+Γöé      technology-stack-testing.md                                            Γöé
+Γöé      technology-stack-testing.svg                                           Γöé
+Γöé      testing-strategy-pyramid.md                                            Γöé
+Γöé      testing-strategy-pyramid.svg                                           Γöé
+Γöé    for-manual-testers/                                                      Γöé
+Γöé      azure-dashboard-guide.md                                               Γöé
+Γöé      reading-test-results.md                                                Γöé
+Γöé      understanding-ci-cd.md                                                 Γöé
+Γöé    images/                                                                  Γöé
+Γöé      Base_LnPGraphs.png                                                     Γöé
+Γöé      Load_LnPGraphs.png                                                     Γöé
+Γöé      Screenshot 2025-09-01 211531.png                                       Γöé
+Γöé      Soak_LnPGraphs.png                                                     Γöé
+Γöé      Spike_LnPGraphs.png                                                    Γöé
+Γöé      Stress_LnPGraphs.png                                                   Γöé
+Γöé    Info/                                                                    Γöé
+Γöé      01-PROJECT-OVERVIEW.md                                                 Γöé
+Γöé      02-DATABASE-SCHEMA.md                                                  Γöé
+Γöé      03-API-ENDPOINTS.md                                                    Γöé
+Γöé      04-ARCHITECTURE.md                                                     Γöé
+Γöé      05-TESTING-STRATEGY.md                                                 Γöé
+Γöé    pipeline-info/                                                           Γöé
+Γöé      01-CICD-OVERVIEW.md                                                    Γöé
+Γöé      02-GITHUB-ACTIONS-SETUP.md                                             Γöé
+Γöé      03-TESTING-PIPELINE.md                                                 Γöé
+Γöé      04-TROUBLESHOOTING.md                                                  Γöé
+Γöé      05-LEARNING-PATH.md                                                    Γöé
+Γöé    PostmanCollections/                                                      Γöé
+Γöé      PostmanCollection.postman_collection.json                              Γöé
+Γöé    test-credentials.json                                                    Γöé
+Γöé  K6/                                                                        Γöé
+Γöé    k6-educational-examples.js                                               Γöé
+Γöé    k6-intro-test.js                                                         Γöé
+Γöé    k6-load-balancer-test.js                                                 Γöé
+Γöé    README.md                                                                Γöé
+Γöé  scripts/                                                                   Γöé
+Γöé    verify-setup.ps1                                                         Γöé
+Γöé  src/                                                                       Γöé
+Γöé    AutomationPlayground.Application/                                        Γöé
+Γöé      bin/                                                                   Γöé
+Γöé      Common/                                                                Γöé
+Γöé      obj/                                                                   Γöé
+Γöé      AutomationPlayground.Application.csproj                                Γöé
+Γöé    AutomationPlayground.Domain/                                             Γöé
+Γöé      bin/                                                                   Γöé
+Γöé      Common/                                                                Γöé
+Γöé      Entities/                                                              Γöé
+Γöé      obj/                                                                   Γöé
+Γöé      AutomationPlayground.Domain.csproj                                     Γöé
+Γöé    AutomationPlayground.Infrastructure/                                     Γöé
+Γöé      bin/                                                                   Γöé
+Γöé      Data/                                                                  Γöé
+Γöé      Migrations/                                                            Γöé
+Γöé      obj/                                                                   Γöé
+Γöé      AutomationPlayground.Infrastructure.csproj                             Γöé
+Γöé    AutomationPlayground.WebApi/                                             Γöé
+Γöé      bin/                                                                   Γöé
+Γöé      Controllers/                                                           Γöé
+Γöé      HealthChecks/                                                          Γöé
+Γöé      obj/                                                                   Γöé
+Γöé      Properties/                                                            Γöé
+Γöé      wwwroot/                                                               Γöé
+Γöé      appsettings.Development.json                                           Γöé
+Γöé      appsettings.json                                                       Γöé
+Γöé      automation_playground.db                                               Γöé
+Γöé      automation_playground.db-shm                                           Γöé
+Γöé      automation_playground.db-wal                                           Γöé
+Γöé      AutomationPlayground.WebApi.csproj                                     Γöé
+Γöé      AutomationPlayground.WebApi.http                                       Γöé
+Γöé      Program.cs                                                             Γöé
+Γöé  tests/                                                                     Γöé
+Γöé    FunctionalTests/                                                         Γöé
+Γöé      bin/                                                                   Γöé
+Γöé      CitiesWorkflows/                                                       Γöé
+Γöé      CrossEntityWorkflows/                                                  Γöé
+Γöé      Infrastructure/                                                        Γöé
+Γöé      obj/                                                                   Γöé
+Γöé      WeatherWorkflows/                                                      Γöé
+Γöé      FunctionalTestingWorksheet.md                                          Γöé
+Γöé      FunctionalTests.csproj                                                 Γöé
+Γöé    IntergrationTests/                                                       Γöé
+Γöé      bin/                                                                   Γöé
+Γöé      CitiesController/                                                      Γöé
+Γöé      Common/                                                                Γöé
+Γöé      obj/                                                                   Γöé
+Γöé      IntegrationTestingWorksheet.md                                         Γöé
+Γöé      IntergrationTests.csproj                                               Γöé
+Γöé    UnitTests/                                                               Γöé
+Γöé      bin/                                                                   Γöé
+Γöé      Common/                                                                Γöé
+Γöé      Controllers/                                                           Γöé
+Γöé      Domain/                                                                Γöé
+Γöé      DTOs/                                                                  Γöé
+Γöé      Infrastructure/                                                        Γöé
+Γöé      obj/                                                                   Γöé
+Γöé      TestData/                                                              Γöé
+Γöé      UnitTestingWorksheet.md                                                Γöé
+Γöé      UnitTests.csproj                                                       Γöé
+Γöé  .gitignore                                                                 Γöé
+Γöé  AutomationPlayground.sln                                                   Γöé
+Γöé  azure-pipelines.yml                                                        Γöé
+Γöé  docker-compose.yml                                                         Γöé
+Γöé  Dockerfile                                                                 Γöé
+Γöé  nginx.conf                                                                 Γöé
+Γöé  README.md                                                                  Γöé
+Γöé                                                                             Γöé
+Γöé                                                                             Γöé
+ΓööΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÿ
+
+[32mTool read_file executed with result: # ≡ƒîÉ API Endpoints Documentation
+
+## ∩┐╜ Overview
+
+This document provides comprehensive documentation for all **AutomationPlayground API** endpoints. The API is built using **.NET 9 Web API** and follows...[0m
+ΓöîΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ ≡ƒöº Tool Execution Started (#1) ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÉ
+Γöé                                                                             Γöé
+Γöé  Tool: read_file                                                            Γöé
+Γöé  Args: {'file_path': 'docs/Info/03-API-ENDPOINTS.md'}                       Γöé
+Γöé                                                                             Γöé
+Γöé                                                                             Γöé
+ΓööΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÿ
+
+ΓöîΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ Γ£à Tool Execution Completed (#1) ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÉ
+Γöé                                                                             Γöé
+Γöé  Tool Completed                                                             Γöé
+Γöé  Tool: read_file                                                            Γöé
+Γöé  Output: # ≡ƒîÉ API Endpoints Documentation                                   Γöé
+Γöé                                                                             Γöé
+Γöé  ## ∩┐╜ Overview                                                              Γöé
+Γöé                                                                             Γöé
+Γöé  This document provides comprehensive documentation for all                 Γöé
+Γöé  **AutomationPlayground API** endpoints. The API is built using **.NET 9    Γöé
+Γöé  Web API** and follows **RESTful principles**. This documentation is        Γöé
+Γöé  designed to help **manual testers understand the API structure** and       Γöé
+Γöé  **transition to automated API testing**.                                   Γöé
+Γöé                                                                             Γöé
+Γöé  ## ≡ƒÄ» Educational Purpose                                                  Γöé
+Γöé  - **For Manual Testers**: Learn API testing concepts and patterns          Γöé
+Γöé  - **For Automation Engineers**: Understand request/response structures     Γöé
+Γöé  for automated testing                                                      Γöé
+Γöé  - **For Integration Testing**: Complete reference for endpoint behavior    Γöé
+Γöé  and validation                                                             Γöé
+Γöé                                                                             Γöé
+Γöé  ---                                                                        Γöé
+Γöé                                                                             Γöé
+Γöé  ## ≡ƒÅù∩╕Å API Architecture                                                     Γöé
+Γöé                                                                             Γöé
+Γöé  ### **Base Configuration**                                                 Γöé
+Γöé  - **Technology**: .NET 9 Web API                                           Γöé
+Γöé  - **Database**: SQLite with Entity Framework Core                          Γöé
+Γöé  - **Authentication**: JWT Bearer Token (future implementation)             Γöé
+Γöé  - **Load Balancing**: Nginx with multiple instances                        Γöé
+Γöé  - **Response Format**: JSON                                                Γöé
+Γöé  - **Error Handling**: Standardized error responses with instance           Γöé
+Γöé  information                                                                Γöé
+Γöé                                                                             Γöé
+Γöé  ### **Instance Identification**                                            Γöé
+Γöé  All endpoints include instance identification in responses to demonstrate  Γöé
+Γöé  load balancing:                                                            Γöé
+Γöé  ```json                                                                    Γöé
+Γöé  {                                                                          Γöé
+Γöé    "data": "...",                                                           Γöé
+Γöé    "servedBy": "instance-1",                                                Γöé
+Γöé    "timestamp": "2025-09-21T10:30:00Z"                                      Γöé
+Γöé  }                                                                          Γöé
+Γöé  ```                                                                        Γöé
+Γöé                                                                             Γöé
+Γöé  ---                                                                        Γöé
+Γöé                                                                             Γöé
+Γöé  ## ≡ƒùé∩╕Å Endpoint Categories                                                  Γöé
+Γöé                                                                             Γöé
+Γöé  ### **1. Cities Controller** - `/api/cities`                               Γöé
+Γöé  Manages city data with CRUD operations                                     Γöé
+Γöé                                                                             Γöé
+Γöé  ### **2. Weather Controller** - `/api/weather`                             Γöé
+Γöé  Manages weather data with city relationships                               Γöé
+Γöé                                                                             Γöé
+Γöé  ### **3. System Endpoints**                                                Γöé
+Γöé  Health checks and monitoring endpoints                                     Γöé
+Γöé                                                                             Γöé
+Γöé  ---                                                                        Γöé
+Γöé                                                                             Γöé
+Γöé  ## ≡ƒÅÖ∩╕Å Cities Controller Endpoints                                          Γöé
+Γöé                                                                             Γöé
+Γöé  ### **GET `/api/cities`** - List All Cities                                Γöé
+Γöé  **Purpose**: Retrieve all cities with load balancing demonstration         Γöé
+Γöé                                                                             Γöé
+Γöé  #### **Request**                                                           Γöé
+Γöé  ```http                                                                    Γöé
+Γöé  GET /api/cities HTTP/1.1                                                   Γöé
+Γöé  Host: localhost:8080                                                       Γöé
+Γöé  Accept: application/json                                                   Γöé
+Γöé  ```                                                                        Γöé
+Γöé                                                                             Γöé
+Γöé  #### **Response (200 OK)**                                                 Γöé
+Γöé  ```json                                                                    Γöé
+Γöé  {                                                                          Γöé
+Γöé    "cities": [                                                              Γöé
+Γöé      {                                                                      Γöé
+Γöé        "id": 1,                                                             Γöé
+Γöé        "name": "Cape Town",                                                 Γöé
+Γöé        "country": "South Africa",                                           Γöé
+Γöé        "createdAt": "2025-09-21T08:00:00Z",                                 Γöé
+Γöé        "updatedAt": "2025-09-21T08:00:00Z"                                  Γöé
+Γöé      },                                                                     Γöé
+Γöé      {                                                                      Γöé
+Γöé        "id": 2,                                                             Γöé
+Γöé        "name": "Johannesburg",                                              Γöé
+Γöé        "country": "South Africa",                                           Γöé
+Γöé        "createdAt": "2025-09-21T08:00:00Z",                                 Γöé
+Γöé        "updatedAt": "2025-09-21T08:00:00Z"                                  Γöé
+Γöé      }                                                                      Γöé
+Γöé    ],                                                                       Γöé
+Γöé    "servedBy": "api-instance-1",                                            Γöé
+Γöé    "timestamp": "2025-09-21T10:30:00Z",                                     Γöé
+Γöé    "message": "Cities retrieved from api-instance-1 - Demonstrates          Γöé
+Γöé  database sharing"                                                          Γöé
+Γöé  }                                                                          Γöé
+Γöé  ```                                                                        Γöé
+Γöé                                                                             Γöé
+Γöé  #### **Response (500 Internal Server Error)**                              Γöé
+Γöé  ```json                                                                    Γöé
+Γöé  {                                                                          Γöé
+Γöé    "error": "Failed to retrieve cities",                                    Γöé
+Γöé    "instance": "api-instance-1"                                             Γöé
+Γöé  }                                                                          Γöé
+Γöé  ```                                                                        Γöé
+Γöé                                                                             Γöé
+Γöé  #### **Testing Scenarios**                                                 Γöé
+Γöé  - Γ£à **Load Balancing**: Multiple requests show different instance IDs     Γöé
+Γöé  - Γ£à **Data Consistency**: Same data returned from all instances           Γöé
+Γöé  - Γ£à **Performance**: Response time measurement                            Γöé
+Γöé  - Γ£à **Error Handling**: Database connection failures                      Γöé
+Γöé                                                                             Γöé
+Γöé  #### **cURL Example**                                                      Γöé
+Γöé  ```bash                                                                    Γöé
+Γöé  curl -X GET "http://localhost:8080/api/cities" \                           Γöé
+Γöé    -H "Accept: application/json"                                            Γöé
+Γöé  ```                                                                        Γöé
+Γöé                                                                             Γöé
+Γöé  ---                                                                        Γöé
+Γöé                                                                             Γöé
+Γöé  ### **GET `/api/cities/{id}`** - Get City by ID                            Γöé
+Γöé  **Purpose**: Retrieve a specific city by its ID                            Γöé
+Γöé                                                                             Γöé
+Γöé  #### **Request**                                                           Γöé
+Γöé  ```http                                                                    Γöé
+Γöé  GET /api/cities/1 HTTP/1.1                                                 Γöé
+Γöé  Host: localhost:8080                                                       Γöé
+Γöé  Accept: application/json                                                   Γöé
+Γöé  ```                                                                        Γöé
+Γöé                                                                             Γöé
+Γöé  #### **Response (200 OK)**                                                 Γöé
+Γöé  ```json                                                                    Γöé
+Γöé  {                                                                          Γöé
+Γöé    "city": {                                                                Γöé
+Γöé      "id": 1,                                                               Γöé
+Γöé      "name": "Cape Town",                                                   Γöé
+Γöé      "country": "South Africa",                                             Γöé
+Γöé      "createdAt": "2025-09-21T08:00:00Z",                                   Γöé
+Γöé      "updatedAt": "2025-09-21T08:00:00Z"                                    Γöé
+Γöé    },                                                                       Γöé
+Γöé    "servedBy": "api-instance-2",                                            Γöé
+Γöé    "timestamp": "2025-09-21T10:30:00Z"                                      Γöé
+Γöé  }                                                                          Γöé
+Γöé  ```                                                                        Γöé
+Γöé                                                                             Γöé
+Γöé  #### **Response (400 Bad Request)**                                        Γöé
+Γöé  ```json                                                                    Γöé
+Γöé  {                                                                          Γöé
+Γöé    "error": "City ID must be a positive integer",                           Γöé
+Γöé    "instance": "api-instance-1"                                             Γöé
+Γöé  }                                                                          Γöé
+Γöé  ```                                                                        Γöé
+Γöé                                                                             Γöé
+Γöé  #### **Response (404 Not Found)**                                          Γöé
+Γöé  ```json                                                                    Γöé
+Γöé  {                                                                          Γöé
+Γöé    "error": "City with ID 999 not found",                                   Γöé
+Γöé    "instance": "api-instance-1"                                             Γöé
+Γöé  }                                                                          Γöé
+Γöé  ```                                                                        Γöé
+Γöé                                                                             Γöé
+Γöé  #### **Testing Scenarios**                                                 Γöé
+Γöé  - Γ£à **Valid ID**: Positive integer IDs return data                        Γöé
+Γöé  - Γ£à **Invalid ID**: Zero or negative IDs return 400                       Γöé
+Γöé  - Γ£à **Non-existent ID**: Missing IDs return 404                           Γöé
+Γöé  - Γ£à **Data Integrity**: Correct city data returned                        Γöé
+Γöé                                                                             Γöé
+Γöé  #### **cURL Example**                                                      Γöé
+Γöé  ```bash                                                                    Γöé
+Γöé  curl -X GET "http://localhost:8080/api/cities/1" \                         Γöé
+Γöé    -H "Accept: application/json"                                            Γöé
+Γöé  ```                                                                        Γöé
+Γöé                                                                             Γöé
+Γöé  ---                                                                        Γöé
+Γöé                                                                             Γöé
+Γöé  ### **POST `/api/cities`** - Create New City                               Γöé
+Γöé  **Purpose**: Add a new city to the database                                Γöé
+Γöé                                                                             Γöé
+Γöé  #### **Request**                                                           Γöé
+Γöé  ```http                                                                    Γöé
+Γöé  POST /api/cities HTTP/1.1                                                  Γöé
+Γöé  Host: localhost:8080                                                       Γöé
+Γöé  Content-Type: application/json                                             Γöé
+Γöé                                                                             Γöé
+Γöé  {                                                                          Γöé
+Γöé    "name": "Pretoria",                                                      Γöé
+Γöé    "country": "South Africa"                                                Γöé
+Γöé  }                                                                          Γöé
+Γöé  ```                                                                        Γöé
+Γöé                                                                             Γöé
+Γöé  #### **Request Body Schema**                                               Γöé
+Γöé  ```json                                                                    Γöé
+Γöé  {                                                                          Γöé
+Γöé    "name": "string (required, max 100 chars)",                              Γöé
+Γöé    "country": "string (required, max 100 chars)"                            Γöé
+Γöé  }                                                                          Γöé
+Γöé  ```                                                                        Γöé
+Γöé                                                                             Γöé
+Γöé  #### **Response (201 Created)**                                            Γöé
+Γöé  ```json                                                                    Γöé
+Γöé  {                                                                          Γöé
+Γöé    "city": {                                                                Γöé
+Γöé      "id": 4,                                                               Γöé
+Γöé      "name": "Pretoria",                                                    Γöé
+Γöé      "country": "South Africa",                                             Γöé
+Γöé      "createdAt": "2025-09-21T10:30:00Z"                                    Γöé
+Γöé    },                                                                       Γöé
+Γöé    "createdBy": "api-instance-3",                                           Γöé
+Γöé    "timestamp": "2025-09-21T10:30:00Z",                                     Γöé
+Γöé    "message": "City created by api-instance-3 - Will be visible to all      Γöé
+Γöé  instances"                                                                 Γöé
+Γöé  }                                                                          Γöé
+Γöé  ```                                                                        Γöé
+Γöé                                                                             Γöé
+Γöé  #### **Response (400 Bad Request) - Validation Error**                     Γöé
+Γöé  ```json                                                                    Γöé
+Γöé  {                                                                          Γöé
+Γöé    "error": "Validation failed",                                            Γöé
+Γöé    "validationErrors": [                                                    Γöé
+Γöé      "Name is required",                                                    Γöé
+Γöé      "Country cannot exceed 100 characters"                                 Γöé
+Γöé    ],                                                                       Γöé
+Γöé    "instance": "api-instance-1"                                             Γöé
+Γöé  }                                                                          Γöé
+Γöé  ```                                                                        Γöé
+Γöé                                                                             Γöé
+Γöé  #### **Response (409 Conflict) - Duplicate City**                          Γöé
+Γöé  ```json                                                                    Γöé
+Γöé  {                                                                          Γöé
+Γöé    "error": "City 'Cape Town' already exists",                              Γöé
+Γöé    "instance": "api-instance-2"                                             Γöé
+Γöé  }                                                                          Γöé
+Γöé  ```                                                                        Γöé
+Γöé                                                                             Γöé
+Γöé  #### **Testing Scenarios**                                                 Γöé
+Γöé  - Γ£à **Valid Data**: Proper city creation with all required fields         Γöé
+Γöé  - Γ£à **Missing Fields**: Empty name/country return validation errors       Γöé
+Γöé  - Γ£à **Duplicate Names**: Duplicate city names return 409 conflict         Γöé
+Γöé  - Γ£à **Field Length**: Max length validation (100 characters)              Γöé
+Γöé  - Γ£à **Special Characters**: Unicode and special character handling        Γöé
+Γöé  - Γ£à **Cross-Instance Visibility**: Created city visible from all          Γöé
+Γöé  instances                                                                  Γöé
+Γöé                                                                             Γöé
+Γöé  #### **cURL Example**                                                      Γöé
+Γöé  ```bash                                                                    Γöé
+Γöé  curl -X POST "http://localhost:8080/api/cities" \                          Γöé
+Γöé    -H "Content-Type: application/json" \                                    Γöé
+Γöé    -d '{                                                                    Γöé
+Γöé      "name": "Pretoria",                                                    Γöé
+Γöé      "country": "South Africa"                                              Γöé
+Γöé    }'                                                                       Γöé
+Γöé  ```                                                                        Γöé
+Γöé                                                                             Γöé
+Γöé  ---                                                                        Γöé
+Γöé                                                                             Γöé
+Γöé  ### **DELETE `/api/cities/{id}`** - Delete City                            Γöé
+Γöé  **Purpose**: Soft delete a city (sets IsDeleted flag)                      Γöé
+Γöé                                                                             Γöé
+Γöé  #### **Request**                                                           Γöé
+Γöé  ```http                                                                    Γöé
+Γöé  DELETE /api/cities/1 HTTP/1.1                                              Γöé
+Γöé  Host: localhost:8080                                                       Γöé
+Γöé  ```                                                                        Γöé
+Γöé                                                                             Γöé
+Γöé  #### **Response (200 OK)**                                                 Γöé
+Γöé  ```json                                                                    Γöé
+Γöé  {                                                                          Γöé
+Γöé    "message": "City 'Cape Town' deleted successfully",                      Γöé
+Γöé    "deletedBy": "api-instance-1",                                           Γöé
+Γöé    "timestamp": "2025-09-21T10:30:00Z"                                      Γöé
+Γöé  }                                                                          Γöé
+Γöé  ```                                                                        Γöé
+Γöé                                                                             Γöé
+Γöé  #### **Response (404 Not Found)**                                          Γöé
+Γöé  ```json                                                                    Γöé
+Γöé  {                                                                          Γöé
+Γöé    "error": "City with ID 999 not found",                                   Γöé
+Γöé    "instance": "api-instance-2"                                             Γöé
+Γöé  }                                                                          Γöé
+Γöé  ```                                                                        Γöé
+Γöé                                                                             Γöé
+Γöé  #### **Testing Scenarios**                                                 Γöé
+Γöé  - Γ£à **Successful Deletion**: Valid city ID results in soft delete         Γöé
+Γöé  - Γ£à **Non-existent City**: Invalid ID returns 404                         Γöé
+Γöé  - Γ£à **Soft Delete Verification**: Deleted cities excluded from GET        Γöé
+Γöé  requests                                                                   Γöé
+Γöé  - Γ£à **Cascade Behavior**: Cities with weather data handling               Γöé
+Γöé                                                                             Γöé
+Γöé  #### **cURL Example**                                                      Γöé
+Γöé  ```bash                                                                    Γöé
+Γöé  curl -X DELETE "http://localhost:8080/api/cities/1"                        Γöé
+Γöé  ```                                                                        Γöé
+Γöé                                                                             Γöé
+Γöé  ---                                                                        Γöé
+Γöé                                                                             Γöé
+Γöé  ## ≡ƒîñ∩╕Å Weather Controller Endpoints                                         Γöé
+Γöé                                                                             Γöé
+Γöé  ### **GET `/api/weather`** - List All Weather Data                         Γöé
+Γöé  **Purpose**: Retrieve recent weather data with city information            Γöé
+Γöé                                                                             Γöé
+Γöé  #### **Request**                                                           Γöé
+Γöé  ```http                                                                    Γöé
+Γöé  GET /api/weather HTTP/1.1                                                  Γöé
+Γöé  Host: localhost:8080                                                       Γöé
+Γöé  Accept: application/json                                                   Γöé
+Γöé  ```                                                                        Γöé
+Γöé                                                                             Γöé
+Γöé  #### **Response (200 OK)**                                                 Γöé
+Γöé  ```json                                                                    Γöé
+Γöé  {                                                                          Γöé
+Γöé    "weather": [                                                             Γöé
+Γöé      {                                                                      Γöé
+Γöé        "id": 1,                                                             Γöé
+Γöé        "temperature": 22.5,                                                 Γöé
+Γöé        "description": "Partly cloudy with gentle breeze",                   Γöé
+Γöé        "weatherCondition": "Clouds",                                        Γöé
+Γöé        "windSpeed": 5.2,                                                    Γöé
+Γöé        "windDirection": 180,                                                Γöé
+Γöé        "tempHigh": 25.0,                                                    Γöé
+Γöé        "tempLow": 18.0,                                                     Γöé
+Γöé        "uvIndex": 6.5,                                                      Γöé
+Γöé        "time": "2025-09-21T10:00:00Z",                                      Γöé
+Γöé        "city": {                                                            Γöé
+Γöé          "id": 1,                                                           Γöé
+Γöé          "name": "Cape Town",                                               Γöé
+Γöé          "country": "South Africa"                                          Γöé
+Γöé        }                                                                    Γöé
+Γöé      }                                                                      Γöé
+Γöé    ],                                                                       Γöé
+Γöé    "instance": "api-instance-1",                                            Γöé
+Γöé    "timestamp": "2025-09-21T10:30:00Z",                                     Γöé
+Γöé    "message": "Weather data retrieved from api-instance-1"                  Γöé
+Γöé  }                                                                          Γöé
+Γöé  ```                                                                        Γöé
+Γöé                                                                             Γöé
+Γöé  #### **Testing Scenarios**                                                 Γöé
+Γöé  - Γ£à **Data Relationships**: Weather includes related city information     Γöé
+Γöé  - Γ£à **Sorting**: Results ordered by time (most recent first)              Γöé
+Γöé  - Γ£à **Performance**: Limited to 50 records for performance                Γöé
+Γöé  - Γ£à **Data Types**: Proper handling of numeric and datetime fields        Γöé
+Γöé                                                                             Γöé
+Γöé  #### **cURL Example**                                                      Γöé
+Γöé  ```bash                                                                    Γöé
+Γöé  curl -X GET "http://localhost:8080/api/weather" \                          Γöé
+Γöé    -H "Accept: application/json"                                            Γöé
+Γöé  ```                                                                        Γöé
+Γöé                                                                             Γöé
+Γöé  ---                                                                        Γöé
+Γöé                                                                             Γöé
+Γöé  ### **GET `/api/weather/city/{cityId}`** - Get Weather by City             Γöé
+Γöé  **Purpose**: Retrieve weather data for a specific city                     Γöé
+Γöé                                                                             Γöé
+Γöé  #### **Request**                                                           Γöé
+Γöé  ```http                                                                    Γöé
+Γöé  GET /api/weather/city/1 HTTP/1.1                                           Γöé
+Γöé  Host: localhost:8080                                                       Γöé
+Γöé  Accept: application/json                                                   Γöé
+Γöé  ```                                                                        Γöé
+Γöé                                                                             Γöé
+Γöé  #### **Response (200 OK)**                                                 Γöé
+Γöé  ```json                                                                    Γöé
+Γöé  {                                                                          Γöé
+Γöé    "cityId": 1,                                                             Γöé
+Γöé    "cityName": "Cape Town",                                                 Γöé
+Γöé    "weather": [                                                             Γöé
+Γöé      {                                                                      Γöé
+Γöé        "id": 1,                                                             Γöé
+Γöé        "temperature": 22.5,                                                 Γöé
+Γöé        "description": "Partly cloudy",                                      Γöé
+Γöé        "weatherCondition": "Clouds",                                        Γöé
+Γöé        "windSpeed": 5.2,                                                    Γöé
+Γöé        "windDirection": 180,                                                Γöé
+Γöé        "tempHigh": 25.0,                                                    Γöé
+Γöé        "tempLow": 18.0,                                                     Γöé
+Γöé        "uvIndex": 6.5,                                                      Γöé
+Γöé        "time": "2025-09-21T10:00:00Z"                                       Γöé
+Γöé      }                                                                      Γöé
+Γöé    ],                                                                       Γöé
+Γöé    "instance": "api-instance-2",                                            Γöé
+Γöé    "timestamp": "2025-09-21T10:30:00Z",                                     Γöé
+Γöé    "message": "Weather data for Cape Town retrieved from api-instance-2"    Γöé
+Γöé  }                                                                          Γöé
+Γöé  ```                                                                        Γöé
+Γöé                                                                             Γöé
+Γöé  #### **Response (404 Not Found)**                                          Γöé
+Γöé  ```json                                                                    Γöé
+Γöé  {                                                                          Γöé
+Γöé    "error": "City with ID 999 not found",                                   Γöé
+Γöé    "instance": "api-instance-1"                                             Γöé
+Γöé  }                                                                          Γöé
+Γöé  ```                                                                        Γöé
+Γöé                                                                             Γöé
+Γöé  #### **Testing Scenarios**                                                 Γöé
+Γöé  - Γ£à **Valid City**: Existing city ID returns weather data                 Γöé
+Γöé  - Γ£à **Invalid City**: Non-existent city ID returns 404                    Γöé
+Γöé  - Γ£à **Empty Results**: Cities without weather data return empty array     Γöé
+Γöé  - Γ£à **Filtering**: Only weather for specified city returned               Γöé
+Γöé                                                                             Γöé
+Γöé  #### **cURL Example**                                                      Γöé
+Γöé  ```bash                                                                    Γöé
+Γöé  curl -X GET "http://localhost:8080/api/weather/city/1" \                   Γöé
+Γöé    -H "Accept: application/json"                                            Γöé
+Γöé  ```                                                                        Γöé
+Γöé                                                                             Γöé
+Γöé  ---                                                                        Γöé
+Γöé                                                                             Γöé
+Γöé  ### **GET `/api/weather/{id}`** - Get Weather by ID                        Γöé
+Γöé  **Purpose**: Retrieve a specific weather record                            Γöé
+Γöé                                                                             Γöé
+Γöé  #### **Request**                                                           Γöé
+Γöé  ```http                                                                    Γöé
+Γöé  GET /api/weather/1 HTTP/1.1                                                Γöé
+Γöé  Host: localhost:8080                                                       Γöé
+Γöé  Accept: application/json                                                   Γöé
+Γöé  ```                                                                        Γöé
+Γöé                                                                             Γöé
+Γöé  #### **Response (200 OK)**                                                 Γöé
+Γöé  ```json                                                                    Γöé
+Γöé  {                                                                          Γöé
+Γöé    "weather": {                                                             Γöé
+Γöé      "id": 1,                                                               Γöé
+Γöé      "temperature": 22.5,                                                   Γöé
+Γöé      "description": "Partly cloudy with gentle breeze",                     Γöé
+Γöé      "weatherCondition": "Clouds",                                          Γöé
+Γöé      "windSpeed": 5.2,                                                      Γöé
+Γöé      "windDirection": 180,                                                  Γöé
+Γöé      "tempHigh": 25.0,                                                      Γöé
+Γöé      "tempLow": 18.0,                                                       Γöé
+Γöé      "uvIndex": 6.5,                                                        Γöé
+Γöé      "time": "2025-09-21T10:00:00Z",                                        Γöé
+Γöé      "city": {                                                              Γöé
+Γöé        "id": 1,                                                             Γöé
+Γöé        "name": "Cape Town",                                                 Γöé
+Γöé        "country": "South Africa"                                            Γöé
+Γöé      }                                                                      Γöé
+Γöé    },                                                                       Γöé
+Γöé    "instance": "api-instance-3",                                            Γöé
+Γöé    "timestamp": "2025-09-21T10:30:00Z"                                      Γöé
+Γöé  }                                                                          Γöé
+Γöé  ```                                                                        Γöé
+Γöé                                                                             Γöé
+Γöé  #### **Response (404 Not Found)**                                          Γöé
+Γöé  ```json                                                                    Γöé
+Γöé  {                                                                          Γöé
+Γöé    "error": "Weather record with ID 999 not found",                         Γöé
+Γöé    "instance": "api-instance-1"                                             Γöé
+Γöé  }                                                                          Γöé
+Γöé  ```                                                                        Γöé
+Γöé                                                                             Γöé
+Γöé  #### **Testing Scenarios**                                                 Γöé
+Γöé  - Γ£à **Valid ID**: Existing weather ID returns complete data               Γöé
+Γöé  - Γ£à **Invalid ID**: Non-existent ID returns 404                           Γöé
+Γöé  - Γ£à **Related Data**: Includes city information via navigation property   Γöé
+Γöé                                                                             Γöé
+Γöé  ---                                                                        Γöé
+Γöé                                                                             Γöé
+Γöé  ### **POST `/api/weather`** - Create Weather Record                        Γöé
+Γöé  **Purpose**: Add new weather data for a city                               Γöé
+Γöé                                                                             Γöé
+Γöé  #### **Request**                                                           Γöé
+Γöé  ```http                                                                    Γöé
+Γöé  POST /api/weather HTTP/1.1                                                 Γöé
+Γöé  Host: localhost:8080                                                       Γöé
+Γöé  Content-Type: application/json                                             Γöé
+Γöé                                                                             Γöé
+Γöé  {                                                                          Γöé
+Γöé    "cityId": 1,                                                             Γöé
+Γöé    "temperature": 28.5,                                                     Γöé
+Γöé    "description": "Sunny and warm",                                         Γöé
+Γöé    "weatherCondition": "Clear",                                             Γöé
+Γöé    "windSpeed": 3.2,                                                        Γöé
+Γöé    "windDirection": 225,                                                    Γöé
+Γöé    "tempHigh": 32.0,                                                        Γöé
+Γöé    "tempLow": 24.0,                                                         Γöé
+Γöé    "uvIndex": 8.5                                                           Γöé
+Γöé  }                                                                          Γöé
+Γöé  ```                                                                        Γöé
+Γöé                                                                             Γöé
+Γöé  #### **Request Body Schema**                                               Γöé
+Γöé  ```json                                                                    Γöé
+Γöé  {                                                                          Γöé
+Γöé    "cityId": "integer (required, must exist)",                              Γöé
+Γöé    "temperature": "number (required)",                                      Γöé
+Γöé    "description": "string (required, max 200 chars)",                       Γöé
+Γöé    "weatherCondition": "string (optional)",                                 Γöé
+Γöé    "windSpeed": "number (optional, >= 0)",                                  Γöé
+Γöé    "windDirection": "number (optional, 0-360)",                             Γöé
+Γöé    "tempHigh": "number (optional)",                                         Γöé
+Γöé    "tempLow": "number (optional)",                                          Γöé
+Γöé    "uvIndex": "number (optional, >= 0)"                                     Γöé
+Γöé  }                                                                          Γöé
+Γöé  ```                                                                        Γöé
+Γöé                                                                             Γöé
+Γöé  #### **Response (201 Created)**                                            Γöé
+Γöé  ```json                                                                    Γöé
+Γöé  {                                                                          Γöé
+Γöé    "weather": {                                                             Γöé
+Γöé      "id": 5,                                                               Γöé
+Γöé      "cityId": 1,                                                           Γöé
+Γöé      "temperature": 28.5,                                                   Γöé
+Γöé      "description": "Sunny and warm",                                       Γöé
+Γöé      "weatherCondition": "Clear",                                           Γöé
+Γöé      "windSpeed": 3.2,                                                      Γöé
+Γöé      "windDirection": 225,                                                  Γöé
+Γöé      "tempHigh": 32.0,                                                      Γöé
+Γöé      "tempLow": 24.0,                                                       Γöé
+Γöé      "uvIndex": 8.5,                                                        Γöé
+Γöé      "time": "2025-09-21T10:30:00Z"                                         Γöé
+Γöé    },                                                                       Γöé
+Γöé    "createdBy": "api-instance-2",                                           Γöé
+Γöé    "timestamp": "2025-09-21T10:30:00Z"                                      Γöé
+Γöé  }                                                                          Γöé
+Γöé  ```                                                                        Γöé
+Γöé                                                                             Γöé
+Γöé  #### **Response (400 Bad Request) - Validation Error**                     Γöé
+Γöé  ```json                                                                    Γöé
+Γöé  {                                                                          Γöé
+Γöé    "error": "Validation failed",                                            Γöé
+Γöé    "validationErrors": [                                                    Γöé
+Γöé      "CityId is required",                                                  Γöé
+Γöé      "Temperature is required",                                             Γöé
+Γöé      "Description cannot exceed 200 characters"                             Γöé
+Γöé    ],                                                                       Γöé
+Γöé    "instance": "api-instance-1"                                             Γöé
+Γöé  }                                                                          Γöé
+Γöé  ```                                                                        Γöé
+Γöé                                                                             Γöé
+Γöé  #### **Response (404 Not Found) - Invalid City**                           Γöé
+Γöé  ```json                                                                    Γöé
+Γöé  {                                                                          Γöé
+Γöé    "error": "City with ID 999 not found",                                   Γöé
+Γöé    "instance": "api-instance-2"                                             Γöé
+Γöé  }                                                                          Γöé
+Γöé  ```                                                                        Γöé
+Γöé                                                                             Γöé
+Γöé  #### **Testing Scenarios**                                                 Γöé
+Γöé  - Γ£à **Valid Data**: Complete weather record creation                      Γöé
+Γöé  - Γ£à **Required Fields**: CityId, Temperature, Description validation      Γöé
+Γöé  - Γ£à **Foreign Key**: CityId must reference existing city                  Γöé
+Γöé  - Γ£à **Data Ranges**: Temperature, wind, UV index validation               Γöé
+Γöé  - Γ£à **Cross-Field Validation**: TempHigh >= TempLow                       Γöé
+Γöé  - Γ£à **Automatic Fields**: Time field auto-populated                       Γöé
+Γöé                                                                             Γöé
+Γöé  #### **cURL Example**                                                      Γöé
+Γöé  ```bash                                                                    Γöé
+Γöé  curl -X POST "http://localhost:8080/api/weather" \                         Γöé
+Γöé    -H "Content-Type: application/json" \                                    Γöé
+Γöé    -d '{                                                                    Γöé
+Γöé      "cityId": 1,                                                           Γöé
+Γöé      "temperature": 28.5,                                                   Γöé
+Γöé      "description": "Sunny and warm",                                       Γöé
+Γöé      "weatherCondition": "Clear",                                           Γöé
+Γöé      "windSpeed": 3.2,                                                      Γöé
+Γöé      "windDirection": 225,                                                  Γöé
+Γöé      "tempHigh": 32.0,                                                      Γöé
+Γöé      "tempLow": 24.0,                                                       Γöé
+Γöé      "uvIndex": 8.5                                                         Γöé
+Γöé    }'                                                                       Γöé
+Γöé  ```                                                                        Γöé
+Γöé                                                                             Γöé
+Γöé  ---                                                                        Γöé
+Γöé                                                                             Γöé
+Γöé  ### **DELETE `/api/weather/{id}`** - Delete Weather Record                 Γöé
+Γöé  **Purpose**: Soft delete a weather record                                  Γöé
+Γöé                                                                             Γöé
+Γöé  #### **Request**                                                           Γöé
+Γöé  ```http                                                                    Γöé
+Γöé  DELETE /api/weather/1 HTTP/1.1                                             Γöé
+Γöé  Host: localhost:8080                                                       Γöé
+Γöé  ```                                                                        Γöé
+Γöé                                                                             Γöé
+Γöé  #### **Response (200 OK)**                                                 Γöé
+Γöé  ```json                                                                    Γöé
+Γöé  {                                                                          Γöé
+Γöé    "message": "Weather record deleted successfully",                        Γöé
+Γöé    "deletedBy": "api-instance-1",                                           Γöé
+Γöé    "timestamp": "2025-09-21T10:30:00Z"                                      Γöé
+Γöé  }                                                                          Γöé
+Γöé  ```                                                                        Γöé
+Γöé                                                                             Γöé
+Γöé  #### **Response (404 Not Found)**                                          Γöé
+Γöé  ```json                                                                    Γöé
+Γöé  {                                                                          Γöé
+Γöé    "error": "Weather record with ID 999 not found",                         Γöé
+Γöé    "instance": "api-instance-2"                                             Γöé
+Γöé  }                                                                          Γöé
+Γöé  ```                                                                        Γöé
+Γöé                                                                             Γöé
+Γöé  ---                                                                        Γöé
+Γöé                                                                             Γöé
+Γöé  ## ≡ƒöº System Endpoints                                                     Γöé
+Γöé                                                                             Γöé
+Γöé  ### **GET `/health`** - Health Check                                       Γöé
+Γöé  **Purpose**: Monitor application and database health                       Γöé
+Γöé                                                                             Γöé
+Γöé  #### **Request**                                                           Γöé
+Γöé  ```http                                                                    Γöé
+Γöé  GET /health HTTP/1.1                                                       Γöé
+Γöé  Host: localhost:8080                                                       Γöé
+Γöé  ```                                                                        Γöé
+Γöé                                                                             Γöé
+Γöé  #### **Response (200 OK)**                                                 Γöé
+Γöé  ```json                                                                    Γöé
+Γöé  {                                                                          Γöé
+Γöé    "status": "Healthy",                                                     Γöé
+Γöé    "totalDuration": "00:00:00.0234567"                                      Γöé
+Γöé  }                                                                          Γöé
+Γöé  ```                                                                        Γöé
+Γöé                                                                             Γöé
+Γöé  #### **Response (503 Service Unavailable)**                                Γöé
+Γöé  ```json                                                                    Γöé
+Γöé  {                                                                          Γöé
+Γöé    "status": "Unhealthy",                                                   Γöé
+Γöé    "totalDuration": "00:00:00.0234567"                                      Γöé
+Γöé  }                                                                          Γöé
+Γöé  ```                                                                        Γöé
+Γöé                                                                             Γöé
+Γöé  #### **Testing Scenarios**                                                 Γöé
+Γöé  - Γ£à **Application Health**: Service availability monitoring               Γöé
+Γöé  - Γ£à **Database Connectivity**: Database connection validation             Γöé
+Γöé  - Γ£à **Load Balancer Integration**: Used for health monitoring             Γöé
+Γöé                                                                             Γöé
+Γöé  ---                                                                        Γöé
+Γöé                                                                             Γöé
+Γöé  ### **GET `/frontend`** - Dashboard Interface                              Γöé
+Γöé  **Purpose**: Serve interactive dashboard for load balancer visualization   Γöé
+Γöé                                                                             Γöé
+Γöé  #### **Request**                                                           Γöé
+Γöé  ```http                                                                    Γöé
+Γöé  GET /frontend HTTP/1.1                                                     Γöé
+Γöé  Host: localhost:8080                                                       Γöé
+Γöé  Accept: text/html                                                          Γöé
+Γöé  ```                                                                        Γöé
+Γöé                                                                             Γöé
+Γöé  #### **Response (200 OK)**                                                 Γöé
+Γöé  Returns HTML dashboard interface for monitoring load balancer behavior.    Γöé
+Γöé                                                                             Γöé
+Γöé  ---                                                                        Γöé
+Γöé                                                                             Γöé
+Γöé  ## ≡ƒº¬ API Testing Strategies                                               Γöé
+Γöé                                                                             Γöé
+Γöé  ### **Manual Testing Approaches**                                          Γöé
+Γöé                                                                             Γöé
+Γöé  #### **1. Postman Collection Testing**                                     Γöé
+Γöé  - **Tool**: Postman GUI                                                    Γöé
+Γöé  - **Benefits**: Visual interface, easy request building                    Γöé
+Γöé  - **Scenarios**: CRUD operations, validation testing, error handling       Γöé
+Γöé                                                                             Γöé
+Γöé  #### **2. Browser-Based Testing**                                          Γöé
+Γöé  - **Tool**: Web browser for GET endpoints                                  Γöé
+Γöé  - **Benefits**: Quick verification, visual response inspection             Γöé
+Γöé  - **Scenarios**: Health checks, data retrieval endpoints                   Γöé
+Γöé                                                                             Γöé
+Γöé  #### **3. cURL Command Testing**                                           Γöé
+Γöé  - **Tool**: Command line cURL                                              Γöé
+Γöé  - **Benefits**: Scriptable, automation-ready                               Γöé
+Γöé  - **Scenarios**: CI/CD integration, batch testing                          Γöé
+Γöé                                                                             Γöé
+Γöé  ### **Automated Testing Approaches**                                       Γöé
+Γöé                                                                             Γöé
+Γöé  #### **1. Unit Testing (NUnit)**                                           Γöé
+Γöé  ```csharp                                                                  Γöé
+Γöé  [Test]                                                                     Γöé
+Γöé  public async Task GetCities_Should_ReturnAllCities()                       Γöé
+Γöé  {                                                                          Γöé
+Γöé      // Arrange                                                             Γöé
+Γöé      var client = _factory.CreateClient();                                  Γöé
+Γöé                                                                             Γöé
+Γöé      // Act                                                                 Γöé
+Γöé      var response = await client.GetAsync("/api/cities");                   Γöé
+Γöé                                                                             Γöé
+Γöé      // Assert                                                              Γöé
+Γöé      response.EnsureSuccessStatusCode();                                    Γöé
+Γöé      var content = await response.Content.ReadAsStringAsync();              Γöé
+Γöé      var result = JsonSerializer.Deserialize<CitiesResponse>(content);      Γöé
+Γöé                                                                             Γöé
+Γöé      Assert.That(result.Cities.Count, Is.GreaterThan(0));                   Γöé
+Γöé      Assert.That(result.ServedBy, Is.Not.Null);                             Γöé
+Γöé  }                                                                          Γöé
+Γöé  ```                                                                        Γöé
+Γöé                                                                             Γöé
+Γöé  #### **2. Integration Testing**                                            Γöé
+Γöé  ```csharp                                                                  Γöé
+Γöé  [Test]                                                                     Γöé
+Γöé  public async Task CreateCity_Should_PersistData()                          Γöé
+Γöé  {                                                                          Γöé
+Γöé      // Arrange                                                             Γöé
+Γöé      var client = _factory.CreateClient();                                  Γöé
+Γöé      var cityRequest = new { name = "Test City", country = "Test Country"   Γöé
+Γöé  };                                                                         Γöé
+Γöé                                                                             Γöé
+Γöé      // Act                                                                 Γöé
+Γöé      var response = await client.PostAsJsonAsync("/api/cities",             Γöé
+Γöé  cityRequest);                                                              Γöé
+Γöé                                                                             Γöé
+Γöé      // Assert                                                              Γöé
+Γöé      response.EnsureSuccessStatusCode();                                    Γöé
+Γöé                                                                             Γöé
+Γöé      // Verify persistence                                                  Γöé
+Γöé      var getResponse = await client.GetAsync("/api/cities");                Γöé
+Γöé      var cities = await                                                     Γöé
+Γöé  getResponse.Content.ReadFromJsonAsync<CitiesResponse>();                   Γöé
+Γöé                                                                             Γöé
+Γöé      Assert.That(cities.Cities.Any(c => c.Name == "Test City"), Is.True);   Γöé
+Γöé  }                                                                          Γöé
+Γöé  ```                                                                        Γöé
+Γöé                                                                             Γöé
+Γöé  #### **3. API Contract Testing**                                           Γöé
+Γöé  - **Schema Validation**: Ensure response matches expected schema           Γöé
+Γöé  - **Status Code Testing**: Verify appropriate HTTP status codes            Γöé
+Γöé  - **Header Validation**: Check response headers and content types          Γöé
+Γöé                                                                             Γöé
+Γöé  ---                                                                        Γöé
+Γöé                                                                             Γöé
+Γöé  ## ≡ƒôè Manual vs Automated Testing Comparison                               Γöé
+Γöé                                                                             Γöé
+Γöé  | Testing Aspect | Manual Approach | Automated Approach |                  Γöé
+Γöé  |----------------|-----------------|-------------------|                   Γöé
+Γöé  | **Request Creation** | Postman GUI | HttpClient + JSON |                 Γöé
+Γöé  | **Response Validation** | Visual inspection | Assert statements |        Γöé
+Γöé  | **Data Verification** | Manual database checks | Automated queries |     Γöé
+Γöé  | **Error Testing** | Manual invalid inputs | Parameterized tests |        Γöé
+Γöé  | **Performance Testing** | Manual timing | Automated benchmarks |         Γöé
+Γöé  | **Regression Testing** | Manual re-testing | Automated test suites |     Γöé
+Γöé  | **Load Testing** | Manual multiple requests | Automated load generators  Γöé
+Γöé  |                                                                          Γöé
+Γöé                                                                             Γöé
+Γöé  ### **Transition Path**                                                    Γöé
+Γöé  1. **Start with Manual**: Use Postman for understanding API behavior       Γöé
+Γöé  2. **Document Scenarios**: Record test cases and expected results          Γöé
+Γöé  3. **Automate High-Value Tests**: Convert frequent tests to automation     Γöé
+Γöé  4. **Build Test Suites**: Create comprehensive automated test coverage     Γöé
+Γöé  5. **Integrate CI/CD**: Include tests in deployment pipeline               Γöé
+Γöé                                                                             Γöé
+Γöé  ---                                                                        Γöé
+Γöé                                                                             Γöé
+Γöé  ## ≡ƒöì Error Handling Patterns                                              Γöé
+Γöé                                                                             Γöé
+Γöé  ### **Standard Error Response Format**                                     Γöé
+Γöé  ```json                                                                    Γöé
+Γöé  {                                                                          Γöé
+Γöé    "error": "Human-readable error message",                                 Γöé
+Γöé    "instance": "api-instance-identifier",                                   Γöé
+Γöé    "timestamp": "2025-09-21T10:30:00Z",                                     Γöé
+Γöé    "validationErrors": ["Detailed validation messages"]                     Γöé
+Γöé  }                                                                          Γöé
+Γöé  ```                                                                        Γöé
+Γöé                                                                             Γöé
+Γöé  ### **HTTP Status Codes Used**                                             Γöé
+Γöé  - **200 OK**: Successful GET, PUT, DELETE operations                       Γöé
+Γöé  - **201 Created**: Successful POST operations                              Γöé
+Γöé  - **400 Bad Request**: Validation errors, invalid input                    Γöé
+Γöé  - **404 Not Found**: Resource not found                                    Γöé
+Γöé  - **409 Conflict**: Duplicate resources, constraint violations             Γöé
+Γöé  - **500 Internal Server Error**: Server errors, database issues            Γöé
+Γöé                                                                             Γöé
+Γöé  ### **Error Testing Scenarios**                                            Γöé
+Γöé  - Γ£à **Input Validation**: Test all required fields and formats            Γöé
+Γöé  - Γ£à **Resource Not Found**: Test with non-existent IDs                    Γöé
+Γöé  - Γ£à **Duplicate Detection**: Test unique constraint violations            Γöé
+Γöé  - Γ£à **Foreign Key Validation**: Test invalid references                   Γöé
+Γöé  - Γ£à **Server Error Handling**: Test database connection failures          Γöé
+Γöé                                                                             Γöé
+Γöé  ---                                                                        Γöé
+Γöé                                                                             Γöé
+Γöé  ## ≡ƒÜÇ Performance Considerations                                           Γöé
+Γöé                                                                             Γöé
+Γöé  ### **Load Balancing Benefits**                                            Γöé
+Γöé  - **Multiple Instances**: Requests distributed across API instances        Γöé
+Γöé  - **Database Sharing**: Consistent data across all instances               Γöé
+Γöé  - **Instance Identification**: Response tracking for debugging             Γöé
+Γöé                                                                             Γöé
+Γöé  ### **Optimization Features**                                              Γöé
+Γöé  - **Result Limiting**: Weather endpoints limited to 50 records             Γöé
+Γöé  - **Efficient Queries**: Optimized Entity Framework queries                Γöé
+Γöé  - **Soft Deletes**: Logical deletion for data integrity                    Γöé
+Γöé                                                                             Γöé
+Γöé  ### **Performance Testing Endpoints**                                      Γöé
+Γöé  - **High-Volume Data**: Weather endpoints for load testing                 Γöé
+Γöé  - **Database Operations**: All CRUD operations for stress testing          Γöé
+Γöé  - **Health Monitoring**: Health check endpoint for uptime monitoring       Γöé
+Γöé                                                                             Γöé
+Γöé  ---                                                                        Γöé
+Γöé                                                                             Γöé
+Γöé  ## ≡ƒÄ» Summary                                                              Γöé
+Γöé                                                                             Γöé
+Γöé  The AutomationPlayground API provides a comprehensive set of endpoints     Γöé
+Γöé  designed for educational testing scenarios:                                Γöé
+Γöé                                                                             Γöé
+Γöé  - **Educational Focus**: Clear documentation and testing scenarios         Γöé
+Γöé  - **Real-World Patterns**: Standard REST API conventions                   Γöé
+Γöé  - **Testing-Friendly Design**: Comprehensive error handling and            Γöé
+Γöé  validation                                                                 Γöé
+Γöé  - **Load Balancing**: Multiple instance support for scalability testing    Γöé
+Γöé  - **Manual to Automated Transition**: Examples for both approaches         Γöé
+Γöé                                                                             Γöé
+Γöé  This API serves as an excellent foundation for learning API testing        Γöé
+Γöé  concepts and transitioning from manual to automated testing approaches.    Γöé
+Γöé                                                                             Γöé
+Γöé                                                                             Γöé
+ΓööΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÿ
+
+[35m[Finalize] todos_count=0, todos_with_results=0[0m
+ΓöîΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ Γ£à Agent Final Answer ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÉ
+Γöé                                                                             Γöé
+Γöé  Agent: QA Test Planner                                                     Γöé
+Γöé                                                                             Γöé
+Γöé  Final Answer:                                                              Γöé
+Γöé  Here is a structured, prioritized test plan for the AutomationPlayground   Γöé
+Γöé  application, covering API, UI, and E2E tests with specific assertions:     Γöé
+Γöé                                                                             Γöé
+Γöé  ### 1. API Tests                                                           Γöé
+Γöé                                                                             Γöé
+Γöé  | ID  | Method | Endpoint                | Role           | Priority |     Γöé
+Γöé  Assertions                                                                 Γöé
+Γöé  |                                                                          Γöé
+Γöé  |-----|--------|-------------------------|----------------|----------|---  Γöé
+Γöé  -------------------------------------------------------------------------  Γöé
+Γöé  ---------------------------|                                               Γöé
+Γöé  | API-01 | GET    | /api/cities             | User           | P0       |  Γöé
+Γöé  Response 200 with city data; response includes servedBy and timestamp;     Γöé
+Γöé  instance balance tested.      |                                            Γöé
+Γöé  | API-02 | GET    | /api/cities/{id}       | User           | P0       |   Γöé
+Γöé  Response 200 with city data for valid ID; response 404 for non-existent    Γöé
+Γöé  ID; response 400 for invalid ID.  |                                        Γöé
+Γöé  | API-03 | POST   | /api/cities             | User           | P0       |  Γöé
+Γöé  Response 201 for valid city creation; response 400 for missing fields;     Γöé
+Γöé  response 409 for duplicates.   |                                           Γöé
+Γöé  | API-04 | DELETE | /api/cities/{id}       | Admin          | P1       |   Γöé
+Γöé  Response 200 for successful delete; response 404 for non-existent city;    Γöé
+Γöé  validates soft delete behavior. |                                          Γöé
+Γöé  | API-05 | GET    | /api/weather            | User           | P1       |  Γöé
+Γöé  Response 200 with valid weather data; checks response includes city data;  Γöé
+Γöé  validates data structure.  |                                               Γöé
+Γöé  | API-06 | POST   | /api/weather            | User           | P1       |  Γöé
+Γöé  Response 201 for valid weather record creation; checks foreign key         Γöé
+Γöé  integrity; response 400 for missing fields. |                              Γöé
+Γöé  | API-07 | GET    | /health                 | Admin          | P1       |  Γöé
+Γöé  Response 200 indicates application health; response 503 for unhealthy      Γöé
+Γöé  status.                          |                                         Γöé
+Γöé  | API-08 | GET    | /api/weather/{id}      | User           | P2       |   Γöé
+Γöé  Response 200 for valid weather ID; response 404 for non-existent weather   Γöé
+Γöé  ID.                        |                                               Γöé
+Γöé                                                                             Γöé
+Γöé  ### 2. UI Tests                                                            Γöé
+Γöé                                                                             Γöé
+Γöé  | ID  | Page                          | Role           | Actions           Γöé
+Γöé  | Assertions                                                               Γöé
+Γöé  |                                                                          Γöé
+Γöé  |-----|-------------------------------|----------------|-----------------  Γöé
+Γöé  ------------------|------------------------------------------------------  Γöé
+Γöé  -----------------------------------------------|                           Γöé
+Γöé  | UI-01 | Dashboard                    | User           | Load dashboard   Γöé
+Γöé  | Dashboard loads successfully; health status displayed; cities and        Γöé
+Γöé  weather data visibility.          |                                        Γöé
+Γöé  | UI-02 | City Management              | Admin          | Add new city     Γöé
+Γöé  | Successfully adds a city; form validation for required fields; displays  Γöé
+Γöé  confirmation message.         |                                            Γöé
+Γöé  | UI-03 | City Detail                  | User           | View city        Γöé
+Γöé  details                 | Displays correct city information; handles       Γöé
+Γöé  non-existent city gracefully with an error message.       |                Γöé
+Γöé  | UI-04 | Weather Management            | User           | Load weather    Γöé
+Γöé  details              | Weather data reflects current status; UI handles    Γöé
+Γöé  empty weather responses gracefully.                 |                      Γöé
+Γöé  | UI-05 | API Status                   | Admin          | Access API       Γöé
+Γöé  health check status    | Displays health status response; indicates        Γöé
+Γöé  active instances and response times.                       |               Γöé
+Γöé                                                                             Γöé
+Γöé  ### 3. E2E Journeys                                                        Γöé
+Γöé                                                                             Γöé
+Γöé  | ID  | Steps                                                              Γöé
+Γöé  | Assertions                                                               Γöé
+Γöé  |                                                                          Γöé
+Γöé  |-----|------------------------------------------------------------------  Γöé
+Γöé  ---------------------|---------------------------------------------------  Γöé
+Γöé  -----------------------------------------------------|                     Γöé
+Γöé  | E2E-01 | Navigate to home > Add a new city > View city list > Check new  Γöé
+Γöé  city is displayed.   | New city is visible in the city list; data matches  Γöé
+Γöé  input values; instance info is correctly updated.  |                       Γöé
+Γöé  | E2E-02 | Navigate to Dashboard > View weather data for a city > Delete   Γöé
+Γöé  the city               | Weather data reflects city deletion; UI updates   Γöé
+Γöé  and shows correct messages for successful deletion.     |                  Γöé
+Γöé  | E2E-03 | Access Health check > Trigger manual tests > View results       Γöé
+Γöé  | Health check shows all instances as healthy; specific test results are   Γöé
+Γöé  displayed accurately.            |                                         Γöé
+Γöé                                                                             Γöé
+Γöé  ### 4. Negative/Security Tests                                             Γöé
+Γöé                                                                             Γöé
+Γöé  | ID  | Test Type               | Role         | Description               Γöé
+Γöé  | Assertions                                                               Γöé
+Γöé  |                                                                          Γöé
+Γöé  |-----|------------------------|--------------|--------------------------  Γöé
+Γöé  ----------------------------|--------------------------------------------  Γöé
+Γöé  ------------------------------------------|                                Γöé
+Γöé  | NEG-01 | Invalid Input         | User         | Submit invalid city      Γöé
+Γöé  data (empty fields).            | Response 400 for validation errors;      Γöé
+Γöé  specific error messages returned.                |                         Γöé
+Γöé  | NEG-02 | Unauthorized Access   | User         | Access protected         Γöé
+Γöé  endpoints without authentication     | Response 403 for unauthorized       Γöé
+Γöé  access; checks proper handling of auth errors.        |                    Γöé
+Γöé  | NEG-03 | SQL Injection         | User         | Attempt SQL injection    Γöé
+Γöé  in city creation request.      | Response 400 or 500; application          Γöé
+Γöé  prevents SQL injection attempts successfully.       |                      Γöé
+Γöé  | NEG-04 | Cross-Origin Resource Sharing (CORS) | User         | Attempt   Γöé
+Γöé  access from unauthorized origins.           | Response 403 for access      Γöé
+Γöé  denied; verifies proper CORS configurations.                |              Γöé
+Γöé  | NEG-05 | Duplicate Submission  | User         | Submit the same weather  Γöé
+Γöé  data multiple times.          | Response 409 for duplicates; application   Γöé
+Γöé  handles conflicts correctly.                |                              Γöé
+Γöé  | NEG-06 | Access Non-Existent Endpoint | User    | Hit random or          Γöé
+Γöé  non-existent endpoints.                | Response 404 for not found;       Γöé
+Γöé  server handles invalid routes gracefully.                |                 Γöé
+Γöé                                                                             Γöé
+Γöé  This test plan prioritizes authentication, core CRUD operations, and       Γöé
+Γöé  includes tests for valid and invalid inputs designed to ensure coverage    Γöé
+Γöé  across all important areas of the application.                             Γöé
+Γöé                                                                             Γöé
+ΓööΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÿ
+
+ΓöîΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ ≡ƒôï Task Completion ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÉ
+Γöé                                                                             Γöé
+Γöé  Task Completed                                                             Γöé
+Γöé  Name: plan_tests                                                           Γöé
+Γöé  Agent: QA Test Planner                                                     Γöé
+Γöé                                                                             Γöé
+Γöé                                                                             Γöé
+ΓööΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÿ
+
+ΓöîΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ Crew Completion ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÉ
+Γöé                                                                             Γöé
+Γöé  Crew Execution Completed                                                   Γöé
+Γöé  Name: QAAnalystCrew                                                        Γöé
+Γöé  ID: 7285c5f8-9d14-4455-a368-83b048f16553                                   Γöé
+Γöé  Final Output: Here is a structured, prioritized test plan for the          Γöé
+Γöé  AutomationPlayground application, covering API, UI, and E2E tests with     Γöé
+Γöé  specific assertions:                                                       Γöé
+Γöé                                                                             Γöé
+Γöé  ### 1. API Tests                                                           Γöé
+Γöé                                                                             Γöé
+Γöé  | ID  | Method | Endpoint                | Role           | Priority |     Γöé
+Γöé  Assertions                                                                 Γöé
+Γöé  |                                                                          Γöé
+Γöé  |-----|--------|-------------------------|----------------|----------|---  Γöé
+Γöé  -------------------------------------------------------------------------  Γöé
+Γöé  ---------------------------|                                               Γöé
+Γöé  | API-01 | GET    | /api/cities             | User           | P0       |  Γöé
+Γöé  Response 200 with city data; response includes servedBy and timestamp;     Γöé
+Γöé  instance balance tested.      |                                            Γöé
+Γöé  | API-02 | GET    | /api/cities/{id}       | User           | P0       |   Γöé
+Γöé  Response 200 with city data for valid ID; response 404 for non-existent    Γöé
+Γöé  ID; response 400 for invalid ID.  |                                        Γöé
+Γöé  | API-03 | POST   | /api/cities             | User           | P0       |  Γöé
+Γöé  Response 201 for valid city creation; response 400 for missing fields;     Γöé
+Γöé  response 409 for duplicates.   |                                           Γöé
+Γöé  | API-04 | DELETE | /api/cities/{id}       | Admin          | P1       |   Γöé
+Γöé  Response 200 for successful delete; response 404 for non-existent city;    Γöé
+Γöé  validates soft delete behavior. |                                          Γöé
+Γöé  | API-05 | GET    | /api/weather            | User           | P1       |  Γöé
+Γöé  Response 200 with valid weather data; checks response includes city data;  Γöé
+Γöé  validates data structure.  |                                               Γöé
+Γöé  | API-06 | POST   | /api/weather            | User           | P1       |  Γöé
+Γöé  Response 201 for valid weather record creation; checks foreign key         Γöé
+Γöé  integrity; response 400 for missing fields. |                              Γöé
+Γöé  | API-07 | GET    | /health                 | Admin          | P1       |  Γöé
+Γöé  Response 200 indicates application health; response 503 for unhealthy      Γöé
+Γöé  status.                          |                                         Γöé
+Γöé  | API-08 | GET    | /api/weather/{id}      | User           | P2       |   Γöé
+Γöé  Response 200 for valid weather ID; response 404 for non-existent weather   Γöé
+Γöé  ID.                        |                                               Γöé
+Γöé                                                                             Γöé
+Γöé  ### 2. UI Tests                                                            Γöé
+Γöé                                                                             Γöé
+Γöé  | ID  | Page                          | Role           | Actions           Γöé
+Γöé  | Assertions                                                               Γöé
+Γöé  |                                                                          Γöé
+Γöé  |-----|-------------------------------|----------------|-----------------  Γöé
+Γöé  ------------------|------------------------------------------------------  Γöé
+Γöé  -----------------------------------------------|                           Γöé
+Γöé  | UI-01 | Dashboard                    | User           | Load dashboard   Γöé
+Γöé  | Dashboard loads successfully; health status displayed; cities and        Γöé
+Γöé  weather data visibility.          |                                        Γöé
+Γöé  | UI-02 | City Management              | Admin          | Add new city     Γöé
+Γöé  | Successfully adds a city; form validation for required fields; displays  Γöé
+Γöé  confirmation message.         |                                            Γöé
+Γöé  | UI-03 | City Detail                  | User           | View city        Γöé
+Γöé  details                 | Displays correct city information; handles       Γöé
+Γöé  non-existent city gracefully with an error message.       |                Γöé
+Γöé  | UI-04 | Weather Management            | User           | Load weather    Γöé
+Γöé  details              | Weather data reflects current status; UI handles    Γöé
+Γöé  empty weather responses gracefully.                 |                      Γöé
+Γöé  | UI-05 | API Status                   | Admin          | Access API       Γöé
+Γöé  health check status    | Displays health status response; indicates        Γöé
+Γöé  active instances and response times.                       |               Γöé
+Γöé                                                                             Γöé
+Γöé  ### 3. E2E Journeys                                                        Γöé
+Γöé                                                                             Γöé
+Γöé  | ID  | Steps                                                              Γöé
+Γöé  | Assertions                                                               Γöé
+Γöé  |                                                                          Γöé
+Γöé  |-----|------------------------------------------------------------------  Γöé
+Γöé  ---------------------|---------------------------------------------------  Γöé
+Γöé  -----------------------------------------------------|                     Γöé
+Γöé  | E2E-01 | Navigate to home > Add a new city > View city list > Check new  Γöé
+Γöé  city is displayed.   | New city is visible in the city list; data matches  Γöé
+Γöé  input values; instance info is correctly updated.  |                       Γöé
+Γöé  | E2E-02 | Navigate to Dashboard > View weather data for a city > Delete   Γöé
+Γöé  the city               | Weather data reflects city deletion; UI updates   Γöé
+Γöé  and shows correct messages for successful deletion.     |                  Γöé
+Γöé  | E2E-03 | Access Health check > Trigger manual tests > View results       Γöé
+Γöé  | Health check shows all instances as healthy; specific test results are   Γöé
+Γöé  displayed accurately.            |                                         Γöé
+Γöé                                                                             Γöé
+Γöé  ### 4. Negative/Security Tests                                             Γöé
+Γöé                                                                             Γöé
+Γöé  | ID  | Test Type               | Role         | Description               Γöé
+Γöé  | Assertions                                                               Γöé
+Γöé  |                                                                          Γöé
+Γöé  |-----|------------------------|--------------|--------------------------  Γöé
+Γöé  ----------------------------|--------------------------------------------  Γöé
+Γöé  ------------------------------------------|                                Γöé
+Γöé  | NEG-01 | Invalid Input         | User         | Submit invalid city      Γöé
+Γöé  data (empty fields).            | Response 400 for validation errors;      Γöé
+Γöé  specific error messages returned.                |                         Γöé
+Γöé  | NEG-02 | Unauthorized Access   | User         | Access protected         Γöé
+Γöé  endpoints without authentication     | Response 403 for unauthorized       Γöé
+Γöé  access; checks proper handling of auth errors.        |                    Γöé
+Γöé  | NEG-03 | SQL Injection         | User         | Attempt SQL injection    Γöé
+Γöé  in city creation request.      | Response 400 or 500; application          Γöé
+Γöé  prevents SQL injection attempts successfully.       |                      Γöé
+Γöé  | NEG-04 | Cross-Origin Resource Sharing (CORS) | User         | Attempt   Γöé
+Γöé  access from unauthorized origins.           | Response 403 for access      Γöé
+Γöé  denied; verifies proper CORS configurations.                |              Γöé
+Γöé  | NEG-05 | Duplicate Submission  | User         | Submit the same weather  Γöé
+Γöé  data multiple times.          | Response 409 for duplicates; application   Γöé
+Γöé  handles conflicts correctly.                |                              Γöé
+Γöé  | NEG-06 | Access Non-Existent Endpoint | User    | Hit random or          Γöé
+Γöé  non-existent endpoints.                | Response 404 for not found;       Γöé
+Γöé  server handles invalid routes gracefully.                |                 Γöé
+Γöé                                                                             Γöé
+Γöé  This test plan prioritizes authentication, core CRUD operations, and       Γöé
+Γöé  includes tests for valid and invalid inputs designed to ensure coverage    Γöé
+Γöé  across all important areas of the application.                             Γöé
+Γöé                                                                             Γöé
+Γöé                                                                             Γöé
+ΓööΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÿ
+ΓöîΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ Γ£à Flow Method Completed ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÉ
+Γöé                                                                             Γöé
+Γöé  Method: plan_tests                                                         Γöé
+Γöé  Status: Completed                                                          Γöé
+Γöé                                                                             Γöé
+Γöé                                                                             Γöé
+ΓööΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÿ
+ΓöîΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ ≡ƒöä Flow Method Running ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÉ
+Γöé                                                                             Γöé
+Γöé  Method: write_tests                                                        Γöé
+Γöé  Status: Running                                                            Γöé
+Γöé                                                                             Γöé
+Γöé                                                                             Γöé
+ΓööΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÿ
+
+
+
+ΓöîΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ Tracing Status ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÉ
+Γöé                                                                             Γöé
+Γöé  Info: Tracing is disabled.                                                 Γöé
+Γöé                                                                             Γöé
+Γöé  To enable tracing, do any one of these:                                    Γöé
+Γöé  ΓÇó Set tracing=True in your Crew/Flow code                                  Γöé
+Γöé  ΓÇó Set CREWAI_TRACING_ENABLED=true in your project's .env file              Γöé
+Γöé  ΓÇó Run: crewai traces enable                                                Γöé
+Γöé                                                                             Γöé
+ΓööΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÿ
+ΓöîΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ Γ£¿ Update Available Γ£¿ ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÉ
+Γöé                                                                             Γöé
+Γöé  A new version of CrewAI is available!                                      Γöé
+Γöé                                                                             Γöé
+Γöé  Current version: 1.14.5                                                    Γöé
+Γöé  Latest version:  1.14.6                                                    Γöé
+Γöé                                                                             Γöé
+Γöé  To update, run: uv sync --upgrade-package crewai                           Γöé
+Γöé                                                                             Γöé
+ΓööΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÿ
+
+ΓöîΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ ≡ƒÜÇ Crew Execution Started ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÉ
+Γöé                                                                             Γöé
+Γöé  Crew Execution Started                                                     Γöé
+Γöé  Name: BETestWriterCrew                                                     Γöé
+Γöé  ID: 6c2dd628-c84b-492d-a45d-b9e468155945                                   Γöé
+Γöé                                                                             Γöé
+Γöé                                                                             Γöé
+ΓööΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÿ
+
+ΓöîΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ Crew Failure ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÉ
+Γöé                                                                             Γöé
+Γöé  Crew Execution Failed                                                      Γöé
+Γöé  Name: BETestWriterCrew                                                     Γöé
+Γöé  ID: 6c2dd628-c84b-492d-a45d-b9e468155945                                   Γöé
+Γöé                                                                             Γöé
+Γöé                                                                             Γöé
+ΓööΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÿ
+
+ERROR:crewai.flow.flow:Error executing listener write_tests: Missing required template variable 'Template variable 'BASE_URL' not found in inputs dictionary' in description
+ΓöîΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ Tracing Status ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÉ
+Γöé                                                                             Γöé
+Γöé  Info: Tracing is disabled.                                                 Γöé
+Γöé                                                                             Γöé
+Γöé  To enable tracing, do any one of these:                                    Γöé
+Γöé  ΓÇó Set tracing=True in your Crew/Flow code                                  Γöé
+Γöé  ΓÇó Set CREWAI_TRACING_ENABLED=true in your project's .env file              Γöé
+Γöé  ΓÇó Run: crewai traces enable                                                Γöé
+Γöé                                                                             Γöé
+ΓööΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÿ
+ΓöîΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ Γ¥î Flow Method Failed ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÉ
+Γöé                                                                             Γöé
+Γöé  Method: write_tests                                                        Γöé
+Γöé  Status: Failed                                                             Γöé
+Γöé                                                                             Γöé
+Γöé                                                                             Γöé
+ΓööΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÿ
+
+Traceback (most recent call last):
+  File "C:\Git\AB.HarvestTester\.venv\Lib\site-packages\crewai\task.py", line 1007, in interpolate_inputs_and_add_conversation_history
+    self.description = interpolate_only(
+                       ~~~~~~~~~~~~~~~~^
+        input_string=self._original_description, inputs=inputs
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Git\AB.HarvestTester\.venv\Lib\site-packages\crewai\utilities\string_utils.py", line 143, in interpolate_only
+    raise KeyError(
+        f"Template variable '{missing_vars[0]}' not found in inputs dictionary"
+    )
+KeyError: "Template variable 'BASE_URL' not found in inputs dictionary"
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "C:\Git\AB.HarvestTester\src\testforge\__main__.py", line 147, in <module>
+    cli()
+    ~~~^^
+  File "C:\Git\AB.HarvestTester\.venv\Lib\site-packages\click\core.py", line 1161, in __call__
+    return self.main(*args, **kwargs)
+           ~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Git\AB.HarvestTester\.venv\Lib\site-packages\click\core.py", line 1082, in main
+    rv = self.invoke(ctx)
+  File "C:\Git\AB.HarvestTester\.venv\Lib\site-packages\click\core.py", line 1443, in invoke
+    return ctx.invoke(self.callback, **ctx.params)
+           ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Git\AB.HarvestTester\.venv\Lib\site-packages\click\core.py", line 788, in invoke
+    return __callback(*args, **kwargs)
+  File "C:\Git\AB.HarvestTester\src\testforge\__main__.py", line 141, in cli
+    flow.kickoff()
+    ~~~~~~~~~~~~^^
+  File "C:\Git\AB.HarvestTester\.venv\Lib\site-packages\crewai\flow\flow.py", line 2125, in kickoff
+    return asyncio.run(_run_flow())
+           ~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\PeterBadenhorst\AppData\Local\Programs\Python\Python313\Lib\asyncio\runners.py", line 194, in run
+    return runner.run(main)
+           ~~~~~~~~~~^^^^^^
+  File "C:\Users\PeterBadenhorst\AppData\Local\Programs\Python\Python313\Lib\asyncio\runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "C:\Users\PeterBadenhorst\AppData\Local\Programs\Python\Python313\Lib\asyncio\base_events.py", line 720, in run_until_complete
+    return future.result()
+           ~~~~~~~~~~~~~^^
+  File "C:\Git\AB.HarvestTester\.venv\Lib\site-packages\crewai\flow\flow.py", line 2113, in _run_flow
+    return await self.kickoff_async(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+    )
+    ^
+  File "C:\Git\AB.HarvestTester\.venv\Lib\site-packages\crewai\flow\flow.py", line 2363, in kickoff_async
+    await asyncio.gather(*tasks)
+  File "C:\Git\AB.HarvestTester\.venv\Lib\site-packages\crewai\flow\flow.py", line 2584, in _execute_start_method
+    await self._execute_listeners(start_method_name, result, finished_event_id)
+  File "C:\Git\AB.HarvestTester\.venv\Lib\site-packages\crewai\flow\flow.py", line 2874, in _execute_listeners
+    await asyncio.gather(*tasks)
+  File "C:\Git\AB.HarvestTester\.venv\Lib\site-packages\crewai\flow\flow.py", line 3142, in _execute_single_listener
+    await self._execute_listeners(
+        listener_name, listener_result, finished_event_id
+    )
+  File "C:\Git\AB.HarvestTester\.venv\Lib\site-packages\crewai\flow\flow.py", line 2874, in _execute_listeners
+    await asyncio.gather(*tasks)
+  File "C:\Git\AB.HarvestTester\.venv\Lib\site-packages\crewai\flow\flow.py", line 3142, in _execute_single_listener
+    await self._execute_listeners(
+        listener_name, listener_result, finished_event_id
+    )
+  File "C:\Git\AB.HarvestTester\.venv\Lib\site-packages\crewai\flow\flow.py", line 2874, in _execute_listeners
+    await asyncio.gather(*tasks)
+  File "C:\Git\AB.HarvestTester\.venv\Lib\site-packages\crewai\flow\flow.py", line 3142, in _execute_single_listener
+    await self._execute_listeners(
+        listener_name, listener_result, finished_event_id
+    )
+  File "C:\Git\AB.HarvestTester\.venv\Lib\site-packages\crewai\flow\flow.py", line 2874, in _execute_listeners
+    await asyncio.gather(*tasks)
+  File "C:\Git\AB.HarvestTester\.venv\Lib\site-packages\crewai\flow\flow.py", line 3142, in _execute_single_listener
+    await self._execute_listeners(
+        listener_name, listener_result, finished_event_id
+    )
+  File "C:\Git\AB.HarvestTester\.venv\Lib\site-packages\crewai\flow\flow.py", line 2874, in _execute_listeners
+    await asyncio.gather(*tasks)
+  File "C:\Git\AB.HarvestTester\.venv\Lib\site-packages\crewai\flow\flow.py", line 3128, in _execute_single_listener
+    listener_result, finished_event_id = await self._execute_method(
+                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        listener_name, method
+        ^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Git\AB.HarvestTester\.venv\Lib\site-packages\crewai\flow\flow.py", line 2750, in _execute_method
+    raise e
+  File "C:\Git\AB.HarvestTester\.venv\Lib\site-packages\crewai\flow\flow.py", line 2668, in _execute_method
+    result = await asyncio.to_thread(ctx.run, method, *args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\PeterBadenhorst\AppData\Local\Programs\Python\Python313\Lib\asyncio\threads.py", line 25, in to_thread
+    return await loop.run_in_executor(None, func_call)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\PeterBadenhorst\AppData\Local\Programs\Python\Python313\Lib\concurrent\futures\thread.py", line 59, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "C:\Git\AB.HarvestTester\.venv\Lib\site-packages\crewai\flow\flow_wrappers.py", line 94, in __call__
+    return self._meth(self._instance, *args, **kwargs)
+           ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Git\AB.HarvestTester\src\testforge\flow.py", line 167, in write_tests
+    run_be_writer(self.state)
+    ~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "C:\Git\AB.HarvestTester\src\testforge\agents\be_test_writer\agent.py", line 168, in run_be_writer
+    result = crew.crew().kickoff(
+        inputs={
+    ...<11 lines>...
+        }
+    )
+  File "C:\Git\AB.HarvestTester\.venv\Lib\site-packages\crewai\crew.py", line 958, in kickoff
+    inputs = prepare_kickoff(self, inputs, input_files)
+  File "C:\Git\AB.HarvestTester\.venv\Lib\site-packages\crewai\crews\utils.py", line 348, in prepare_kickoff
+    crew._interpolate_inputs(normalized)
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "C:\Git\AB.HarvestTester\.venv\Lib\site-packages\crewai\crew.py", line 2008, in _interpolate_inputs
+    task.interpolate_inputs_and_add_conversation_history(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        # type: ignore # "interpolate_inputs" of "Task" does not return a value (it only ever returns None)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        inputs
+        ^^^^^^
+    )
+    ^
+  File "C:\Git\AB.HarvestTester\.venv\Lib\site-packages\crewai\task.py", line 1011, in interpolate_inputs_and_add_conversation_history
+    raise ValueError(
+        f"Missing required template variable '{e.args[0]}' in description"
+    ) from e
+ValueError: Missing required template variable 'Template variable 'BASE_URL' not found in inputs dictionary' in description

@@ -1,0 +1,41 @@
+flowchart TD
+    INPUT["YOU PROVIDE\n--repo  --url  --creds"] --> RR
+
+    subgraph Discovery ["Phase 1 - Discovery"]
+        RR["1. Repo Reader\nPure Python"]
+    end
+
+    subgraph Extraction ["Phase 2 - API Extraction"]
+        SC["2. Scraper\nPure Python + MCP"]
+    end
+
+    subgraph Framework ["Phase 3 - Scaffold"]
+        SF["3. Scaffold\nPure Python"]
+    end
+
+    subgraph Planning ["Phase 4 - Test Planning"]
+        QA["4. QA Analyst\nGPT-4.1"]
+    end
+
+    subgraph Generation ["Phase 5 - Test Generation"]
+        BE["BE Writer\nGPT-4.1"]
+        FE["FE Writer\nGPT-4.1 + Playwright MCP"]
+        E2E["E2E Writer\nGPT-4.1 + Playwright MCP"]
+    end
+
+    subgraph Stabilize ["Phase 6 - Stabilization"]
+      JAN["6. Janator\nPython bootstrap + npm install"]
+      CLN["7. Code Cleaner\nDeterministic fixer + tsc-guided repair"]
+    end
+
+    subgraph Review ["Phase 7 - Review Loop"]
+      REV["8. Reviewer\nGPT-4o-mini + test runner"]
+        PASS{All pass?}
+    end
+
+    RR --> SC --> SF --> QA
+    QA --> BE & FE & E2E
+    BE & FE & E2E --> JAN --> CLN --> REV
+    REV --> PASS
+    PASS -->|Yes| DONE["Done"]
+    PASS -->|"No (up to 3x)"| BE & FE & E2E

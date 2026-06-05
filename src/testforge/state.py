@@ -17,6 +17,7 @@ class TestForgeState(FlowState):
     incremental: bool = False
     force: bool = False
     demo: bool = False
+    skip_fe: bool = False
     mcp_server_config: Optional[dict] = None
 
     # Repo Reader output

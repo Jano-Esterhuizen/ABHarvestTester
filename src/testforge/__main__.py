@@ -50,18 +50,21 @@ def preflight_check() -> list[str]:
 @click.command()
 @click.option("--repo", required=True, type=click.Path(exists=True), help="Path to target repository")
 @click.option("--url", required=True, help="URL of the running application")
-@click.option("--creds", required=True, type=click.Path(exists=True), help="Path to credentials JSON file")
+@click.option("--creds", required=False, default=None, type=click.Path(exists=True), help="Optional: path to credentials JSON file")
 @click.option("--output", default="./test-output", help="Output directory for generated tests")
 @click.option("--mcp-config", default=None, type=click.Path(exists=True), help="Optional: dev-provided MCP server config")
 @click.option("--force", is_flag=True, default=False, help="Overwrite existing test files")
 @click.option("--demo", is_flag=True, default=False, help="Demo mode: limit to 3 tests per agent (FE + BE only)")
-def cli(repo: str, url: str, creds: str, output: str, mcp_config: str | None, force: bool, demo: bool):
+@click.option("--skip-fe", is_flag=True, default=False, help="Skip frontend/E2E tests (API-only mode)")
+def cli(repo: str, url: str, creds: str | None, output: str, mcp_config: str | None, force: bool, demo: bool, skip_fe: bool):
     """TestForge — Generate comprehensive Playwright test suites using AI agents."""
 
-    # Load credentials
-    creds_path = Path(creds)
-    with open(creds_path) as f:
-        credentials = json.load(f)
+    # Load optional credentials
+    credentials: dict = {}
+    if creds:
+        creds_path = Path(creds)
+        with open(creds_path) as f:
+            credentials = json.load(f)
 
     # Load optional MCP server config
     mcp_server_config = None
@@ -98,6 +101,7 @@ def cli(repo: str, url: str, creds: str, output: str, mcp_config: str | None, fo
         mcp_config_path=mcp_config,
         mcp_server_config=mcp_server_config,
         force=force,
+        skip_fe=skip_fe,
         demo=demo,
         github_token=github_token,
     )
@@ -115,11 +119,14 @@ def cli(repo: str, url: str, creds: str, output: str, mcp_config: str | None, fo
     click.echo(f"  Repo:    {config.repo_path}")
     click.echo(f"  App URL: {config.app_url}")
     click.echo(f"  Output:  {config.output_dir}")
-    click.echo(f"  Roles:   {', '.join(r['name'] for r in credentials['roles'])}")
+    role_names = ", ".join(r.get("name", "unknown") for r in config.credentials.get("roles", []))
+    click.echo(f"  Roles:   {role_names or 'none (running without credentials)'}")
     if mcp_server_config:
         click.echo(f"  MCP:     Provided (authoritative API source)")
     click.echo(f"  Force:   {config.force}")
-    if config.demo:
+    if config.skip_fe:
+        click.echo("  Mode:    SKIP-FE (API-only, no frontend/E2E tests)")
+    elif config.demo:
         click.echo("  Mode:    DEMO (3 tests per agent, FE + BE only)")
     click.echo("=" * 60)
 

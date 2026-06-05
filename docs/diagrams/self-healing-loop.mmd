@@ -1,0 +1,13 @@
+flowchart TD
+  GEN["Writers generate tests"] --> JAN["Janator ensures boilerplate + deps"]
+  JAN --> CLN["Code Cleaner normalizes generated code"]
+  CLN --> RUN["Reviewer runs\nnpx playwright test"]
+  RUN --> CHECK{Passing?}
+  CHECK -->|Yes| DONE["Done"]
+  CHECK -->|No| ANALYSE["Reviewer analyses failures via LLM"]
+  ANALYSE --> FEEDBACK["Feedback sent to Writers"]
+  FEEDBACK --> REGEN["Writers regenerate failing tests"]
+  REGEN --> JAN
+
+  style DONE fill:#2d6,stroke:#183,color:#fff
+  style CHECK fill:#fc0,stroke:#a80

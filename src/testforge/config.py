@@ -15,6 +15,7 @@ class TestForgeConfig:
     output_dir: str
     force: bool = False
     demo: bool = False
+    skip_fe: bool = False
     mcp_config_path: Optional[str] = None
     mcp_server_config: Optional[dict] = None
     github_token: str = ""
@@ -32,18 +33,29 @@ def validate_config(config: TestForgeConfig) -> list[str]:
     if not config.app_url:
         errors.append("App URL is required")
 
-    # Credentials must have roles
-    if "roles" not in config.credentials or not config.credentials["roles"]:
-        errors.append("Credentials file must contain at least one role")
+    # Validate credentials only when provided.
+    if config.credentials:
+        roles = config.credentials.get("roles", [])
 
-    # Each role must have required fields
-    for i, role in enumerate(config.credentials.get("roles", [])):
-        for field_name in ("name", "username", "password"):
-            if field_name not in role:
-                errors.append(f"Role {i} missing required field: {field_name}")
-
-    # Login config must exist
-    if "login" not in config.credentials:
-        errors.append("Credentials file must contain a 'login' section")
+        # If roles are provided, each role only needs username/password.
+        if roles:
+            for i, role in enumerate(roles):
+                for field_name in ("username", "password"):
+                    if field_name not in role:
+                        errors.append(f"Role {i} missing required field: {field_name}")
+        else:
+            # No roles provided: allow top-level credentials shape.
+            has_top_level = (
+                "username" in config.credentials and "password" in config.credentials
+            )
+            has_test_user = (
+                isinstance(config.credentials.get("testUser"), dict)
+                and "username" in config.credentials["testUser"]
+                and "password" in config.credentials["testUser"]
+            )
+            if not has_top_level and not has_test_user:
+                errors.append(
+                    "Credentials must include either roles[].username/password, top-level username/password, or testUser.username/password"
+                )
 
     return errors

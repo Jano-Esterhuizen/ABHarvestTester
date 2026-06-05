@@ -1,0 +1,57 @@
+- generic [ref=e2]:
+  - generic [ref=e3]:
+    - heading "🚀 AutomationPlayground C# Load Balancer" [level=1] [ref=e4]
+    - paragraph [ref=e5]: Monitor which API instance you're connected to in real-time
+  - generic [ref=e6]:
+    - generic [ref=e7]:
+      - heading "📊 Instance Status" [level=3] [ref=e8]
+      - generic [ref=e9]:
+        - strong [ref=e10]: Nginx Load Balancer (Port 8000)
+        - generic [ref=e11]: ONLINE
+        - generic [ref=e12]: Ready to distribute traffic...
+      - generic [ref=e13]:
+        - strong [ref=e14]: C# API Instance 1
+        - generic [ref=e15]: ONLINE
+        - generic [ref=e16]: Waiting for requests...
+      - generic [ref=e17]:
+        - strong [ref=e18]: C# API Instance 2
+        - generic [ref=e19]: ONLINE
+        - generic [ref=e20]: Waiting for requests...
+    - generic [ref=e21]:
+      - heading "🎯 Load Balancer Testing" [level=3] [ref=e22]
+      - button "Test Load Balancer" [ref=e23] [cursor=pointer]
+      - button "Health Check" [ref=e24] [cursor=pointer]
+      - button "Auto Test (10 requests)" [ref=e25] [cursor=pointer]
+      - button "Clear Log" [ref=e26] [cursor=pointer]
+      - generic [ref=e27]:
+        - generic [ref=e28]:
+          - generic [ref=e29]: "0"
+          - generic [ref=e30]: Total Requests
+        - generic [ref=e31]:
+          - generic [ref=e32]: "0"
+          - generic [ref=e33]: API 1 Hits
+        - generic [ref=e34]:
+          - generic [ref=e35]: "0"
+          - generic [ref=e36]: API 2 Hits
+    - generic [ref=e38]:
+      - heading "🌐 API Endpoints Testing" [level=3] [ref=e39]
+      - generic [ref=e40]:
+        - heading "Cities API" [level=4] [ref=e41]
+        - button "GET Cities" [ref=e42] [cursor=pointer]
+        - button "POST City" [ref=e43] [cursor=pointer]
+      - generic [ref=e44]:
+        - heading "Weather API" [level=4] [ref=e45]
+        - button "GET Weather" [ref=e46] [cursor=pointer]
+        - button "GET Weather by City" [ref=e47] [cursor=pointer]
+      - generic [ref=e48]:
+        - heading "System" [level=4] [ref=e49]
+        - button "Health" [ref=e50] [cursor=pointer]
+        - button "Swagger" [ref=e51] [cursor=pointer]
+    - generic [ref=e52]:
+      - heading "📝 Request Log" [level=3] [ref=e53]
+      - generic [ref=e54]:
+        - generic [ref=e55]: 🟢 AutomationPlayground Dashboard initialized
+        - generic [ref=e56]: 💡 Ready for load balancer testing
+        - generic [ref=e57]: "[7:35:13 AM] 🔧 C# AutomationPlayground Dashboard loaded"
+        - generic [ref=e58]: "[7:35:13 AM] 💡 Tip: Use \"Test Load Balancer\" to see traffic distribution"
+        - generic [ref=e59]: "[7:35:13 AM] 🎯 Use endpoint buttons to test specific API functionality"

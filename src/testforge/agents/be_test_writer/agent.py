@@ -116,15 +116,36 @@ def run_be_writer(state: TestForgeState) -> None:
             for fb in be_feedback:
                 feedback_context += f"- {fb['test_file']}: {fb['fix_suggestion']}\n"
 
-    roles = ", ".join(r["name"] for r in state.credentials.get("roles", []))
+    role_entries = state.credentials.get("roles", [])
+    roles = ", ".join(r.get("name", f"role-{idx + 1}") for idx, r in enumerate(role_entries))
     creds_summary = "; ".join(
-        f"{r['name']}:username={r.get('username', r.get('email', ''))},password={r.get('password', '')}"
-        for r in state.credentials.get("roles", [])
+        f"{r.get('name', f'role-{idx + 1}')}:username={r.get('username', r.get('email', ''))},password={r.get('password', '')}"
+        for idx, r in enumerate(role_entries)
     )
+
+    # Fallback for simple credentials files without roles.
+    if not creds_summary:
+        if isinstance(state.credentials.get("testUser"), dict):
+            tu = state.credentials["testUser"]
+            creds_summary = (
+                f"test-user:username={tu.get('username', '')},password={tu.get('password', '')}"
+            )
+            if not roles:
+                roles = "test-user"
+        elif "username" in state.credentials and "password" in state.credentials:
+            creds_summary = (
+                f"default:username={state.credentials.get('username', '')},password={state.credentials.get('password', '')}"
+            )
+            if not roles:
+                roles = "default"
     login_cfg = state.credentials.get("login", {}) if isinstance(state.credentials, dict) else {}
-    login_url_path = login_cfg.get("url_path", "/login")
-    login_username_field = login_cfg.get("username_field", "username")
-    login_password_field = login_cfg.get("password_field", "password")
+    
+    # Check if authentication is configured
+    has_auth = login_cfg is not None and isinstance(login_cfg, dict) and len(login_cfg) > 0
+    
+    login_url_path = login_cfg.get("url_path", "/login") if has_auth else "N/A"
+    login_username_field = login_cfg.get("username_field", "username") if has_auth else "N/A"
+    login_password_field = login_cfg.get("password_field", "password") if has_auth else "N/A"
 
     # Split API spec into resource chunks
     chunks = _split_api_by_resource(state.api_spec)
@@ -160,6 +181,7 @@ def run_be_writer(state: TestForgeState) -> None:
 
             # Fresh crew each case to avoid cross-case memory bleed.
             crew = BETestWriterCrew()
+            auth_note = "NO AUTHENTICATION (API is public)" if not has_auth else "Authentication: JWT Bearer Token"
             result = crew.crew().kickoff(
                 inputs={
                     "api_chunk": api_chunk_trimmed,
@@ -171,6 +193,8 @@ def run_be_writer(state: TestForgeState) -> None:
                     "login_password_field": login_password_field,
                     "feedback": feedback_context,
                     "app_url": state.app_url,
+                    "auth_enabled": "yes" if has_auth else "no",
+                    "auth_note": auth_note,
                 }
             )
 

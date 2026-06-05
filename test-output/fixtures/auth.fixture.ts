@@ -16,9 +16,9 @@ export const test = base.extend<AuthFixtures & { role: string }>( {
 
   authenticatedPage: async ({ page, account }, use) => {
     await page.goto("/login");
-    await page.locator("email").fill(account.username);
-    await page.locator("password").fill(account.password);
-    await page.locator("Sign In").click();
+    await page.locator("#email").fill(account.username);
+    await page.locator("#password").fill(account.password);
+    await page.locator("button[type=submit]").click();
     await page.waitForLoadState("networkidle");
     await use(page);
   },
